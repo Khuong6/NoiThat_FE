@@ -12,6 +12,9 @@ import PhongNgu from "./page/PhongNgu";
 import Home from "./page/Home";
 import PhongKhach from "./page/PhongKhach";
 import PhongBep from "./page/PhongBep";
+import Dashboard from "./components/dashboard";
+import { ManageProduct } from "./page/Staff/product";
+import { ToastContainer } from "react-toastify";
 
 function Menu() {
   return (
@@ -27,6 +30,12 @@ function Menu() {
         <Route path="/trangchu" element={<Home />}></Route>
         <Route path="/phongkhach" element={<PhongKhach />}></Route>
         <Route path="/phongbep" element={<PhongBep />}></Route>
+        <Route path="/dashboard">
+          <Route path="staff" element={<Dashboard role={"STAFF"} />}>
+            <Route path="product" element={<ManageProduct />}></Route>
+          </Route>
+          <Route path="admin" element={<Dashboard role={"ADMIN"} />}></Route>
+        </Route>
       </Routes>
     </BrowserRouter>
   );
