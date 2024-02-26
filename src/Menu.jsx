@@ -15,6 +15,10 @@ import PhongBep from "./page/PhongBep";
 import Profiles from "./page/Profiles";
 import SignUpPage from "./page/SignUpPage";
 import ForgotPasswordPage from "./page/ForgotPasswordPage";
+import Dashboard from "./components/dashboard";
+import { ManageProduct } from "./page/Staff/product";
+import { ToastContainer } from "react-toastify";
+
 function Menu() {
   return (
     <BrowserRouter>
@@ -34,6 +38,12 @@ function Menu() {
         <Route path="/ForgotPasswordPage" element={< ForgotPasswordPage/>}></Route>
 
 
+        <Route path="/dashboard">
+          <Route path="staff" element={<Dashboard role={"STAFF"} />}>
+            <Route path="product" element={<ManageProduct />}></Route>
+          </Route>
+          <Route path="admin" element={<Dashboard role={"ADMIN"} />}></Route>
+        </Route>
       </Routes>
     </BrowserRouter>
   );
