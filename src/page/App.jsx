@@ -1,8 +1,16 @@
-import { useEffect, useState } from "react";
-import reactLogo from "/src/assets/react.svg";
-import viteLogo from "/vite.svg";
-import Footer from "../components/Footer";
+//  import { useEffect, useState } from "react";
+//  import reactLogo from "/src/assets/react.svg";
+//  import viteLogo from "/vite.svg";
+//  import Footer from "../components/Footer";
+ import { useEffect, useState } from "react";
 import Header from "../components/Header";
+  import { useDispatch, useSelector } from "react-redux";
+import { decrement, increment, incrementByAmount } from "../redux/feature/counterSlide";
+import LoginPage from "./LoginPage";
+import axios from "axios";
+import api from "../config/axios";
+import { login, logout } from "../redux/feature/authenSlice";
+//  import { store } from "../redux/store";
 
 export const App = () => {
   const [account, setAccount] = useState({});
@@ -10,9 +18,31 @@ export const App = () => {
   useEffect(() => {
     setAccount(JSON.parse(localStorage.getItem("account")));
   }, [localStorage]);
+  const counter = useSelector (( store ) => store.counter.value);
+  const dispatch = useDispatch();
+  const LoginHanler = async ()=>{
+    const response = await api.post("/authentication/login", {
+      username: 'phong',
+      password: '123',
+    });
+    console.log(response)
+    dispatch(login(response.data))
+
+  };
+  const LogoutHanler = async ()=>{
+    
+    
+    dispatch(logout())
+
+  };
+
 
   return (
+
+
     <>
+    <button onClick={LoginHanler}>Login</button>
+    <button onClick={LogoutHanler}>Logout</button>
       <Header />
       <div className="bg-white flex flex-row justify-center w-full">
         <div className="flex flex-col w-[1440px] h-[4000px] items-end gap-[40px] absolute top-[190px] left-0">

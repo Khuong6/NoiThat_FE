@@ -12,7 +12,9 @@ import PhongNgu from "./page/PhongNgu";
 import Home from "./page/Home";
 import PhongKhach from "./page/PhongKhach";
 import PhongBep from "./page/PhongBep";
-
+import Profiles from "./page/Profiles";
+import SignUpPage from "./page/SignUpPage";
+import ForgotPasswordPage from "./page/ForgotPasswordPage";
 function Menu() {
   return (
     <BrowserRouter>
@@ -27,6 +29,11 @@ function Menu() {
         <Route path="/trangchu" element={<Home />}></Route>
         <Route path="/phongkhach" element={<PhongKhach />}></Route>
         <Route path="/phongbep" element={<PhongBep />}></Route>
+        <Route path="/profiles" element={<Profiles />}></Route>
+        <Route path="/SignUpPage" element={< SignUpPage/>}></Route>
+        <Route path="/ForgotPasswordPage" element={< ForgotPasswordPage/>}></Route>
+
+
       </Routes>
     </BrowserRouter>
   );
