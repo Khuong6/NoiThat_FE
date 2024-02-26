@@ -12,6 +12,7 @@ import PhongNgu from "./page/PhongNgu";
 import Home from "./page/Home";
 import PhongKhach from "./page/PhongKhach";
 import PhongBep from "./page/PhongBep";
+import SignUpPage from "./page/SignUpPage";
 
 function Menu() {
   return (
@@ -22,6 +23,7 @@ function Menu() {
         <Route path="/kichthuoc" element={<KichThuoc />}></Route>
         <Route path="/test" element={<Test />}></Route>
         <Route path="/login" element={<LoginPage />}></Route>
+        <Route path="/signup" element={<SignUpPage />}></Route>
         <Route path="/hoanthanh" element={<HoanThanh />}></Route>
         <Route path="/phongngu" element={<PhongNgu />}></Route>
         <Route path="/trangchu" element={<Home />}></Route>

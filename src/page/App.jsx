@@ -10,6 +10,7 @@ export const App = () => {
   useEffect(() => {
     setAccount(JSON.parse(localStorage.getItem("account")));
   }, [localStorage]);
+  
 
   return (
     <>
