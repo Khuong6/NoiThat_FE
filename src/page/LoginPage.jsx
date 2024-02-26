@@ -1,27 +1,38 @@
 import { useState } from "react";
 import api from "../config/axios";
 import { useNavigate } from "react-router-dom";
+import { useDispatch } from "react-redux";
+import { login } from "../redux/feature/authenSlice";
+import { toast } from "react-toastify";
 
 function LoginPage() {
   let abc = 10;
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const navigate = useNavigate();
+  const dispatch = useDispatch();
 
   const handleLogin = async (e) => {
     e.preventDefault();
 
     // promise
     // doi toi khi api tra ve
-    const response = await api.post("/authentication/login", {
-      username: username,
-      password: password,
-    });
+    try {
+      const response = await api.post("/authentication/login", {
+        username: username,
+        password: password,
+      });
 
-    localStorage.setItem("account", JSON.stringify(response.data));
-    navigate("/");
+      console.log(response);
+      dispatch(login(response.data));
+
+      localStorage.setItem("account", JSON.stringify(response.data));
+      localStorage.setItem("token", JSON.stringify(response.data.token));
+      navigate("/");
+    } catch (e) {
+      toast.error(e.response.data);
+    }
   };
-  
 
   return (
     <>
@@ -102,7 +113,7 @@ function LoginPage() {
                 </div>
                 {/* Submit button */}
                 <button
-                //onClick={LoginHanler}
+                  //onClick={LoginHanler}
                   type="submit"
                   className="flex items-center justify-center gap-3 bg-[rgba(2566,256,256,0.2)] backdrop-blur-md w-full py-3 rounded-xl hover:bg-[rgba(2566,256,256,0.4)] cursor-pointer border border-gray-400 transition duration-150 ease-in-out hover:bg-primary-600 hover:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.3),0_4px_18px_0_rgba(59,113,202,0.2)] focus:bg-primary-600 focus:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.3),0_4px_18px_0_rgba(59,113,202,0.2)] focus:outline-none focus:ring-0 active:bg-primary-700 active:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.3),0_4px_18px_0_rgba(59,113,202,0.2)] dark:shadow-[0_4px_9px_-4px_rgba(59,113,202,0.5)] dark:hover:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.2),0_4px_18px_0_rgba(59,113,202,0.1)] dark:focus:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.2),0_4px_18px_0_rgba(59,113,202,0.1)] dark:active:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.2),0_4px_18px_0_rgba(59,113,202,0.1)] leading-normal text-white shadow-[0_4px_9px_-4px_#3b71ca] ext-sm font-medium uppercase "
                   style={{ backgroundColor: "blue" }}

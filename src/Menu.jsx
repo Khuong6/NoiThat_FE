@@ -33,10 +33,12 @@ function Menu() {
         <Route path="/trangchu" element={<Home />}></Route>
         <Route path="/phongkhach" element={<PhongKhach />}></Route>
         <Route path="/phongbep" element={<PhongBep />}></Route>
-        <Route path="/profiles" element={<Profiles />}></Route>
-        <Route path="/SignUpPage" element={< SignUpPage/>}></Route>
-        <Route path="/ForgotPasswordPage" element={< ForgotPasswordPage/>}></Route>
-
+        <Route path="/profile" element={<Profiles />}></Route>
+        <Route path="/SignUpPage" element={<SignUpPage />}></Route>
+        <Route
+          path="/ForgotPasswordPage"
+          element={<ForgotPasswordPage />}
+        ></Route>
 
         <Route path="/dashboard">
           <Route path="staff" element={<Dashboard role={"STAFF"} />}>
