@@ -13,6 +13,7 @@ import Home from "./page/Home";
 import PhongKhach from "./page/PhongKhach";
 import PhongBep from "./page/PhongBep";
 import SignUpPage from "./page/SignUpPage";
+import ForgotPasswordPage from "./page/ForgotPasswordPage";
 
 function Menu() {
   return (
@@ -24,6 +25,7 @@ function Menu() {
         <Route path="/test" element={<Test />}></Route>
         <Route path="/login" element={<LoginPage />}></Route>
         <Route path="/signup" element={<SignUpPage />}></Route>
+        <Route path="/ForgotPasswordPage" element={<ForgotPasswordPage />}></Route>
         <Route path="/hoanthanh" element={<HoanThanh />}></Route>
         <Route path="/phongngu" element={<PhongNgu />}></Route>
         <Route path="/trangchu" element={<Home />}></Route>
