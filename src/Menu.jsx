@@ -15,6 +15,7 @@ import PhongBep from "./page/PhongBep";
 import Dashboard from "./components/dashboard";
 import { ManageProduct } from "./page/Staff/product";
 import { ToastContainer } from "react-toastify";
+import MauThietKe from "./page/MauThietKe";
 
 function Menu() {
   return (
@@ -36,6 +37,7 @@ function Menu() {
           </Route>
           <Route path="admin" element={<Dashboard role={"ADMIN"} />}></Route>
         </Route>
+        <Route path="/mauthietke" element={<MauThietKe />}></Route>
       </Routes>
     </BrowserRouter>
   );

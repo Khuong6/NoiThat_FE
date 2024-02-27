@@ -95,6 +95,38 @@ export const KichThuoc = () => {
                     </div>
                   </div>
                 </div>
+                <div className="w-[247px] pl-0 pr-[19px] pt-5 pb-[9.75px] top-[125px] left-0 flex flex-col items-start absolute">
+                  <div class="border-info border-2 border-width-4px rounded-[10px]">
+                    <div className="form-control ">
+                      <label className="cursor-pointer label pr-4 ">
+                        <span className="label-text pr-12 pl-6 ">
+                          Diện tích: 20m2
+                        </span>
+                        <input
+                          type="radio"
+                          name="radio-1"
+                          className="radio radio-info"
+                        />
+                      </label>
+                    </div>
+                  </div>
+                </div>
+                <div className="w-[228px] pt-5 pb-[9.75px] px-0 top-[125px] left-[247px] flex flex-col items-start absolute">
+                  <div class="border-info border-2 border-width-4px rounded-[10px]">
+                    <div className="form-control ">
+                      <label className="cursor-pointer label pr-4 ">
+                        <span className="label-text pr-12 pl-6 ">
+                          Diện tích: 25m2
+                        </span>
+                        <input
+                          type="radio"
+                          name="radio-1"
+                          className="radio radio-info"
+                        />
+                      </label>
+                    </div>
+                  </div>
+                </div>
               </div>
 
               {/* <a

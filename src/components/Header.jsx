@@ -15,11 +15,11 @@ export const Header = () => {
     <>
       <div className="bg-white flex flex-row justify-center w-full">
         <div className="absolute w-[1200px] h-[50px] top-[85px] left-[120px] rounded-[10px]">
-          <div className="absolute w-[1200px] h-[50px] top-0 left-0 bg-[#37667e] rounded-[10px] " />
+          <div className="absolute w-[1200px] h-[50px] top-0 left-0 bg-blue-300 rounded-[10px] " />
           <div className="flex w-[1200px] items-center pl-0 pr-[223.19px] py-0 absolute top-0 left-0 rounded-[10px]">
             <div className="inline-flex flex-col items-start relative flex-[0_0_auto]">
               <div className="flex flex-col items-start pl-[20px] pr-[19.31px] py-[14px] relative self-stretch w-full flex-[0_0_auto]">
-                <div className="relative w-fit mt-[-1.00px] [font-family:'Roboto',Helvetica] font-normal text-vinmuscomnero text-[14px] tracking-[0] leading-[22px] whitespace-nowrap">
+                <div className="relative w-fit mt-[-1.00px] [font-family:'Roboto',Helvetica] font-normal text-vinmuscomnero text-[14px] tracking-[0] leading-[22px] whitespace-nowrap ">
                   ESTRO
                 </div>
               </div>
@@ -27,7 +27,7 @@ export const Header = () => {
             <div className="inline-flex flex-col items-start relative flex-[0_0_auto]">
               <div className="flex flex-col items-start pl-[20px] pr-[19.2px] py-[14px] relative self-stretch w-full flex-[0_0_auto]">
                 <a
-                  className="relative w-fit mt-[-1.00px] [font-family:'Roboto',Helvetica] font-normal text-vinmuscomnero text-[14px] tracking-[0] leading-[22px] whitespace-nowrap"
+                  className="relative w-fit mt-[-1.00px] [font-family:'Roboto',Helvetica] font-normal text-vinmuscomnero text-[14px] tracking-[0] leading-[22px] whitespace-nowrap "
                   href="http://vinmus.com/vn/du-an.html"
                   rel="noopener noreferrer"
                   target="_blank"
@@ -37,13 +37,13 @@ export const Header = () => {
               </div>
             </div>
             <div className="inline-flex flex-col items-start relative flex-[0_0_auto]">
-              <div className="dropdown dropdown-hover flex pl-[20px] pr-[20.44px] py-[14px] self-stretch w-full bg-[#7b92aa] flex-col items-start relative flex-[0_0_auto]">
-                <div className="relative w-fit mt-[-1.00px] [font-family:'Roboto',Helvetica] font-normal text-vinmuscomnero text-[14px] tracking-[0] leading-[22px] whitespace-nowrap">
+              <div className="dropdown dropdown-hover flex pl-[20px] pr-[20.44px] py-[14px] self-stretch w-fulls flex-col items-start relative flex-[0_0_auto]">
+                <div className="relative w-fit mt-[-1.00px] [font-family:'Roboto',Helvetica] font-normal text-vinmuscomnero text-[14px] tracking-[0] leading-[22px] whitespace-nowrap ">
                   BỘ SƯU TẬP
                 </div>
                 <ul
                   tabIndex={0}
-                  className="dropdown-content z-[1] menu p-2 shadow bg-base-100 rounded-box w-52  bg-white outline outline-gray-200 outline-2 rounded-[5px]  mt-4 left-[0.1px] "
+                  className="dropdown-content z-[1] menu p-2 shadow   w-52  bg-white outline outline-gray-200 outline-2 rounded-[5px]  mt-4 left-[0.1px] "
                 >
                   <li>
                     <a href="/PhongNgu">Phòng Ngủ</a>
@@ -60,7 +60,7 @@ export const Header = () => {
             <div className="inline-flex flex-col items-start relative flex-[0_0_auto]">
               <div className="flex flex-col items-start pl-[20px] pr-[19.06px] py-[14px] relative self-stretch w-full flex-[0_0_auto]">
                 <a
-                  className="relative w-fit mt-[-1.00px] [font-family:'Roboto',Helvetica] font-normal text-vinmuscomnero text-[14px] tracking-[0] leading-[22px] whitespace-nowrap"
+                  className="relative w-fit mt-[-1.00px] [font-family:'Roboto',Helvetica] font-normal text-vinmuscomnero text-[14px] tracking-[0] leading-[22px] whitespace-nowrap "
                   href="http://vinmus.com/vn/san-pham.html"
                   rel="noopener noreferrer"
                   target="_blank"
@@ -72,7 +72,7 @@ export const Header = () => {
             <div className="inline-flex flex-col items-start relative flex-[0_0_auto]">
               <div className="flex flex-col items-start pl-[20px] pr-[19.55px] py-[14px] relative self-stretch w-full flex-[0_0_auto]">
                 <a
-                  className="relative w-fit mt-[-1.00px] [font-family:'Roboto',Helvetica] font-normal text-vinmuscomnero text-[14px] tracking-[0] leading-[22px] whitespace-nowrap"
+                  className="relative w-fit mt-[-1.00px] [font-family:'Roboto',Helvetica] font-normal text-vinmuscomnero text-[14px] tracking-[0] leading-[22px] whitespace-nowrap "
                   href="http://vinmus.com/vn/tin-tuc.html"
                   rel="noopener noreferrer"
                   target="_blank"
@@ -84,7 +84,7 @@ export const Header = () => {
             <div className="inline-flex flex-col items-start relative flex-[0_0_auto]">
               <div className="flex flex-col items-start pl-[20px] pr-[19.44px] py-[14px] relative self-stretch w-full flex-[0_0_auto]">
                 <a
-                  className="relative w-fit mt-[-1.00px] [font-family:'Roboto',Helvetica] font-normal text-vinmuscomnero text-[14px] tracking-[0] leading-[22px] whitespace-nowrap"
+                  className="relative w-fit mt-[-1.00px] [font-family:'Roboto',Helvetica] font-normal text-vinmuscomnero text-[14px] tracking-[0] leading-[22px] whitespace-nowrap "
                   href="http://vinmus.com/vn/he-thong-showroom.html"
                   rel="noopener noreferrer"
                   target="_blank"
@@ -96,7 +96,7 @@ export const Header = () => {
             <div className="inline-flex flex-col items-start relative flex-[0_0_auto]">
               <div className="flex flex-col items-start pl-[20px] pr-[19.42px] py-[14px] relative self-stretch w-full flex-[0_0_auto]">
                 <a
-                  className="relative w-fit mt-[-1.00px] [font-family:'Roboto',Helvetica] font-normal text-vinmuscomnero text-[14px] tracking-[0] leading-[22px] whitespace-nowrap"
+                  className="relative w-fit mt-[-1.00px] [font-family:'Roboto',Helvetica] font-normal text-vinmuscomnero text-[14px] tracking-[0] leading-[22px] whitespace-nowrap "
                   href="https://vinmus.com/vn/e-catalogue.html"
                   rel="noopener noreferrer"
                   target="_blank"
@@ -108,12 +108,12 @@ export const Header = () => {
             <div className="inline-flex flex-col items-start relative flex-[0_0_auto]">
               <div className="flex flex-col items-start pl-[20px] pr-[19.39px] py-[14px] relative self-stretch w-full flex-[0_0_auto]">
                 <a
-                  className="relative w-fit mt-[-1.00px] [font-family:'Roboto',Helvetica] font-normal text-vinmuscomnero text-[14px] tracking-[0] leading-[22px] whitespace-nowrap"
-                  href="http://vinmus.com/vn/y-tuong-thiet-ke.html"
+                  className="relative w-fit mt-[-1.00px] [font-family:'Roboto',Helvetica] font-normal text-vinmuscomnero text-[14px] tracking-[0] leading-[22px] whitespace-nowrap "
+                  href="mauthietke"
                   rel="noopener noreferrer"
-                  target="_blank"
+                  target="_self"
                 >
-                  Ý TƯỞNG THIẾT KẾ
+                  MẪU THIẾT KẾ
                 </a>
               </div>
             </div>
