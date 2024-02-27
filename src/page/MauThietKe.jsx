@@ -20,10 +20,10 @@ const MauThietKe = () => {
             <Title className="text-center">Mẫu Thiết Kế</Title>
             <Paragraph className="text-center ">
               Chinh phục đỉnh cao trong nghệ thuật kiến tạo không gian sống – đó
-              là thiết kế nội thất theo phong cách gia chủ. Tại Vinmus, chúng
+              là thiết kế nội thất theo phong cách gia chủ. Tại NoiThat, chúng
               tôi lắng nghe khách hàng, cùng khách hàng làm nên các tác phẩm
               mang đậm dấu ấn cá nhân riêng biệt. Chinh phục hoàn toàn sự hài
-              lòng của cả những khách hàng khó tính nhất. Cùng Vinmus bước vào
+              lòng của cả những khách hàng khó tính nhất. Cùng NoiThat bước vào
               hành trình sáng tạo đứng trên xu hướng, nơi bạn hãnh diện gọi đó
               là Phong Cách Của Tôi!
             </Paragraph>
