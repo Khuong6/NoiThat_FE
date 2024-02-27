@@ -15,7 +15,7 @@ export const Header = () => {
     <>
       <div className="bg-white flex flex-row justify-center w-full">
         <div className="absolute w-[1200px] h-[50px] top-[85px] left-[120px] rounded-[10px]">
-          <div className="absolute w-[1200px] h-[50px] top-0 left-0 bg-blue-300 rounded-[10px] " />
+          <div className="absolute w-[1200px] h-[50px] top-0 left-0 bg-[#37667e] rounded-[10px] " />
           <div className="flex w-[1200px] items-center pl-0 pr-[223.19px] py-0 absolute top-0 left-0 rounded-[10px]">
             <div className="inline-flex flex-col items-start relative flex-[0_0_auto]">
               <div className="flex flex-col items-start pl-[20px] pr-[19.31px] py-[14px] relative self-stretch w-full flex-[0_0_auto]">
