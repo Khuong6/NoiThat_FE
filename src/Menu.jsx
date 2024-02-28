@@ -12,6 +12,9 @@ import PhongNgu from "./page/PhongNgu";
 import Home from "./page/Home";
 import PhongKhach from "./page/PhongKhach";
 import PhongBep from "./page/PhongBep";
+import Profiles from "./page/Profiles";
+import SignUpPage from "./page/SignUpPage";
+import ForgotPasswordPage from "./page/ForgotPasswordPage";
 import Dashboard from "./components/dashboard";
 import { ManageProduct } from "./page/Staff/product";
 import { ToastContainer } from "react-toastify";
@@ -31,6 +34,13 @@ function Menu() {
         <Route path="/trangchu" element={<Home />}></Route>
         <Route path="/phongkhach" element={<PhongKhach />}></Route>
         <Route path="/phongbep" element={<PhongBep />}></Route>
+        <Route path="/profile" element={<Profiles />}></Route>
+        <Route path="/SignUpPage" element={<SignUpPage />}></Route>
+        <Route
+          path="/ForgotPasswordPage"
+          element={<ForgotPasswordPage />}
+        ></Route>
+
         <Route path="/dashboard">
           <Route path="staff" element={<Dashboard role={"STAFF"} />}>
             <Route path="product" element={<ManageProduct />}></Route>

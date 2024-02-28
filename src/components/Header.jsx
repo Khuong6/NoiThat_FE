@@ -3,13 +3,36 @@ import reactLogo from "/src/assets/react.svg";
 import viteLogo from "/vite.svg";
 import { useEffect, useState } from "react";
 import Footer from "../components/Footer";
+import { useDispatch, useSelector } from "react-redux";
+import { Button, Dropdown } from "antd";
+import { Link } from "react-router-dom";
+import { logout } from "../redux/feature/authenSlice";
 
 export const Header = () => {
-  const [account, setAccount] = useState({});
-
-  useEffect(() => {
-    setAccount(JSON.parse(localStorage.getItem("account")));
-  }, [localStorage]);
+  const user = useSelector((store) => store.authen);
+  const dispatch = useDispatch();
+  const items = [
+    {
+      key: "1",
+      label: (
+        <Button>
+          <Link to={"/profile"}>Setting</Link>
+        </Button>
+      ),
+    },
+    {
+      key: "2",
+      label: (
+        <Button
+          onClick={() => {
+            dispatch(logout());
+          }}
+        >
+          Logout
+        </Button>
+      ),
+    },
+  ];
 
   return (
     <>
@@ -120,21 +143,39 @@ export const Header = () => {
           </div>
         </div>
 
-        <a href="/login">
-          <div className="inline-flex flex-col items-start absolute top-[51px] left-[1218px]">
-            <div className="flex items-center gap-[5px] relative self-stretch w-full flex-[0_0_auto]">
-              <img
-                className="relative flex-[0_0_auto]"
-                alt="Before"
-                src="https://c.animaapp.com/jsxmGnQm/img/--before.svg"
-              />
-              <div className="relative w-fit mt-[-1.00px] [font-family:'Roboto',Helvetica] font-normal text-vinmuscommine-shaft text-[14px] tracking-[0] leading-[22px] whitespace-nowrap">
-                {" "}
-                {account ? account.username : "Thành viên"}
+        {user ? (
+          <>
+            <div className="inline-flex flex-col items-start absolute top-[51px] left-[1218px]">
+              <div className="flex items-center gap-[5px] relative self-stretch w-full flex-[0_0_auto]">
+                <img
+                  className="relative flex-[0_0_auto]"
+                  alt="Before"
+                  src="https://c.animaapp.com/jsxmGnQm/img/--before.svg"
+                />
+                <div className="relative w-fit mt-[-1.00px] [font-family:'Roboto',Helvetica] font-normal text-vinmuscommine-shaft text-[14px] tracking-[0] leading-[22px] whitespace-nowrap">
+                  <Dropdown menu={{ items }} placement="bottomLeft">
+                    <span>{user.username}</span>
+                  </Dropdown>
+                </div>
               </div>
             </div>
-          </div>
-        </a>
+          </>
+        ) : (
+          <a href="/login">
+            <div className="inline-flex flex-col items-start absolute top-[51px] left-[1218px]">
+              <div className="flex items-center gap-[5px] relative self-stretch w-full flex-[0_0_auto]">
+                <img
+                  className="relative flex-[0_0_auto]"
+                  alt="Before"
+                  src="https://c.animaapp.com/jsxmGnQm/img/--before.svg"
+                />
+                <div className="relative w-fit mt-[-1.00px] [font-family:'Roboto',Helvetica] font-normal text-vinmuscommine-shaft text-[14px] tracking-[0] leading-[22px] whitespace-nowrap">
+                  Thành viên
+                </div>
+              </div>
+            </div>
+          </a>
+        )}
 
         <div className="absolute h-[30px] top-[46px] left-[140px] [font-family:'Roboto',Helvetica] font-bold text-vinmuscomblack text-[12px] tracking-[0] leading-[30px] whitespace-nowrap">
           HOTLINE: 012345678
