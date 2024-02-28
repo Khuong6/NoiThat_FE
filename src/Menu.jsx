@@ -15,6 +15,7 @@ import PhongBep from "./page/PhongBep";
 import Dashboard from "./components/dashboard";
 import { ManageProduct } from "./page/Staff/product";
 import { ToastContainer } from "react-toastify";
+import { ManageCategory } from "./page/Staff/category";
 
 function Menu() {
   return (
@@ -33,6 +34,7 @@ function Menu() {
         <Route path="/dashboard">
           <Route path="staff" element={<Dashboard role={"STAFF"} />}>
             <Route path="product" element={<ManageProduct />}></Route>
+            <Route path="category" element={<ManageCategory />}></Route>
           </Route>
           <Route path="admin" element={<Dashboard role={"ADMIN"} />}></Route>
         </Route>

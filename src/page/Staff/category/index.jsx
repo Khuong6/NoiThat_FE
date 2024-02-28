@@ -157,7 +157,7 @@ export const ManageCategory = () => {
   const onSubmit = async (values) => {
     console.log(values);
 
-    const response = await api.post("categories", {
+    const response = await api.post("category", {
       name: values.name,
     });
     console.log(response);

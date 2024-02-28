@@ -15,6 +15,7 @@ import api from "../../../config/axios";
 import { PlusOutlined } from "@ant-design/icons";
 import uploadFile from "../../../utils/upload";
 import { ToastContainer, toast } from "react-toastify";
+import { Checkbox, Divider } from "antd";
 
 export const ManageProduct = () => {
   const [options, setOptions] = useState([]);
@@ -87,7 +88,16 @@ export const ManageProduct = () => {
       filterSearch: true,
       width: "40%",
     },
+    {
+      render: (value, record) => (
+        <Checkbox
+          onChange={(e) => handleCheckboxChange(record.id, e.target.checked)}
+          style={{ border: "2px solid black", borderColor: "black" }}
+        />
+      ),
+    },
   ];
+
   const data = [
     {
       key: "1",
@@ -224,11 +234,28 @@ export const ManageProduct = () => {
     fetchProducts();
   };
 
+  const handleCheckboxChange = (productId, isChecked) => {
+    setProducts(
+      products.map((product) => {
+        if (product.id === productId) {
+          return { ...product, checked: isChecked };
+        }
+        return product;
+      })
+    );
+  };
+
+  const handleDeleteClick = () => {
+    setProducts(items.filter((item) => !item.checked));
+  };
+
+  /////////////////////////////
   return (
     <div>
       <Button onClick={showModal} type="primary">
         Add
       </Button>
+      <button onClick={handleDeleteClick}>Delete</button>
       <Table columns={columns} dataSource={products} onChange={onChange} />
       <Modal
         title="Basic Modal"
@@ -334,6 +361,8 @@ export const ManageProduct = () => {
           src={previewImage}
         />
       </Modal>
+
+      <Button></Button>
     </div>
   );
 };

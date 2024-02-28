@@ -6,6 +6,7 @@ import Header from "../components/Header";
 import VideoHoverPlay from "../components/VideoHoverPlay";
 import React from "react";
 import "daisyui/dist/full.css";
+import { FloatButton } from "antd";
 
 export const Home = () => {
   return (
@@ -104,6 +105,7 @@ export const Home = () => {
           </div>
         </div>
       </div>
+      <FloatButton.BackTop />
       <Footer />
     </>
   );
