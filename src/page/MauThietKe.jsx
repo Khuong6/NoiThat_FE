@@ -5,9 +5,11 @@ import viteLogo from "/vite.svg";
 import Footer from "../components/Footer";
 import Header from "../components/Header";
 import { Button, Divider, Typography } from "antd";
+import { Pagination } from "antd";
 import { Card, Col, Row } from "antd";
 const { Meta } = Card;
 const { Title, Paragraph, Text, Link } = Typography;
+
 const blockContent = ``;
 
 const MauThietKe = () => {
