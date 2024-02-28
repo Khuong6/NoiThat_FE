@@ -4,7 +4,7 @@ import reactLogo from "/src/assets/react.svg";
 import viteLogo from "/vite.svg";
 import Footer from "../components/Footer";
 import Header from "../components/Header";
-import { Divider, Typography } from "antd";
+import { Button, Divider, Typography } from "antd";
 import { Card, Col, Row } from "antd";
 const { Meta } = Card;
 const { Title, Paragraph, Text, Link } = Typography;
@@ -28,111 +28,121 @@ const MauThietKe = () => {
               là Phong Cách Của Tôi!
             </Paragraph>
             <Title level={2}>Guidelines and Resources</Title>
-            <Row gutter={16} className="text-center ">
-              <Col span={8}>
-                <Card
-                  hoverable
-                  className="m-3"
-                  style={{
-                    width: 250,
-                  }}
-                  cover={
-                    <img
-                      alt="example"
-                      src="https://os.alipayobjects.com/rmsportal/QBnOOoLaAfKPirc.png"
-                    />
-                  }
-                >
-                  <Meta title="Europe Street beat" description="localStorage" />
-                </Card>
-              </Col>
-              <Col span={8}>
-                <Card
-                  hoverable
-                  className="m-3"
-                  style={{
-                    width: 250,
-                  }}
-                  cover={
-                    <img
-                      alt="example"
-                      src="https://os.alipayobjects.com/rmsportal/QBnOOoLaAfKPirc.png"
-                    />
-                  }
-                >
-                  <Meta title="Europe Street beat" description="localStorage" />
-                </Card>
-              </Col>
-              <Col span={8}>
-                <Card
-                  hoverable
-                  className="m-3"
-                  style={{
-                    width: 250,
-                  }}
-                  cover={
-                    <img
-                      alt="example"
-                      src="https://os.alipayobjects.com/rmsportal/QBnOOoLaAfKPirc.png"
-                    />
-                  }
-                >
-                  <Meta title="Europe Street beat" description="localStorage" />
-                </Card>
-              </Col>
-              <Col span={8}>
-                <Card
-                  hoverable
-                  className="m-3"
-                  style={{
-                    width: 250,
-                  }}
-                  cover={
-                    <img
-                      alt="example"
-                      src="https://os.alipayobjects.com/rmsportal/QBnOOoLaAfKPirc.png"
-                    />
-                  }
-                >
-                  <Meta title="Europe Street beat" description="localStorage" />
-                </Card>
-              </Col>
-              <Col span={8}>
-                <Card
-                  hoverable
-                  className="m-3"
-                  style={{
-                    width: 250,
-                  }}
-                  cover={
-                    <img
-                      alt="example"
-                      src="https://os.alipayobjects.com/rmsportal/QBnOOoLaAfKPirc.png"
-                    />
-                  }
-                >
-                  <Meta title="Europe Street beat" description="localStorage" />
-                </Card>
-              </Col>
 
-              <Col span={8}>
-                <Card
-                  hoverable
-                  className="m-3"
-                  style={{
-                    width: 250,
-                  }}
-                  cover={
-                    <img
-                      alt="example"
-                      src="https://os.alipayobjects.com/rmsportal/QBnOOoLaAfKPirc.png"
-                    />
-                  }
-                >
-                  <Meta title="Europe Street beat" description="localStorage" />
-                </Card>
-              </Col>
-            </Row>
+            {/* Content 1 & 2*/}
+            <div className="flex w-full pt">
+              <div className="card lg:card-side bg-base-100 shadow-xl">
+                <figure>
+                  <img
+                    src="https://daisyui.com/images/stock/photo-1494232410401-ad00d5433cfa.jpg"
+                    alt="Album"
+                  />
+                </figure>
+                <div className="card-body">
+                  <h2 className="card-title">New album is released!</h2>
+                  <p>Click the button to listen on Spotiwhy app.</p>
+                  <div className="card-actions justify-end">
+                    <a href="https://www.youtube.com/" target="_blank">
+                      <button className="btn btn-primary ">Listen</button>
+                    </a>
+                  </div>
+                </div>
+              </div>
+              {/*  */}
+              <div className="divider divider-horizontal"></div>
+              {/*  */}
+              <div className="card lg:card-side bg-base-100 shadow-xl ">
+                <figure>
+                  <img
+                    src="https://daisyui.com/images/stock/photo-1494232410401-ad00d5433cfa.jpg"
+                    alt="Album"
+                  />
+                </figure>
+                <div className="card-body">
+                  <h2 className="card-title">New album is released!</h2>
+                  <p>Click the button to listen on Spotiwhy app.</p>
+                  <div className="card-actions justify-end">
+                    <button className="btn btn-primary">Listen</button>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div className="divider"></div>
+            {/* Content 3 & 4 */}
+            <div className="flex w-full">
+              <div className="card lg:card-side bg-base-100 shadow-xl">
+                <figure>
+                  <img
+                    src="https://daisyui.com/images/stock/photo-1494232410401-ad00d5433cfa.jpg"
+                    alt="Album"
+                  />
+                </figure>
+                <div className="card-body">
+                  <h2 className="card-title">New album is released!</h2>
+                  <p>Click the button to listen on Spotiwhy app.</p>
+                  <div className="card-actions justify-end">
+                    <button className="btn btn-primary">Listen</button>
+                  </div>
+                </div>
+              </div>
+              {/*  */}
+              <div className="divider divider-horizontal"></div>
+              {/*  */}
+              <div className="card lg:card-side bg-base-100 shadow-xl ">
+                <figure>
+                  <img
+                    src="https://daisyui.com/images/stock/photo-1494232410401-ad00d5433cfa.jpg"
+                    alt="Album"
+                  />
+                </figure>
+                <div className="card-body">
+                  <h2 className="card-title">New album is released!</h2>
+                  <p>Click the button to listen on Spotiwhy app.</p>
+                  <div className="card-actions justify-end">
+                    <button className="btn btn-primary">Listen</button>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div className="divider"></div>
+            {/* Content 5 & 6 */}
+            <div className="flex w-full">
+              <div className="card lg:card-side bg-base-100 shadow-xl">
+                <figure>
+                  <img
+                    src="https://daisyui.com/images/stock/photo-1494232410401-ad00d5433cfa.jpg"
+                    alt="Album"
+                  />
+                </figure>
+                <div className="card-body">
+                  <h2 className="card-title">New album is released!</h2>
+                  <p>Click the button to listen on Spotiwhy app.</p>
+                  <div className="card-actions justify-end">
+                    <button className="btn btn-primary">Listen</button>
+                  </div>
+                </div>
+              </div>
+              {/*  */}
+              <div className="divider divider-horizontal"></div>
+              {/*  */}
+              <div className="card lg:card-side bg-base-100 shadow-xl ">
+                <figure>
+                  <img
+                    src="https://daisyui.com/images/stock/photo-1494232410401-ad00d5433cfa.jpg"
+                    alt="Album"
+                  />
+                </figure>
+                <div className="card-body">
+                  <h2 className="card-title">New album is released!</h2>
+                  <p>Click the button to listen on Spotiwhy app.</p>
+                  <div className="card-actions justify-end">
+                    <button className="btn btn-primary">Listen</button>
+                  </div>
+                </div>
+              </div>
+            </div>
 
             <Divider />
           </Typography>
