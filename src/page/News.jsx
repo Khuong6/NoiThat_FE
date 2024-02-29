@@ -26,37 +26,37 @@ export const News = () => {
           <Row>
             <Col span={12}>
               <div className="border border-gray-300 overflow-hidden rounded-[15px]">
-                <img
-                  src="https://cdn.shopify.com/s/files/1/2313/3837/products/ifdc-sectional-colwood-grey-tufted-fabric-reversible-sectional-sofa-28555769708606_950x700.jpg?v=1628000188"
-                  style={{
-                    borderRadius: "15px",
-                    width: "700px",
-                    height: "300px",
-                    transform: isHovered1 ? "scale(1.2)" : "scale(1)",
-                    transition: "transform 0.5s",
-                  }}
-                  onMouseEnter={() => setIsHovered1(true)}
-                  onMouseLeave={() => setIsHovered1(false)}
-                />
+                <a href="/xemtintuc">
+                  <img
+                    src="https://cdn.shopify.com/s/files/1/2313/3837/products/ifdc-sectional-colwood-grey-tufted-fabric-reversible-sectional-sofa-28555769708606_950x700.jpg?v=1628000188"
+                    style={{
+                      borderRadius: "15px",
+                      width: "700px",
+                      height: "300px",
+                      transform: isHovered1 ? "scale(1.2)" : "scale(1)",
+                      transition: "transform 0.5s",
+                    }}
+                    onMouseEnter={() => setIsHovered1(true)}
+                    onMouseLeave={() => setIsHovered1(false)}
+                  />
+                </a>
               </div>
             </Col>
             <Col span={12}>
-              <button
-                className="ml-20 mt-10 font-medium hover:text-blue-500"
+              <a
                 href="/xemtintuc"
+                className="ml-20 mt-10 font-medium hover:text-blue-500"
               >
                 LỰA CHỌN CHẤT LIỆU SOFA NHƯ THẾ NÀO LÀ PHÙ HỢP?
-              </button>
+              </a>
               <p className="mt-5 ml-20 mr-20">
                 Bạn vẫn chưa biết nên chọn chất liệu sofa như thế nào cho phù
                 hợp với nhu cầu nhà mình? Cùng tham khảo một số đặc trưng của
                 các chất liệu sofa để tìm ra sự lựa chọn tốt nhất cho mình nhé!
               </p>
-              <button
-                className="ml-40 mt-10 text-lg font-medium hover:text-blue-500 "
-                href="/xemtintuc"
-              >
-                [Xem Thêm]
+
+              <button className="ml-40 mt-10 text-lg font-medium hover:text-blue-500 ">
+                <a href="/xemtintuc">[Xem Thêm]</a>
               </button>
             </Col>
           </Row>

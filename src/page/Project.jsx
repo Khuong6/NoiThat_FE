@@ -23,24 +23,29 @@ export const Project = () => {
           <Row>
             <Col span={8}>
               <div className="border ml-5 border-gray-300 overflow-hidden rounded-[15px]">
-                <img
-                  src="https://www.lanha.vn/wp-content/uploads/2023/09/12.jpeg.webp"
-                  style={{
-                    borderRadius: "15px",
-                    width: "700px",
-                    height: "300px",
-                    transform: isHovered1 ? "scale(1.2)" : "scale(1)",
-                    transition: "transform 0.5s, filter 0.5s ease-out", // Chỉnh sửa transition để cả hiệu ứng mờ
-                    filter: isHovered1 ? "brightness(40%)" : "brightness(100%)", // Thêm filter để làm mờ ảnh
-                  }}
-                  onMouseEnter={() => setIsHovered1(true)}
-                  onMouseLeave={() => setIsHovered1(false)}
-                />
+                <a href="/duanchitiet">
+                  <img
+                    src="https://www.lanha.vn/wp-content/uploads/2023/09/12.jpeg.webp"
+                    style={{
+                      borderRadius: "15px",
+                      width: "700px",
+                      height: "300px",
+                      transform: isHovered1 ? "scale(1.2)" : "scale(1)",
+                      transition: "transform 0.5s, filter 0.5s ease-out", // Chỉnh sửa transition để cả hiệu ứng mờ
+                      filter: isHovered1
+                        ? "brightness(40%)"
+                        : "brightness(100%)", // Thêm filter để làm mờ ảnh
+                    }}
+                    onMouseEnter={() => setIsHovered1(true)}
+                    onMouseLeave={() => setIsHovered1(false)}
+                  />
+                </a>
               </div>
-
-              <p className="text-sm font-bold ml-20 mt-5">
-                VINHOMES Q9 – JAPANDI – 90TR
-              </p>
+              <a href="/duanchitiet">
+                <p className="text-sm font-bold ml-20 mt-5">
+                  VINHOMES Q9 – JAPANDI – 90TR
+                </p>
+              </a>
             </Col>
             <Col span={8}>
               <div className="border ml-5 border-gray-300 overflow-hidden rounded-[15px]">
