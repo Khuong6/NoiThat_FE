@@ -37,7 +37,7 @@ function Menu() {
           </Route>
           <Route path="admin" element={<Dashboard role={"ADMIN"} />}></Route>
         </Route>
-        <Route path="/mauthietke" element={<MauThietKe />}></Route>
+        
       </Routes>
     </BrowserRouter>
   );

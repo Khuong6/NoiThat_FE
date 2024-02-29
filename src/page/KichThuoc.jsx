@@ -158,12 +158,7 @@ export const KichThuoc = () => {
           </div>
         </div>
       </div>
-      <img
-        className="absolute w-[1440px] h-[357px] top-[808px] left-0"
-        alt="Image"
-        src="https://c.animaapp.com/jsxmGnQm/img/image.svg"
-      />
-
+    {/* steps function */}
       <div className="absolute w-[713px] h-[27px] top-[162px] left-[126px] pt-20 pb-20">
         <ul className="steps">
           <a className="step step-info" href="/">
@@ -184,6 +179,7 @@ export const KichThuoc = () => {
           </a>
         </ul>
       </div>
+      <Footer />
     </>
   );
 };
