@@ -19,6 +19,7 @@ import Dashboard from "./components/dashboard";
 import { ManageProduct } from "./page/Staff/product";
 import { ToastContainer } from "react-toastify";
 import { ManageCategory } from "./page/Staff/category";
+import SanPhamDon from "./page/SanPhamDon";
 
 function Menu() {
   return (
@@ -36,6 +37,7 @@ function Menu() {
         <Route path="/phongbep" element={<PhongBep />}></Route>
         <Route path="/profile" element={<Profiles />}></Route>
         <Route path="/SignUpPage" element={<SignUpPage />}></Route>
+        <Route path="/sanPhamDon" element={<SanPhamDon />}></Route>
         <Route
           path="/ForgotPasswordPage"
           element={<ForgotPasswordPage />}
