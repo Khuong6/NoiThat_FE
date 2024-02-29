@@ -28,7 +28,13 @@ function LoginPage() {
 
       localStorage.setItem("account", JSON.stringify(response.data));
       localStorage.setItem("token", JSON.stringify(response.data.token));
-      navigate("/");
+      if (response.data.role === "ADMIN") {
+        navigate("/dashboard/admin");
+      } else if (response.data.role === "STAFF") {
+        navigate("/dashboard/staff");
+      } else {
+        navigate("/");
+      }
     } catch (e) {
       toast.error(e.response.data);
     }

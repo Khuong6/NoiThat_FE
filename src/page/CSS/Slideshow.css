@@ -1,0 +1,39 @@
+/* Slideshow container */
+.section-logos {
+  width: 100%; /* Chiều rộng của phần tử chứa slideshow */
+  overflow: hidden; /* Ẩn phần bị tràn ra ngoài */
+}
+
+/* Wrapper for slides */
+.swiper-wrapper {
+  display: flex; /* Hiển thị các slide theo hàng ngang */
+  animation: slide-animation 30s linear infinite; /* Kích hoạt animation cho việc trượt continue của slides */
+}
+
+/* Individual slides */
+.swiper-slide {
+  flex: 0 0 auto; /* Slide không được phép mở rộng */
+  width: auto; /* Chiều rộng tự động */
+  margin-right: 10px; /* Khoảng cách giữa các slide */
+}
+
+/* Image styles */
+.swiper-slide img {
+  max-width: 100%; /* Hình ảnh không vượt quá kích thước của slide */
+  height: auto; /* Chiều cao tự động */
+}
+
+/* Notification span */
+.swiper-notification {
+  display: none; /* Ẩn span thông báo */
+}
+
+/* Animation for continuous sliding */
+@keyframes slide-animation {
+  0% { transform: translateX(0); } /* Bắt đầu từ vị trí ban đầu */
+  100% { transform: translateX(-100%); } /* Kết thúc tại vị trí cuối cùng */
+  @keyframes slide-animation {
+  0% { transform: translateX(100%); } /* Bắt đầu từ vị trí bên phải */
+  100% { transform: translateX(0); } /* Kết thúc tại vị trí ban đầu */
+}
+}

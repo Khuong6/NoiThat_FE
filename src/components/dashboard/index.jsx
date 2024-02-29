@@ -37,6 +37,11 @@ const Dashboard = ({ role }) => {
           icon: <ProfileOutlined />,
           label: <Link to={"quotation"}>Manage Quotation</Link>,
         },
+        {
+          key: "4",
+          icon: <ProfileOutlined />,
+          label: <Link to={"request"}>Manage request</Link>,
+        },
       ];
     } else {
       return [

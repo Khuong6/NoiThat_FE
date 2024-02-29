@@ -7,6 +7,10 @@ import VideoHoverPlay from "../components/VideoHoverPlay";
 import React from "react";
 import "daisyui/dist/full.css";
 import { FloatButton } from "antd";
+import { Typography } from "antd";
+import ImageHover from "../components/ImageHover";
+
+const { Title } = Typography;
 
 export const Home = () => {
   return (
@@ -37,8 +41,16 @@ export const Home = () => {
           </div>
         </div>
 
-        <div className="bg-gradient-to-r from-blue-200 to-white w-200 h-200">
-          <div class="grid grid-cols-3 gap-4 py-2 px-2">
+        {/* <div className="bg-gradient-to-r from-blue-300 to-blue-50 w-200 h-200"> */}
+        <div
+          style={{
+            backgroundImage:
+              "linear-gradient(to right, rgb(135, 206, 250), rgb(224, 255, 255))",
+            width: "100%",
+            height: "100%",
+          }}
+        >
+          <div class="grid grid-cols-3 gap-4 py-2 px-2 pt-5">
             <div className="pt-10 py-5 px-5  ">
               <div className="text-3xl font-serif font-bold  ">
                 Những sản phẩm nổi bật
@@ -100,6 +112,115 @@ export const Home = () => {
                     <VideoHoverPlay videoUrl="https://coohom-biz-sg-s3.coohom.com/ins/static/homepage/video/p24s.webm" />
                   </div>
                 </div>
+              </div>
+            </div>
+          </div>
+
+          <div
+            style={{
+              // width: "100vw",
+              height: "100vh",
+              overflow: "hidden",
+              borderRadius: "15px",
+            }}
+          >
+            <video
+              autoPlay
+              controls
+              loop
+              style={{
+                width: "100%",
+                height: "100%",
+                objectFit: "cover",
+              }}
+            >
+              <source
+                src="https://coohom-biz-sg-s3.coohom.com/ins/static/homepage/video/panoramas.webm"
+                type="video/webm"
+              />
+              Your browser does not support the video tag.
+            </video>
+          </div>
+
+          {/*dự án đã thực hiện */}
+          <div
+            className="text-center py-10 text-5xl "
+            style={{ fontFamily: "Playfair Display, serif" }}
+          >
+            Dự án đã thực hiện
+          </div>
+
+          <div class="grid grid-cols-4 gap-4 justify-center items-center ml-10">
+            {/* Artboard 1 */}
+            <div>
+              <div>
+                <ImageHover
+                  imageUrl="public/c7a093b45714834ada0514.jpg"
+                  hoverText="Xem Thêm"
+                />
+              </div>
+            </div>
+            {/* Artboard 2 */}
+            <div>
+              <div>
+                <ImageHover
+                  imageUrl="https://design-community-us-s3.coohom.com/design/img/perm/MM65N2IKTIZYYAABAAAAABQ8.png?x-oss-process=image/resize,w_1080/format,webp"
+                  hoverText="Xem Thêm"
+                />
+              </div>
+            </div>
+            {/* Artboard 3 */}
+            <div>
+              <div>
+                <ImageHover
+                  imageUrl="public/c7a093b45714834ada0514.jpg"
+                  hoverText="Xem Thêm"
+                />
+              </div>
+            </div>
+            {/* Artboard 4 */}
+            <div>
+              <div>
+                <ImageHover
+                  imageUrl="public/c7a093b45714834ada0514.jpg"
+                  hoverText="Xem Thêm"
+                />
+              </div>
+            </div>
+            {/* Artboard 5 */}
+            <div>
+              <div>
+                <ImageHover
+                  imageUrl="public/c7a093b45714834ada0514.jpg"
+                  hoverText="Xem Thêm"
+                />
+              </div>
+            </div>
+            {/* Artboard 6 */}
+            <div>
+              <div>
+                <ImageHover
+                  imageUrl="public/c7a093b45714834ada0514.jpg"
+                  hoverText="Xem Thêm"
+                />
+              </div>
+            </div>
+            {/* Artboard 7 */}
+            <div>
+              <div>
+                <ImageHover
+                  imageUrl="public/c7a093b45714834ada0514.jpg"
+                  hoverText="Xem Thêm"
+                />
+              </div>
+            </div>
+            {/* Artboard 8 */}
+            <div>
+              <div>
+                <ImageHover
+                  imageUrl="public/c7a093b45714834ada0514.jpg"
+                  hoverText="Xem Thêm"
+                />
               </div>
             </div>
           </div>
