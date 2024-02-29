@@ -1,54 +1,74 @@
-import { useState } from "react";
-import reactLogo from "/src/assets/react.svg";
-import viteLogo from "/vite.svg";
-import Footer from "../components/Footer";
-import Header from "../components/Header";
-import VideoHoverPlay from "../components/VideoHoverPlay";
-import React from "react";
-import "daisyui/dist/full.css";
+import React, { useEffect } from "react";
+import "./CSS/Slideshow.css"; // File CSS để tạo kiểu cho slideshow
 
-export const Test = () => {
-  const [items, setItems] = useState([
-    { id: 1, text: "Item 1", checked: false },
-    { id: 2, text: "Item 2", checked: false },
-    { id: 3, text: "Item 3", checked: false },
-  ]);
+const Test = () => {
+  useEffect(() => {
+    const interval = setInterval(() => {
+      // Lấy danh sách các slide
+      const slides = document.querySelectorAll(".swiper-slide");
+      // Lấy chiều rộng của mỗi slide
+      const slideWidth = slides[0].offsetWidth;
+      // Di chuyển toàn bộ slides sang phải một slide
+      document.querySelector(
+        ".swiper-wrapper"
+      ).style.transform = `translateX(-${slideWidth}px)`;
+    }, 3000); // Đặt thời gian trễ giữa các lần trượt (ở đây là 3 giây)
 
-  const handleCheckboxChange = (itemId) => {
-    setItems(
-      items.map((item) => {
-        if (item.id === itemId) {
-          return { ...item, checked: !item.checked };
-        }
-        return item;
-      })
-    );
-  };
-
-  const handleDeleteClick = () => {
-    setItems(items.filter((item) => !item.checked));
-  };
+    // Xóa interval khi component unmount
+    return () => clearInterval(interval);
+  }, []);
 
   return (
-    <div>
-      <ul>
-        {items.map((item) => (
-          <li key={item.id}>
-            <input
-              type="checkbox"
-              checked={item.checked}
-              onChange={() => handleCheckboxChange(item.id)}
+    <section className="section-logos swiper-no-swiping swiper-container-initialized swiper-container-horizontal swiper-container-pointer-events swiper-container-free-mode">
+      <div className="swiper-wrapper">
+        {/* Chèn các phần tử slide vào đây */}
+        <div className="swiper-slide">
+          <picture>
+            <source
+              type="image/webp"
+              srcSet="//qhstatic-sg-s3.coohom.com/image/png/1669806450561/homepro.png?x-oss-process=image/resize,w_240,/format,webp"
             />
-            <span
-              style={{ textDecoration: item.checked ? "line-through" : "none" }}
-            >
-              {item.text}
-            </span>
-          </li>
-        ))}
-      </ul>
-      <button onClick={handleDeleteClick}>Delete</button>
-    </div>
+            <img
+              loading="lazy"
+              srcSet="//qhstatic-sg-s3.coohom.com/image/png/1669806450561/homepro.png?x-oss-process=image/resize,w_240,/format,webp"
+              alt="partner company logo"
+            />
+          </picture>
+        </div>
+        <div className="swiper-slide">
+          <picture>
+            <source
+              type="image/webp"
+              srcSet="https://qhstatic-sg-s3.coohom.com/image/png/1669806900040/hanssem.png?x-oss-process=image/resize,w_240,/format,webp"
+            />
+            <img
+              loading="lazy"
+              srcSet="https://qhstatic-sg-s3.coohom.com/image/png/1669806900040/hanssem.png?x-oss-process=image/resize,w_240,/format,webp"
+              alt="partner company logo"
+            />
+          </picture>
+        </div>
+        <div className="swiper-slide">
+          <picture>
+            <source
+              type="image/webp"
+              srcSet="//qhstatic-sg-s3.coohom.com/image/png/1669806900040/hanssem.png?x-oss-process=image/resize,w_240,/format,webp"
+            />
+            <img
+              loading="lazy"
+              srcSet="//qhstatic-sg-s3.coohom.com/image/png/1669806900040/hanssem.png"
+              alt="partner company logo"
+            />
+          </picture>
+        </div>
+        {/* Các phần tử slide khác */}
+      </div>
+      <span
+        className="swiper-notification"
+        aria-live="assertive"
+        aria-atomic="true"
+      ></span>
+    </section>
   );
 };
 

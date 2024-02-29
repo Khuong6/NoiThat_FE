@@ -19,6 +19,8 @@ import Dashboard from "./components/dashboard";
 import { ManageProduct } from "./page/Staff/product";
 import { ToastContainer } from "react-toastify";
 import { ManageCategory } from "./page/Staff/category";
+import { Request } from "./page/Customer";
+import { ManageRequest } from "./page/Staff/request";
 
 function Menu() {
   return (
@@ -36,6 +38,7 @@ function Menu() {
         <Route path="/phongbep" element={<PhongBep />}></Route>
         <Route path="/profile" element={<Profiles />}></Route>
         <Route path="/SignUpPage" element={<SignUpPage />}></Route>
+        <Route path="/request" element={<Request />}></Route>
         <Route
           path="/ForgotPasswordPage"
           element={<ForgotPasswordPage />}
@@ -45,6 +48,7 @@ function Menu() {
           <Route path="staff" element={<Dashboard role={"STAFF"} />}>
             <Route path="product" element={<ManageProduct />}></Route>
             <Route path="category" element={<ManageCategory />}></Route>
+            <Route path="request" element={<ManageRequest />}></Route>
           </Route>
           <Route path="admin" element={<Dashboard role={"ADMIN"} />}></Route>
         </Route>
