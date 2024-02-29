@@ -1,5 +1,5 @@
 import React from "react";
-import ReactDOM from "react-dom/client";
+// import ReactDOM from "react-dom/client";
 import { BrowserRouter, Routes, Route, useNavigate } from "react-router-dom";
 import "./index.scss";
 import ThietKe from "./page/ThietKe";
@@ -17,8 +17,11 @@ import SignUpPage from "./page/SignUpPage";
 import ForgotPasswordPage from "./page/ForgotPasswordPage";
 import Dashboard from "./components/dashboard";
 import { ManageProduct } from "./page/Staff/product";
-import { ToastContainer } from "react-toastify";
-
+// import { ToastContainer } from "react-toastify";
+import News from "./page/News";
+import { DetailedNews } from "./page/DetailedNews";
+import Project from "./page/Project";
+import DetailedProject from "./page/DetailedProject";
 function Menu() {
   return (
     <BrowserRouter>
@@ -35,6 +38,10 @@ function Menu() {
         <Route path="/phongbep" element={<PhongBep />}></Route>
         <Route path="/profile" element={<Profiles />}></Route>
         <Route path="/SignUpPage" element={<SignUpPage />}></Route>
+        <Route path="/xemtintuc" element={<DetailedNews />}></Route>
+        <Route path="/duan" element={<Project />}></Route>
+        <Route path="/duanchitiet" element={<DetailedProject />}></Route>
+        <Route path="/tintuc" element={<News />}></Route>
         <Route
           path="/ForgotPasswordPage"
           element={<ForgotPasswordPage />}
