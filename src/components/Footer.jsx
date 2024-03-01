@@ -1,22 +1,31 @@
 import React, { useState } from "react";
 import { Button, Drawer } from "antd";
-
+import { PhoneOutlined, MailOutlined } from "@ant-design/icons";
 function Footer() {
   const borderTopStyle = {
-    borderTop: "3px solid blue", // Thiết lập border top
+    borderTop: "3px", // Thiết lập border top
   };
-  const [open, setOpen] = useState(false);
-  const showDrawer = () => {
-    setOpen(true);
+
+  const [webInfoOpen, setWebInfoOpen] = useState(false);
+  const [contactOpen, setContactOpen] = useState(false);
+
+  const showWebInfoDrawer = () => {
+    setWebInfoOpen(true);
   };
+
+  const showContactDrawer = () => {
+    setContactOpen(true);
+  };
+
   const onClose = () => {
-    setOpen(false);
+    setWebInfoOpen(false);
+    setContactOpen(false);
   };
 
   return (
     <>
       <div
-        className="mainFooter hidden-sm hidden-xs bg-black"
+        className="mainFooter hidden-sm hidden-xs bg-gray-700"
         style={borderTopStyle}
       >
         <footer className="footer p-10 text-base-content">
@@ -39,29 +48,46 @@ function Footer() {
             </div>
           </aside>
 
-          <nav className="text-blue-300">
-            <h6 className="footer-title">Sản Phẩm</h6>
-            <a href="/phongngu" target="_blank" className="link link-hover">
+          <nav className="text-white">
+            <h6 className="mb-2 font-bold uppercase ">Sản Phẩm</h6>
+            <a
+              href="/phongngu"
+              target="_blank"
+              className="link link-hover opacity-60 "
+            >
               Phòng Ngủ
             </a>
-            <a href="/phongbep" target="_blank" className="link link-hover">
+            <a
+              href="/phongbep"
+              target="_blank"
+              className="link link-hover opacity-60"
+            >
               Phòng Bếp
             </a>
-            <a href="/phongkhach" target="_blank" className="link link-hover">
+            <a
+              href="/phongkhach"
+              target="_blank"
+              className="link link-hover opacity-60"
+            >
               Phòng Khách
             </a>
           </nav>
+          {/* Thông Tin Về Web */}
           <div className="divider divider-horizontal"></div>
-          <nav className="text-blue-300">
-            <h6 className="footer-title">Liên Lạc</h6>
+          <nav className="text-white">
+            <h6 className="mb-2 font-bold uppercase">Liên Lạc</h6>
             <a
-              className="link link-hover"
-              onClick={showDrawer}
+              className="link link-hover opacity-60"
+              onClick={showWebInfoDrawer}
               style={{ cursor: "pointer" }}
             >
               Thông Tin về Web
             </a>
-            <Drawer title="Thông Tin về Web" onClose={onClose} visible={open}>
+            <Drawer
+              title="Thông Tin về Web "
+              onClose={onClose}
+              visible={webInfoOpen}
+            >
               <p className="text-center">
                 Tại trang web của chúng tôi, bạn sẽ khám phá một bộ sưu tập đa
                 dạng các sản phẩm nội thất, từ phòng ngủ đến phòng khách, từ
@@ -83,12 +109,13 @@ function Footer() {
                 <p className="text-center pt-2">
                   Trang Web được phát triển bởi :
                 </p>
-                <div className="text-center pt-2 link link-hover text-blue-400">
+                <div className="text-center pt-2 link link-hover opacity-60 text-blue-500">
                   <div>
                     <a
                       href="https://www.facebook.com/hoang.thanh.que"
                       target="_blank"
                       rel="noreferrer"
+                      className="text-blue-600"
                     >
                       Vũ Đậu Thành Hoàng
                     </a>
@@ -98,6 +125,7 @@ function Footer() {
                       href="https://www.facebook.com/bi.vinh.505"
                       target="_blank"
                       rel="noreferrer"
+                      className="text-blue-600"
                     >
                       Nguyễn Thành Vinh
                     </a>
@@ -107,6 +135,7 @@ function Footer() {
                       href="https://www.facebook.com/khuong.tung.3"
                       target="_blank"
                       rel="noreferrer"
+                      className="text-blue-600"
                     >
                       Thái Tùng Khương
                     </a>
@@ -116,6 +145,7 @@ function Footer() {
                       href="https://www.facebook.com/trannhoangg.phongg"
                       target="_blank"
                       rel="noreferrer"
+                      className="text-blue-600"
                     >
                       Trần Hoàng Phong
                     </a>
@@ -125,6 +155,7 @@ function Footer() {
                       href="https://www.facebook.com/ngocduong53"
                       target="_blank"
                       rel="noreferrer"
+                      className="text-blue-600"
                     >
                       Vũ Ngọc Dương
                     </a>
@@ -132,15 +163,44 @@ function Footer() {
                 </div>
               </p>
             </Drawer>
-
-            <a className="link link-hover">Contact</a>
+            {/* Liên Lạc */}
+            <a
+              className="link link-hover opacity-60"
+              onClick={showContactDrawer}
+              style={{ cursor: "pointer" }}
+            >
+              Liên Lạc
+            </a>
+            <Drawer title="Liên Lạc" onClose={onClose} visible={contactOpen}>
+              <div>
+                <p className="p-1">
+                  <MailOutlined />
+                  <span className="p-2">
+                    Gmail: hoangvdtse160556@fpt.edu.vn
+                  </span>
+                </p>
+                <p className="p-1">
+                  <MailOutlined />
+                  <span className="p-2">Gmail: hoangvdt.dev@gmail.com</span>
+                </p>
+                <p className="p-1">
+                  <PhoneOutlined />
+                  <span className="p-2"> Phone: 0979446188</span>
+                </p>
+                <p className="p-1 ">
+                  <PhoneOutlined />
+                  <span className="p-2"> Phone: 0979446188</span>
+                </p>
+              </div>
+            </Drawer>
           </nav>
+          {/* thông tin thêm */}
           <div className="divider divider-horizontal"></div>
-          <nav className="text-blue-300">
-            <h6 className="footer-title">Thông Tin Thêm</h6>
-            <a className="link link-hover">Tin Tức</a>
-            <a className="link link-hover">Mẫu Thiết Kế Sẵn</a>
-            <a className="link link-hover">Sản Phẩm Đơn</a>
+          <nav className="text-white">
+            <h6 className="mb-2 font-bold uppercase">Thông Tin Thêm</h6>
+            <a className="link link-hover opacity-60">Tin Tức</a>
+            <a className="link link-hover opacity-60">Mẫu Thiết Kế Sẵn</a>
+            <a className="link link-hover opacity-60">Sản Phẩm Đơn</a>
           </nav>
         </footer>
       </div>

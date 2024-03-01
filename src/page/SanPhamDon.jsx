@@ -2,6 +2,7 @@ import React from "react";
 import Header from "../components/Header";
 import Footer from "../components/Footer";
 import { Divider, Typography } from "antd";
+import { FloatButton } from "antd";
 
 const { Title, Paragraph, Text, Link } = Typography;
 const blockContent = ``;
@@ -10,7 +11,7 @@ const SanPhamDon = () => {
   return (
     <>
       <Header />
-      <div className="pt-40 pl-20 pr-20">
+      <div className=" min-h-screen pt-40 pl-20 pr-20">
         <Typography>
           <Title level={1} className="text-center ">
             Sản Phẩm
@@ -49,7 +50,7 @@ const SanPhamDon = () => {
 
         <div className="flex flex-col w-full pt-5 pb-10"></div>
       </div>
-
+      <FloatButton.BackTop />
       <Footer />
     </>
   );

@@ -66,7 +66,7 @@ export const Header = () => {
                 </div>
                 <ul
                   tabIndex={0}
-                  className="dropdown-content z-[1] menu p-2 shadow bg-base-100 rounded-box w-52  bg-white outline outline-gray-200 outline-2 rounded-[5px]  mt-4 left-[0.1px] "
+                  className="dropdown-content z-[1] menu p-2 shadow w-52  bg-white outline outline-gray-200 outline-2 rounded-[5px]  mt-4 left-[0.1px] "
                 >
                   <li>
                     <a href="/PhongNgu">Phòng Ngủ</a>
