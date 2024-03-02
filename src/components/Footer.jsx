@@ -25,15 +25,14 @@ function Footer() {
   return (
     <>
       <div
-        className="mainFooter hidden-sm hidden-xs bg-gray-700"
+        className="mainFooter hidden-sm hidden-xs bg-black "
         style={borderTopStyle}
       >
-        <footer className="footer p-10 text-base-content">
+        <footer className="footer p-10 text-base-content ">
           <aside>
-            <div className="flex w-full">
-              <div className="divider divider-horizontal"></div>
+            <div className="flex w-full ">
               <div className="wpb_wrapper">
-                <div className="wpb_map_wraper">
+                <div className="wpb_map_wraper ">
                   <iframe
                     src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d15672.656224107062!2d106.8007234!3d10.8751238!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3174d8a6b19d6763%3A0x143c54525028b2e!2zTmjDoCBWxINuIGjDs2EgU2luaCB2acOqbiBUUC5IQ00!5e0!3m2!1svi!2s!4v1708582469681!5m2!1svi!2s"
                     width={250}
@@ -48,36 +47,40 @@ function Footer() {
             </div>
           </aside>
 
-          <nav className="text-white">
-            <h6 className="mb-2 font-bold uppercase ">Sản Phẩm</h6>
+          <nav className="text-white ">
+            <h6 className="mb-2 font-bold uppercase border-b  border-green-500">
+              Sản Phẩm
+            </h6>
             <a
               href="/phongngu"
               target="_blank"
-              className="link link-hover opacity-60 "
+              className="link link-hover opacity-80 "
             >
               Phòng Ngủ
             </a>
             <a
               href="/phongbep"
               target="_blank"
-              className="link link-hover opacity-60"
+              className="link link-hover opacity-80"
             >
               Phòng Bếp
             </a>
             <a
               href="/phongkhach"
               target="_blank"
-              className="link link-hover opacity-60"
+              className="link link-hover opacity-80"
             >
               Phòng Khách
             </a>
           </nav>
           {/* Thông Tin Về Web */}
-          <div className="divider divider-horizontal"></div>
-          <nav className="text-white">
-            <h6 className="mb-2 font-bold uppercase">Liên Lạc</h6>
+
+          <nav className="text-white ">
+            <h6 className="mb-2 font-bold uppercase border-b border-green-500">
+              Liên Lạc
+            </h6>
             <a
-              className="link link-hover opacity-60"
+              className="link link-hover opacity-80"
               onClick={showWebInfoDrawer}
               style={{ cursor: "pointer" }}
             >
@@ -109,7 +112,7 @@ function Footer() {
                 <p className="text-center pt-2">
                   Trang Web được phát triển bởi :
                 </p>
-                <div className="text-center pt-2 link link-hover opacity-60 text-blue-500">
+                <div className="text-center pt-2 link link-hover opacity-80 text-blue-500">
                   <div>
                     <a
                       href="https://www.facebook.com/hoang.thanh.que"
@@ -165,7 +168,7 @@ function Footer() {
             </Drawer>
             {/* Liên Lạc */}
             <a
-              className="link link-hover opacity-60"
+              className="link link-hover opacity-80 "
               onClick={showContactDrawer}
               style={{ cursor: "pointer" }}
             >
@@ -195,12 +198,20 @@ function Footer() {
             </Drawer>
           </nav>
           {/* thông tin thêm */}
-          <div className="divider divider-horizontal"></div>
+
           <nav className="text-white">
-            <h6 className="mb-2 font-bold uppercase">Thông Tin Thêm</h6>
-            <a className="link link-hover opacity-60">Tin Tức</a>
-            <a className="link link-hover opacity-60">Mẫu Thiết Kế Sẵn</a>
-            <a className="link link-hover opacity-60">Sản Phẩm Đơn</a>
+            <h6 className="mb-2 font-bold uppercase border-b border-green-500">
+              Thông Tin Thêm
+            </h6>
+            <a className="link link-hover opacity-80">Tin Tức</a>
+            <a className="link link-hover opacity-80">Mẫu Thiết Kế Sẵn</a>
+            <a
+              href="/sanPhamDon"
+              target="_blank"
+              className="link link-hover opacity-80"
+            >
+              Sản Phẩm Đơn
+            </a>
           </nav>
         </footer>
       </div>

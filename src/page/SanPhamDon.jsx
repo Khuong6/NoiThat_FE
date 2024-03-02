@@ -11,7 +11,7 @@ const SanPhamDon = () => {
   return (
     <>
       <Header />
-      <div className=" min-h-screen pt-40 pl-20 pr-20">
+      <div className=" min-h-screen pt-20 pl-20 pr-20">
         <Typography>
           <Title level={1} className="text-center ">
             Sản Phẩm
