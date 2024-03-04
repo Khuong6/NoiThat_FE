@@ -52,7 +52,7 @@ export const Header = () => {
   ];
   return (
     <>
-      <header className="animate__flipInX animate__animated bg-gradient-to-r from-white via-gray-500 p-1x to-gray-500 rounded-b-full sticky top-0 z-50">
+      <header className="animate__flipInX animate__animated bg-gradient-to-r from-white via-blue-200 to-white rounded-b-full sticky top-0 z-50">
         <div class="pr-24 py-4">
           <div class="flex justify-between items-end ">
             <a href="/trangchu">
@@ -134,7 +134,7 @@ export const Header = () => {
                   trigger={["click"]}
                   placement="bottom"
                 >
-                  <button className="px-8 py-5 text-sm font-medium bg-gradient-to-r from-pink-500 via-pink-300-300 to-orange-400 border  transition-all duration-500 rounded-full text-white uppercaser">
+                  <button className="px-8 py-5 text-sm font-medium bg-gradient-to-r from-yellow-500  to-orange-500 border transition-all duration-500 rounded-full text-white uppercaser">
                     <UserOutlined />
                     <span className="p-1  ">{user.username}</span>
                     <DownOutlined className="text-xs " />
@@ -142,7 +142,7 @@ export const Header = () => {
                 </Dropdown>
               ) : (
                 <a href="/login">
-                  <button className="px-8 py-5 text-sm font-medium bg-gradient-to-r from-pink-500 via-pink-300-300 to-orange-400 border  transition-all duration-500 rounded-full text-white uppercaser">
+                  <button className="px-8 py-5 text-sm font-medium bg-gradient-to-r from-yellow-500  to-orange-500 border transition-all duration-500 rounded-full text-white uppercaser">
                     <UserOutlined />
                     <span className="p-1  ">Đăng Nhập</span>
                   </button>

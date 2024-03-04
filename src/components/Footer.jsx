@@ -25,10 +25,10 @@ function Footer() {
   return (
     <>
       <div
-        className="  bg-gradient-to-r from-white via-gray-400 to-gray-500 p-8 rounded-t-3xl"
+        className="  bg-gradient-to-r from-white  via-blue-200 to-white p-8 rounded-t-3xl"
         style={borderTopStyle}
       >
-        <footer className="footer p-2 text-base-content ">
+        <footer className="footer text-base-content ">
           <aside>
             <div className="flex w-full ">
               <div className="wpb_wrapper">
@@ -48,7 +48,7 @@ function Footer() {
           </aside>
 
           <nav className="text-black text-sm font-medium">
-            <h6 className="mb-2 font-bold uppercase border-b  border-pink-400">
+            <h6 className="mb-2 font-bold uppercase border-b-2  border-orange-500">
               Sản Phẩm
             </h6>
             <a
@@ -76,7 +76,7 @@ function Footer() {
           {/* Thông Tin Về Web */}
 
           <nav className="text-black text-sm font-medium">
-            <h6 className="mb-2 font-bold uppercase border-b border-pink-500">
+            <h6 className="mb-2 font-bold uppercase border-b-2 border-orange-500">
               Liên Lạc
             </h6>
             <a
@@ -200,7 +200,7 @@ function Footer() {
           {/* thông tin thêm */}
 
           <nav className="text-black text-sm font-medium">
-            <h6 className=" mb-2 font-bold uppercase border-b border-pink-500">
+            <h6 className=" mb-2 font-bold uppercase border-b-2 border-orange-500 ">
               Thông Tin Thêm
             </h6>
             <a className="link link-hover opacity-80">Tin Tức</a>
