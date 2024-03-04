@@ -52,7 +52,7 @@ export const Header = () => {
   ];
   return (
     <>
-      <header className="bg-gradient-to-r from-white via-gray-300  to-white p-8 rounded-b-3xl">
+      <header className="bg-gradient-to-r from-white via-gray-300 p-1 to-white rounded-b-full sticky top-0">
         <div class="max-w-7xl mx-auto">
           <div class="flex justify-between items-center m-0 p-0">
             <a href="/trangchu">
@@ -144,50 +144,6 @@ export const Header = () => {
           </div>
         </div>
       </header>
-      <section className="pt-180 overflow-hidden bg-gradient-to-r from-white via-gray-300  to-white p-8">
-        <div className="max-w-1200 mx-auto">
-          <div className="flex ">
-            <div className="w-3/5  ml-20">
-              <div className="title m-0 p-0 -">
-                <p className="font-semibold text-3xl mb-3 mt-20 text-pink-500 animate__animated animate__fadeInUp  ">
-                  We are The Best
-                </p>
-                <h2 className="text-6xl leading-tight font-extrabold text-gray-700 mb-6 animate__animated animate__fadeInUp animate__delay-1s">
-                  - NOITHAT -
-                </h2>
-              </div>
-              <div className="saCarousel__article">
-                <p class="text-lg mb-2 animate__animated animate__fadeInUp animate__delay-2s">
-                  Bạn muốn có một không gian nội thất riêng danh cho bạn và gia
-                  đình <br /> - NOITHAT - có thể giúp bạn hiện thực hóa nó !!!!
-                </p>
-                <ul class="mb-2 animate__animated animate__fadeInUp animate__delay-3s">
-                  <li className="pl-3">
-                    <CheckOutlined className="mr-3" />
-                    Minh Bạch - Uy Tín - Chất Lượng
-                  </li>
-                  <li className="pl-3">
-                    <CheckOutlined className="mr-3" />
-                    Tinh Tế - Sang Trọng - Đẳng Cấp
-                  </li>
-                </ul>
-                <button class="px-8 py-5 text-base font-medium bg-gradient-to-r from-pink-500 via-pink-300-300 to-orange-400 bg-cover border  transition-all duration-500 rounded-full text-white uppercase leading-6 cursor-pointer focus:outline-none animate__animated animate__fadeInUp animate__delay-4s mt-4">
-                  <a href="/trangchu">GET STARTED</a>
-                </button>
-              </div>
-            </div>
-            <div className="w-2/5 mr-20 ">
-              <div className="w-570px ml-50px animate__animated animate__fadeInUp animate__delay-3s">
-                <img
-                  className="max-w-full flex"
-                  src="/public/F/pic3_1.png"
-                  alt=""
-                />
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
     </>
   );
 };
