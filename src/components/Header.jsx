@@ -52,15 +52,15 @@ export const Header = () => {
   ];
   return (
     <>
-      <header className="bg-gradient-to-r from-white via-gray-400 p-1x to-white rounded-b-full sticky top-0 z-50">
-        <div class="max-w-7xl mx-auto">
-          <div class="flex justify-between items-center m-0 p-0">
+      <header className="animate__flipInX animate__animated bg-gradient-to-r from-white via-gray-500 p-1x to-gray-500 rounded-b-full sticky top-0 z-50">
+        <div class="pr-24 py-4">
+          <div class="flex justify-between items-end ">
             <a href="/trangchu">
-              <img
+              {/* <img
                 className="w-36 rounded-3xl"
                 src="/public/Capture.PNG"
                 alt=""
-              />
+              /> */}
             </a>
 
             <nav className="flex items-center">
@@ -74,7 +74,7 @@ export const Header = () => {
                     <a onClick={(e) => e.preventDefault()}>
                       <Space>
                         <a
-                          className="px-3 py-11 text-070120 capitalize text-sm font-medium transition duration-500 text-black"
+                          className="px-3 py-11  capitalize text-sm font-medium transition duration-500 text-black"
                           href="#"
                         >
                           <span>
@@ -89,7 +89,7 @@ export const Header = () => {
                 <li>
                   <a
                     className="px-3 py-11 text-070120 capitalize text-sm font-medium transition duration-500 text-black"
-                    href="#"
+                    href="/sanPhamDon"
                   >
                     <span>Sản Phẩm</span>
                   </a>
@@ -113,9 +113,17 @@ export const Header = () => {
                 <li>
                   <a
                     className="px-3 py-11 text-070120 capitalize text-sm font-medium transition duration-500 text-black"
-                    href="/tin"
+                    href=""
                   >
                     <span>Tin Tức</span>
+                  </a>
+                </li>
+                <li>
+                  <a
+                    className="px-3 py-11 text-070120 capitalize text-sm font-medium transition duration-500 text-black"
+                    href=""
+                  >
+                    <span>Công Trình</span>
                   </a>
                 </li>
               </ul>
