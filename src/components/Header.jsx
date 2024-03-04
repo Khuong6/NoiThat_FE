@@ -23,6 +23,14 @@ export const Header = () => {
     {
       key: "2",
       label: (
+        <Button>
+          <Link to={"/quotationrequest"}>Quotation</Link>
+        </Button>
+      ),
+    },
+    {
+      key: "3",
+      label: (
         <Button
           onClick={() => {
             dispatch(logout());
@@ -51,7 +59,7 @@ export const Header = () => {
               <div className="flex flex-col items-start pl-[20px] pr-[19.2px] py-[14px] relative self-stretch w-full flex-[0_0_auto]">
                 <a
                   className="relative w-fit mt-[-1.00px] [font-family:'Roboto',Helvetica] font-normal text-vinmuscomnero text-[14px] tracking-[0] leading-[22px] whitespace-nowrap"
-                  href="http://vinmus.com/vn/du-an.html"
+                  href=""
                   rel="noopener noreferrer"
                   target="_blank"
                 >
@@ -66,7 +74,7 @@ export const Header = () => {
                 </div>
                 <ul
                   tabIndex={0}
-                  className="dropdown-content z-[1] menu p-2 shadow bg-base-100 rounded-box w-52  bg-white outline outline-gray-200 outline-2 rounded-[5px]  mt-9 left-[0.1px] "
+                  className="dropdown-content z-[1] menu p-2 shadow bg-base-100 rounded-box w-52  bg-white outline outline-gray-200 outline-2 rounded-[5px]  mt-4 left-[0.1px] "
                 >
                   <li>
                     <a href="/PhongNgu">Phòng Ngủ</a>
@@ -84,7 +92,7 @@ export const Header = () => {
               <div className="flex flex-col items-start pl-[20px] pr-[19.06px] py-[14px] relative self-stretch w-full flex-[0_0_auto]">
                 <a
                   className="relative w-fit mt-[-1.00px] [font-family:'Roboto',Helvetica] font-normal text-vinmuscomnero text-[14px] tracking-[0] leading-[22px] whitespace-nowrap"
-                  href="http://vinmus.com/vn/san-pham.html"
+                  href=""
                   rel="noopener noreferrer"
                   target="_blank"
                 >
@@ -96,7 +104,7 @@ export const Header = () => {
               <div className="flex flex-col items-start pl-[20px] pr-[19.55px] py-[14px] relative self-stretch w-full flex-[0_0_auto]">
                 <a
                   className="relative w-fit mt-[-1.00px] [font-family:'Roboto',Helvetica] font-normal text-vinmuscomnero text-[14px] tracking-[0] leading-[22px] whitespace-nowrap"
-                  href="http://vinmus.com/vn/tin-tuc.html"
+                  href=""
                   rel="noopener noreferrer"
                   target="_blank"
                 >
@@ -108,7 +116,7 @@ export const Header = () => {
               <div className="flex flex-col items-start pl-[20px] pr-[19.44px] py-[14px] relative self-stretch w-full flex-[0_0_auto]">
                 <a
                   className="relative w-fit mt-[-1.00px] [font-family:'Roboto',Helvetica] font-normal text-vinmuscomnero text-[14px] tracking-[0] leading-[22px] whitespace-nowrap"
-                  href="http://vinmus.com/vn/he-thong-showroom.html"
+                  href=""
                   rel="noopener noreferrer"
                   target="_blank"
                 >
@@ -120,7 +128,7 @@ export const Header = () => {
               <div className="flex flex-col items-start pl-[20px] pr-[19.42px] py-[14px] relative self-stretch w-full flex-[0_0_auto]">
                 <a
                   className="relative w-fit mt-[-1.00px] [font-family:'Roboto',Helvetica] font-normal text-vinmuscomnero text-[14px] tracking-[0] leading-[22px] whitespace-nowrap"
-                  href="https://vinmus.com/vn/e-catalogue.html"
+                  href=""
                   rel="noopener noreferrer"
                   target="_blank"
                 >
@@ -132,7 +140,7 @@ export const Header = () => {
               <div className="flex flex-col items-start pl-[20px] pr-[19.39px] py-[14px] relative self-stretch w-full flex-[0_0_auto]">
                 <a
                   className="relative w-fit mt-[-1.00px] [font-family:'Roboto',Helvetica] font-normal text-vinmuscomnero text-[14px] tracking-[0] leading-[22px] whitespace-nowrap"
-                  href="http://vinmus.com/vn/y-tuong-thiet-ke.html"
+                  href=""
                   rel="noopener noreferrer"
                   target="_blank"
                 >
@@ -182,7 +190,7 @@ export const Header = () => {
         </div>
         <a
           className="absolute h-[20px] top-[51px] left-[285px] [font-family:'Roboto',Helvetica] font-normal text-[12px] tracking-[0] leading-[20px] whitespace-nowrap"
-          href="http://vinmus.com/vn/lien-he.html"
+          href=""
           rel="noopener noreferrer"
           target="_blank"
         >

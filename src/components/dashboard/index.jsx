@@ -5,9 +5,13 @@ import {
   UploadOutlined,
   UserOutlined,
   VideoCameraOutlined,
+  ProfileOutlined,
 } from "@ant-design/icons";
 import { Layout, Menu, Button, theme } from "antd";
 import { Link, Outlet } from "react-router-dom";
+import { FloatButton } from "antd";
+import { CommentOutlined, CustomerServiceOutlined } from "@ant-design/icons";
+
 const { Header, Sider, Content } = Layout;
 const Dashboard = ({ role }) => {
   const [collapsed, setCollapsed] = useState(false);
@@ -26,7 +30,17 @@ const Dashboard = ({ role }) => {
         {
           key: "2",
           icon: <VideoCameraOutlined />,
-          label: <Link to={"category"}>Manage category</Link>,
+          label: <Link to={"category"}>Manage Category</Link>,
+        },
+        {
+          key: "3",
+          icon: <ProfileOutlined />,
+          label: <Link to={"quotation"}>Manage Quotation</Link>,
+        },
+        {
+          key: "4",
+          icon: <ProfileOutlined />,
+          label: <Link to={"request"}>Manage request</Link>,
         },
       ];
     } else {
@@ -46,6 +60,18 @@ const Dashboard = ({ role }) => {
         height: "100vh",
       }}
     >
+      {/* <FloatButton.Group
+        trigger="hover"
+        type="primary"
+        style={{
+          left: 94,
+        }}
+        icon={<CustomerServiceOutlined />}
+      >
+        <FloatButton />
+        <FloatButton icon={<CommentOutlined />} />
+      </FloatButton.Group> */}
+
       <Sider trigger={null} collapsible collapsed={collapsed}>
         <div className="demo-logo-vertical" />
         <Menu
@@ -54,6 +80,9 @@ const Dashboard = ({ role }) => {
           defaultSelectedKeys={["1"]}
           items={renderItem()}
         />
+        {/* <Button type="primary" shape="circle" style={}>
+          A
+        </Button> */}
       </Sider>
       <Layout>
         <Header
