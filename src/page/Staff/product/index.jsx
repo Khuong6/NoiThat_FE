@@ -143,10 +143,23 @@ export const ManageProduct = () => {
     );
   };
 
+  // const fetchProducts = async () => {
+  //   const response = await api.get("/product");
+  //   console.log(response.data);
+  //   setProducts(response.data);
+  // };
+
   const fetchProducts = async () => {
-    const response = await api.get("/product");
-    console.log(response.data);
-    setProducts(response.data);
+    try {
+      const response = await api.get("/product");
+      const filteredProducts = response.data.filter(
+        (product) => !product.deleted
+      );
+      setProducts(filteredProducts);
+    } catch (error) {
+      console.error("Error fetching products:", error);
+      message.error("Failed to fetch products");
+    }
   };
 
   useEffect(() => {
@@ -218,32 +231,16 @@ export const ManageProduct = () => {
     fetchProducts();
   };
 
-  // const handleCheckboxChange = (productId, isChecked) => {
-  //   setProducts(
-  //     products.map((product) => {
-  //       if (product.id === productId) {
-  //         return { ...product, checked: isChecked };
-  //       }
-  //       return product;
-  //     })
-  //   );
-  // };
+  // const handleDelete = async (id) => {
+  //   try {
+  //     await api.delete(`/product/${id}`);
 
-  // const handleDeleteClick = () => {
-  //   setProducts(items.filter((item) => !item.checked));
-  // };
-
-  // const handleCheckboxChange = (id, checked) => {
-  //   if (checked) {
-  //     setSelectedRows([...selectedRows, id]);
-  //   } else {
-  //     setSelectedRows(selectedRows.filter((rowId) => rowId !== id));
+  //     message.success("Product deleted successfully");
+  //     fetchProducts();
+  //   } catch (error) {
+  //     console.error("Error deleting product:", error);
+  //     message.error("Failed to delete product");
   //   }
-  // };
-  // const handleDeleteClick = (id) => {
-  //   // Thực hiện logic xóa sản phẩm có id tương ứng
-  //   // Ví dụ: Gọi một hàm xóa từ API hoặc xóa trực tiếp khỏi dataSource
-  //   console.log("Deleting product with ID:", id);
   // };
 
   const handleDelete = async (id) => {
@@ -251,12 +248,18 @@ export const ManageProduct = () => {
       await api.delete(`/product/${id}`);
 
       message.success("Product deleted successfully");
+      const response = await api.get(`/product/${id}`);
+      if (response.data.deleted) {
+        // Nếu sản phẩm đã được đánh dấu là đã xóa thì không hiển thị nó trên màn hình
+        return;
+      }
       fetchProducts();
     } catch (error) {
       console.error("Error deleting product:", error);
       message.error("Failed to delete product");
     }
   };
+
   /////////////////////////////
   return (
     <div>

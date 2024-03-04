@@ -76,52 +76,67 @@ export const Request = () => {
   };
 
   return (
-    <div>
-      <Form onFinish={handleSubmit}>
-        <Form.Item label="Budget" name={"budget"}>
-          <Input type="number" />
-        </Form.Item>
+    <div
+      style={{
+        padding: 100,
+        border: "3px solid #ccc",
+        borderRadius: "10px",
+        backgroundColor: "white",
+        borderColor: "#4299e1",
+      }}
+    >
+      <div>
+        <Form onFinish={handleSubmit}>
+          <Form.Item label="Mức giá mong muốn" name={"budget"}>
+            <Input type="number" />
+          </Form.Item>
 
-        <Form.Item label="Description" name={"description"}>
-          <TextArea />
-        </Form.Item>
+          <Form.Item label="Mô tả" name={"description"}>
+            <TextArea />
+          </Form.Item>
 
-        <Form.Item label="dienTich" name={"dienTich"}>
-          <TextArea />
-        </Form.Item>
+          <Form.Item label="Diện tích" name={"dienTich"}>
+            <TextArea />
+          </Form.Item>
 
-        <Form.Item
-          name={"resourceDTOS"}
-          label="Image"
-          className="post-form-item"
-        >
-          <Upload
-            action={() => {
-              console.log(123);
-            }}
-            beforeUpload={false}
-            listType="picture-card"
-            fileList={fileList}
-            onPreview={handlePreview}
-            onChange={handleChangeImage}
+          <Form.Item
+            name={"resourceDTOS"}
+            label="Tải lên hình ảnh"
+            className="post-form-item"
           >
-            {uploadButton}
-          </Upload>
-        </Form.Item>
-        <Form.Item>
-          <Button type="primary" htmlType="submit">
-            Submit
-          </Button>
-        </Form.Item>
-      </Form>
-      <Modal
-        open={previewOpen}
-        title={previewTitle}
-        footer={null}
-        onCancel={() => setPreviewOpen(false)}
-      >
-        <img alt="example" style={{ width: "100%" }} src={previewImage} />
-      </Modal>
+            <Upload
+              action={() => {
+                console.log(123);
+              }}
+              beforeUpload={false}
+              listType="picture-card"
+              fileList={fileList}
+              onPreview={handlePreview}
+              onChange={handleChangeImage}
+            >
+              {uploadButton}
+            </Upload>
+          </Form.Item>
+          <Form.Item
+            style={{
+              display: "flex",
+              placeContent: "flex-end",
+            }}
+          >
+            <Button type="primary" htmlType="submit">
+              Gửi
+            </Button>
+          </Form.Item>
+        </Form>
+        <Modal
+          open={previewOpen}
+          title={previewTitle}
+          footer={null}
+          onCancel={() => setPreviewOpen(false)}
+        >
+          <img alt="example" style={{ width: "100%" }} src={previewImage} />
+        </Modal>
+      </div>
     </div>
   );
 };

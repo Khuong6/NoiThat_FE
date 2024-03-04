@@ -21,12 +21,13 @@ import { ToastContainer } from "react-toastify";
 import { ManageCategory } from "./page/Staff/category";
 import { Request } from "./page/Customer";
 import { ManageRequest } from "./page/Staff/request";
+import SanPham from "./page/SanPham";
 
 function Menu() {
   return (
     <BrowserRouter>
       <Routes>
-        <Route path="/" element={<App />}></Route>
+        <Route path="/" element={<Home />}></Route>
         <Route path="/thietke" element={<ThietKe />}></Route>
         <Route path="/kichthuoc" element={<KichThuoc />}></Route>
         <Route path="/test" element={<Test />}></Route>
@@ -39,6 +40,7 @@ function Menu() {
         <Route path="/profile" element={<Profiles />}></Route>
         <Route path="/SignUpPage" element={<SignUpPage />}></Route>
         <Route path="/request" element={<Request />}></Route>
+        <Route path="/sanpham" element={<SanPham />}></Route>
         <Route
           path="/ForgotPasswordPage"
           element={<ForgotPasswordPage />}

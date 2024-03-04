@@ -13,7 +13,8 @@ const ThietKe = () => {
   const [total, setTotal] = useState(0);
 
   const fetchCategory = async () => {
-    const response = await api.get("/productCategory");
+    const response = await api.get("/categories");
+    console.log(response);
     setCategories(response.data);
   };
 
@@ -70,13 +71,9 @@ const ThietKe = () => {
                               <button
                                 className="flex items-center pl-[40px] pr-[61.78px] py-[14px] relative self-stretch w-full flex-[0_0_auto] rounded-[3.25px] border border-solid"
                                 onClick={() => {
-                                  console.log(
-                                    `my_modal_${item.productCategoryId}`
-                                  );
+                                  console.log(`my_modal_${item.id}`);
                                   document
-                                    .getElementById(
-                                      `my_modal_${item.productCategoryId}`
-                                    )
+                                    .getElementById(`my_modal_${item.id}`)
                                     .showModal();
                                 }}
                               >
@@ -88,7 +85,7 @@ const ThietKe = () => {
                                 <h1 className="ml-2">{item.name}</h1>
                               </button>
                               <Modal
-                                categoryID={item.productCategoryId}
+                                categoryID={item.id}
                                 changeTotalPrice={changeTotalPrice}
                               />
                             </div>
@@ -225,7 +222,7 @@ const Modal = ({ categoryID, changeTotalPrice }) => {
                         >
                           <div className="h-200 overflow-hidden">
                             <img
-                              src={item.img}
+                              src={item.resources[0].url}
                               alt="Black machined steel pen with hexagonal grip and small white logo at the top."
                               className="h-full w-full object-cover object-center group-hover:opacity-75"
                             />

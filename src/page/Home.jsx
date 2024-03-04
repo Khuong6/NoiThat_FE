@@ -9,9 +9,20 @@ import "daisyui/dist/full.css";
 import { FloatButton } from "antd";
 import { Typography } from "antd";
 import ImageHover from "../components/ImageHover";
+import "./CSS/Swiper.css";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faArrowLeft, faArrowRight } from "@fortawesome/free-solid-svg-icons";
 
 const { Title } = Typography;
+function nextSlide() {
+  const items = document.querySelectorAll(".item");
+  document.querySelector(".slide").appendChild(items[0]);
+}
 
+function prevSlide() {
+  const items = document.querySelectorAll(".item");
+  document.querySelector(".slide").prepend(items[items.length - 1]);
+}
 export const Home = () => {
   return (
     <>
@@ -44,10 +55,12 @@ export const Home = () => {
         {/* <div className="bg-gradient-to-r from-blue-300 to-blue-50 w-200 h-200"> */}
         <div
           style={{
-            backgroundImage:
-              "linear-gradient(to right, rgb(135, 206, 250), rgb(224, 255, 255))",
+            // backgroundImage:
+            //   "linear-gradient(to right, rgb(135, 206, 250), rgb(224, 255, 255))",
+            backgroundColor: "white",
             width: "100%",
             height: "100%",
+            paddingBottom: "20px",
           }}
         >
           <div class="grid grid-cols-3 gap-4 py-2 px-2 pt-5">
@@ -147,7 +160,7 @@ export const Home = () => {
             className="text-center py-10 text-5xl "
             style={{ fontFamily: "Playfair Display, serif" }}
           >
-            Dự án đã thực hiện
+            Dự Án Đã Thực Hiện
           </div>
 
           <div class="grid grid-cols-4 gap-4 justify-center items-center ml-10">
@@ -224,8 +237,222 @@ export const Home = () => {
               </div>
             </div>
           </div>
+
+          <a style={{ fontFamily: "Playfair Display, serif" }} href="/request">
+            <div className="text-center py-10 text-5xl">
+              Một Số Hình Ảnh Được Thực Hiện
+            </div>
+          </a>
+
+          {/* ////////swiper */}
+          {/* <div className="swiper-wrapper "> */}
+          <div className="container ">
+            <div className="slide">
+              <div
+                className="item"
+                style={{
+                  backgroundImage:
+                    "url(https://plus.unsplash.com/premium_photo-1661962952618-031d218dd040?q=80&w=1796&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D)",
+                }}
+              >
+                <div className="content">
+                  <div
+                    className="name"
+                    style={{
+                      textShadow:
+                        "1px 1px 0px #000, -1px -1px 0px #000, 1px -1px 0px #000, -1px 1px 0px #000",
+                    }}
+                  >
+                    Phòng Khách
+                  </div>
+                  <div
+                    className="des"
+                    style={{
+                      textShadow:
+                        "1px 1px 0px #000, -1px -1px 0px #000, 1px -1px 0px #000, -1px 1px 0px #000",
+                    }}
+                  >
+                    Phòng khách Châu Âu với thiết kế hiện đại nhưng đơn giản,
+                    hài hòa
+                  </div>
+                  <button>See More</button>
+                </div>
+              </div>
+              <div
+                className="item"
+                style={{
+                  backgroundImage:
+                    "url(https://plus.unsplash.com/premium_photo-1678752717095-08cd0bd1d7e7?q=80&w=1770&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D)",
+                }}
+              >
+                <div className="content">
+                  <div
+                    className="name"
+                    style={{
+                      textShadow:
+                        "1px 1px 0px #000, -1px -1px 0px #000, 1px -1px 0px #000, -1px 1px 0px #000",
+                    }}
+                  >
+                    Phòng Khách
+                  </div>
+                  <div
+                    className="des"
+                    style={{
+                      textShadow:
+                        "1px 1px 0px #000, -1px -1px 0px #000, 1px -1px 0px #000, -1px 1px 0px #000",
+                    }}
+                  >
+                    Phòng khách mang phong cách Vintage nhẹ nhàng tình cảm
+                  </div>
+
+                  <button>See More</button>
+                </div>
+              </div>
+              <div
+                className="item"
+                style={{
+                  backgroundImage:
+                    "url(https://images.unsplash.com/photo-1631679706909-1844bbd07221?q=80&w=1992&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D)",
+                }}
+              >
+                <div className="content">
+                  <div
+                    className="name"
+                    style={{
+                      textShadow:
+                        "1px 1px 0px #000, -1px -1px 0px #000, 1px -1px 0px #000, -1px 1px 0px #000",
+                    }}
+                  >
+                    Phòng Khách
+                  </div>
+                  <div
+                    className="des"
+                    style={{
+                      textShadow:
+                        "1px 1px 0px #000, -1px -1px 0px #000, 1px -1px 0px #000, -1px 1px 0px #000",
+                    }}
+                  >
+                    Phòng khách mang phong cách Vintage với tông màu trắng sáng
+                  </div>
+                  <button>See More</button>
+                </div>
+              </div>
+              <div
+                className="item"
+                style={{
+                  backgroundImage:
+                    "url(https://images.unsplash.com/photo-1595526114035-0d45ed16cfbf?q=80&w=1770&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D)",
+                }}
+              >
+                <div className="content">
+                  <div
+                    className="name"
+                    style={{
+                      textShadow:
+                        "1px 1px 0px #000, -1px -1px 0px #000, 1px -1px 0px #000, -1px 1px 0px #000",
+                    }}
+                  >
+                    Phòng Ngủ
+                  </div>
+                  <div
+                    className="des"
+                    style={{
+                      textShadow:
+                        "1px 1px 0px #000, -1px -1px 0px #000, 1px -1px 0px #000, -1px 1px 0px #000",
+                    }}
+                  >
+                    Phòng ngủ tươi sáng tạo cảm giác sạch sẽ, thoáng mát cho gia
+                    chủ
+                  </div>
+                  <button>See More</button>
+                </div>
+              </div>
+              <div
+                className="item"
+                style={{
+                  backgroundImage:
+                    "url(https://images.unsplash.com/photo-1560185893-a55cbc8c57e8?q=80&w=1770&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D)",
+                }}
+              >
+                <div className="content">
+                  <div
+                    className="name"
+                    style={{
+                      textShadow:
+                        "1px 1px 0px #000, -1px -1px 0px #000, 1px -1px 0px #000, -1px 1px 0px #000",
+                    }}
+                  >
+                    Phòng Ngủ
+                  </div>
+                  <div
+                    className="des"
+                    style={{
+                      textShadow:
+                        "1px 1px 0px #000, -1px -1px 0px #000, 1px -1px 0px #000, -1px 1px 0px #000",
+                    }}
+                  >
+                    Phòng ngủ với màu trầm tạo cảm giác ấm áp, gần gũi
+                  </div>
+                  <button>See More</button>
+                </div>
+              </div>
+              <div
+                className="item"
+                style={{
+                  backgroundImage:
+                    "url(https://images.unsplash.com/photo-1588854337236-6889d631faa8?q=80&w=1770&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D)",
+                }}
+              >
+                <div className="content">
+                  <div
+                    className="name"
+                    style={{
+                      textShadow:
+                        "1px 1px 0px #000, -1px -1px 0px #000, 1px -1px 0px #000, -1px 1px 0px #000",
+                    }}
+                  >
+                    Phòng Bếp
+                  </div>
+                  <div
+                    className="des"
+                    style={{
+                      textShadow:
+                        "1px 1px 0px #000, -1px -1px 0px #000, 1px -1px 0px #000, -1px 1px 0px #000",
+                    }}
+                  >
+                    Phòng Bếp, nơi dành cho gia đình quây quần trong những bữa
+                    tối cùng nhau
+                  </div>
+                  <button>See More</button>
+                </div>
+              </div>
+            </div>
+
+            <div className="button1">
+              <button className="prev" onClick={prevSlide}>
+                {/* <i className="fas fa-arrow-left"></i> */}
+                <FontAwesomeIcon icon={faArrowLeft} />
+              </button>
+              <button className="next" onClick={nextSlide}>
+                <FontAwesomeIcon icon={faArrowRight} />
+              </button>
+            </div>
+            {/* </div> */}
+          </div>
+          {/* </div> */}
+          {/* /////swiper */}
+          <a
+            style={{ fontFamily: "Playfair Display, serif" }}
+            href="/request"
+            target="_blank"
+          >
+            <div className="text-center py-10 text-5xl">
+              Gửi Yêu Cầu Thiết Kế
+            </div>
+          </a>
         </div>
       </div>
+
       <FloatButton.BackTop />
       <Footer />
     </>

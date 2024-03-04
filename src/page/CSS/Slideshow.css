@@ -2,6 +2,7 @@
 .section-logos {
   width: 100%; /* Chiều rộng của phần tử chứa slideshow */
   overflow: hidden; /* Ẩn phần bị tràn ra ngoài */
+  position: relative; /* Để tạo lớp vị trí tuyệt đối cho các slide */
 }
 
 /* Wrapper for slides */
@@ -23,17 +24,8 @@
   height: auto; /* Chiều cao tự động */
 }
 
-/* Notification span */
-.swiper-notification {
-  display: none; /* Ẩn span thông báo */
-}
-
 /* Animation for continuous sliding */
 @keyframes slide-animation {
   0% { transform: translateX(0); } /* Bắt đầu từ vị trí ban đầu */
-  100% { transform: translateX(-100%); } /* Kết thúc tại vị trí cuối cùng */
-  @keyframes slide-animation {
-  0% { transform: translateX(100%); } /* Bắt đầu từ vị trí bên phải */
-  100% { transform: translateX(0); } /* Kết thúc tại vị trí ban đầu */
-}
+  100% { transform: translateX(-50%); } /* Kết thúc tại vị trí cuối cùng */
 }
