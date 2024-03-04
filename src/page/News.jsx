@@ -17,12 +17,14 @@ export const News = () => {
       <div className="pt-64 pb-62 pl-20 pr-20">
         <Header></Header>
 
-        <h1 className="ml-20 mb-5 text-7xl font-normal">Tin Tức</h1>
-        <div className="italic ml-20 mb-5 text-2xl ">
-          Sáng tạo, trẻ trung và đa dạng trong từng thiết kế.
-        </div>
+        <h1 className="px-5 py-5 text-7xl font-normal  border-black  rounded-[15px] shadow-xl">
+          Tin Tức
+          <div className="italic ml-20 mb-5 text-2xl ">
+            Sáng tạo, trẻ trung và đa dạng trong từng thiết kế.
+          </div>
+        </h1>
 
-        <div className="ml-30 mt-20 ">
+        <div className="ml-30 mt-20 border border-black px-5 py-5 rounded-[15px] shadow-xl ">
           <Row>
             <Col span={12}>
               <div className="border border-gray-300 overflow-hidden rounded-[15px]">
