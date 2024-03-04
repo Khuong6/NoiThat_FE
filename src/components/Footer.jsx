@@ -28,7 +28,7 @@ function Footer() {
         className="mainFooter hidden-sm hidden-xsoverflow-hidden bg-gradient-to-r from-white via-gray-300  to-white p-8 rounded-t-3xl"
         style={borderTopStyle}
       >
-        <footer className="footer p-10 text-base-content ">
+        <footer className="footer p-2 text-base-content ">
           <aside>
             <div className="flex w-full ">
               <div className="wpb_wrapper">
