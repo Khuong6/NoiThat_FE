@@ -6,7 +6,7 @@ function SignUpPage() {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
-  const [birthdate, setBirthdate] = useState("");
+
   const [email, setEmail] = useState("");
   const [phoneNumber, setPhoneNumber] = useState("");
   const [address, setAddress] = useState("");
@@ -26,7 +26,7 @@ function SignUpPage() {
     const response = await api.post("/authentication/signup", {
       username,
       password,
-      birthdate,
+
       email,
       phoneNumber,
       address,
@@ -103,21 +103,7 @@ function SignUpPage() {
                 />
               </div>
               {/* Birthdate input */}
-              <div className="relative mb-6" data-te-input-wrapper-init="">
-                <input
-                  type="date"
-                  className="peer block min-h-[auto] w-full border bg-transparent px-3 py-[0.32rem] leading-[2.15] outline-none transition-all duration-200 ease-linear focus:placeholder:opacity-100 data-[te-input-state-active]:placeholder:opacity-100 motion-reduce:transition-none dark:text-neutral-200 dark:placeholder:text-neutral-200 [&:not([data-te-input-placeholder-active])]:placeholder:opacity-0 border-gray-800 rounded-xl focus:border-blue-6"
-                  id="signupBirthdate"
-                  placeholder="Ngày sinh"
-                  onInput={(e) => {
-                    setBirthdate(e.target.value);
-                  }}
-                />
-                <label
-                  htmlFor="signupBirthdate"
-                  className="pointer-events-none absolute left-3 top-0 mb-0 max-w-[90%] origin-[0_0] truncate pt-[0.37rem] leading-[2.15] text-neutral-500 transition-all duration-200 ease-out peer-focus:-translate-y-[1.15rem] peer-focus:scale-[0.8] peer-focus:text-primary peer-data-[te-input-state-active]:-translate-y-[1.15rem] peer-data-[te-input-state-active]:scale-[0.8] motion-reduce:transition-none dark:text-neutral-200 dark:peer-focus:text-primary"
-                ></label>
-              </div>
+
               {/* Email input */}
               <div className="relative mb-6" data-te-input-wrapper-init="">
                 Email
@@ -167,7 +153,6 @@ function SignUpPage() {
               >
                 Đăng Ký
               </button>
-              {/* Divider */}
             </form>
           </div>
         </div>

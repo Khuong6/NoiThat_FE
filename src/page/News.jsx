@@ -24,7 +24,7 @@ export const News = () => {
           </div>
         </h1>
 
-        <div className="ml-30 mt-20 border border-black px-5 py-5 rounded-[15px] shadow-xl ">
+        <div className="ml-30 mt-20 border border-black px-5 py-5 rounded-[15px] shadow-xl bg-gradient-to-r from-white via-blue-200 to-white ">
           <Row>
             <Col span={12}>
               <div className="border border-gray-300 overflow-hidden rounded-[15px]">

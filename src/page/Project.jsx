@@ -17,7 +17,8 @@ export const Project = () => {
   return (
     <>
       <Header />
-      <div className="pt-64 mb-20 pl-20 pr-20">
+
+      <div className="pt-64 pb-64 pl-20 pr-20 bg-gradient-to-r from-white via-blue-200 to-white">
         <img src="https://www.lanha.vn/wp-content/uploads/2023/11/headline-web-2-3x-8-1300x243.png.webp" />
         <div className=" mr-10 ">
           <Row>

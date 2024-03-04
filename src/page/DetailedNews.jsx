@@ -9,7 +9,7 @@ export const DetailedNews = () => {
   return (
     <>
       <Header />
-      <div className="pt-64 mb-20 pl-20 pr-20">
+      <div className="pt-64 pb-64 pl-20 pr-20 bg-gradient-to-r from-white via-blue-200 to-white">
         <Row>
           <Col span={6} push={18}>
             <div className=" ml-5 border border-gray-300 overflow-hidden rounded-[15px]">

@@ -22,10 +22,9 @@ function ForgotPasswordPage() {
     const response = await api.post("/authentication/signup", {
       username,
       password,
-      birthdate,
+
       email,
       phoneNumber,
-      address,
     });
 
     localStorage.setItem("account", JSON.stringify(response.data));
@@ -46,9 +45,9 @@ function ForgotPasswordPage() {
             </div>
             <div className="md:w-8/12 lg:ml-6 lg:w-5/12">
               <form onSubmit={handleSignUp}>
-               
                 {/* Email input */}
                 <div className="relative mb-6" data-te-input-wrapper-init="">
+                  Email
                   <input
                     onInput={(e) => {
                       setEmail(e.target.value);
@@ -61,9 +60,7 @@ function ForgotPasswordPage() {
                   <label
                     htmlFor="signupEmail"
                     className="pointer-events-none absolute left-3 top-0 mb-0 max-w-[90%] origin-[0_0] truncate pt-[0.37rem] leading-[2.15] text-neutral-500 transition-all duration-200 ease-out peer-focus:-translate-y-[1.15rem] peer-focus:scale-[0.8] peer-focus:text-primary peer-data-[te-input-state-active]:-translate-y-[1.15rem] peer-data-[te-input-state-active]:scale-[0.8] motion-reduce:transition-none dark:text-neutral-200 dark:peer-focus:text-primary"
-                  >
-                    Email
-                  </label>
+                  ></label>
                 </div>
 
                 {/* Submit button */}

@@ -5,7 +5,7 @@
 
 function Profiles() {
   return (
-    <div className="container mx-auto mt-8">
+    <div className="container mx-auto mt-8  bg-gradient-to-r from-white via-blue-200 to-white ">
       <h1 className="text-3xl font-bold mb-4">Thông Tin</h1>
       <div className="avatar">
         <div className="w-24 rounded-full ring ring-primary ring-offset-base-100 ring-offset-2">

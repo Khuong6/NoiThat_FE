@@ -42,6 +42,7 @@ function Menu() {
         <Route path="/duan" element={<Project />}></Route>
         <Route path="/duanchitiet" element={<DetailedProject />}></Route>
         <Route path="/tintuc" element={<News />}></Route>
+
         <Route
           path="/ForgotPasswordPage"
           element={<ForgotPasswordPage />}

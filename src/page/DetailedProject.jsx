@@ -51,7 +51,7 @@ export const DetailedProject = () => {
   return (
     <>
       <Header />
-      <div className="pt-64 mb-20 pl-20 pr-20  ">
+      <div className="pt-64 pb-60 pl-20 pr-20 bg-gradient-to-r from-white via-blue-200 to-white  ">
         <div className="ml-80 mb-5 text-4xl font-bold ">
           VINHOMES Q9 – JAPANDI – 90TR
         </div>
