@@ -29,21 +29,21 @@ const ThietKe = () => {
     <>
       <Header />
 
-      <div className="flex flex-col h-[1165px] items-start relative bg-vinmuscomnero mt-60">
-        <div className="flex flex-col w-[1440px] items-center gap-[26px] pt-[50px] pb-[300px] px-0 relative flex-[0_0_auto]">
-          <div className="relative max-w-screen-xl w-[1280px] flex-[0_0_auto]" />
+      <div className="flex flex-col  items-start mt-24">
+        <div className="flex flex-col items-center gap-[26px] pt-[50px]  px-0 relative flex-[0_0_auto]">
+          <div className="relative max-w-screen-xl flex-[0_0_auto]" />
           <div className="flex flex-col items-center px-[80px] py-0 relative self-stretch w-full flex-[0_0_auto]">
-            <div className="flex max-w-screen-xl w-[1280px] items-start px-[20px] py-0 relative flex-[0_0_auto]">
-              <div className="flex flex-col w-[728.41px] items-start pt-0 pb-[54.28px] px-0 relative">
+            <div className="flex max-w-screen-xl  items-start px-[20px] py-0 relative flex-[0_0_auto]">
+              <div className="flex flex-col  items-start pt-0 pb-[54.28px] px-0 relative">
                 <div className="flex flex-wrap h-[409.72px] items-start justify-center gap-[0px_0px] relative self-stretch w-full">
                   <img
-                    className="relative w-[728.41px] h-[395.5px]"
+                    className="relative  h-[395.5px]"
                     alt="Image"
                     src="https://c.animaapp.com/jFT1CjYZ/img/image-1.png"
                   />
                 </div>
               </div>
-              <div className="flex flex-col w-[511.59px] items-start pl-[26px] pr-0 py-0 relative">
+              <div className="flex flex-col  items-start pl-[26px] pr-0 py-0 relative">
                 <div className="flex flex-col items-start gap-[13px] pt-0 pb-[13px] px-0 relative self-stretch w-full flex-[0_0_auto]">
                   <div className="flex items-start pl-0 pr-[303.48px] pt-0 pb-[14px] relative self-stretch w-full flex-[0_0_auto] border-b [border-bottom-style:solid] border-xaynhadeponlinecomalto">
                     <div className="inline-flex flex-col items-start gap-[2.75px] self-stretch relative flex-[0_0_auto]">
@@ -110,7 +110,7 @@ const ThietKe = () => {
                       </div>
                     </div>
                     <a
-                      className="flex w-[475px] items-center justify-center pl-[27px] pr-[33.5px] py-[10.75px] relative self-stretch w-full flex-[0_0_auto] mt-[-0.25px] rounded-[15px]"
+                      className="flex  items-center justify-center pl-[27px] pr-[33.5px] py-[10.75px] relative self-stretch w-full flex-[0_0_auto] mt-[-0.25px] rounded-[15px]"
                       href="/HoanThanh"
                     >
                       <button className="btn btn-outline btn-info  flex min-w-[156px] items-center justify-center pl-[27px] pr-[33.5px] py-[10.75px] relative self-stretch w-full flex-[0_0_auto] mt-[-0.25px] rounded-[15px]">
@@ -131,14 +131,9 @@ const ThietKe = () => {
             </div>
           </div>
         </div>
-        <img
-          className="relative self-stretch w-full h-[357px] object-cover"
-          alt="Footer"
-          src="https://c.animaapp.com/jFT1CjYZ/img/footer.svg"
-        />
       </div>
 
-      <div className="absolute w-[713px] h-[27px] top-[162px] left-[126px] mt-20">
+      <div className="absolute w-[713px] h-[27px] top-[162px] left-[126px] ">
         <ul className="steps ">
           <a className="step step-info" href="/">
             {" "}
@@ -158,6 +153,7 @@ const ThietKe = () => {
           </a>
         </ul>
       </div>
+      <Footer />
     </>
   );
 };
@@ -219,7 +215,7 @@ const Modal = ({ categoryID, changeTotalPrice }) => {
                             height: 150,
                           }}
                         >
-                          <div className="h-200 overflow-hidden">
+                          <div className=" overflow-hidden">
                             <img
                               src={item.resources[0].url}
                               alt="Black machined steel pen with hexagonal grip and small white logo at the top."

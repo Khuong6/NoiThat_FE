@@ -9,9 +9,9 @@ export const KichThuoc = () => {
     <>
       <Header />
 
-      <div className="flex flex-col w-[1440px] items-center px-[80px] pt- py-0 relative flex-[0_0_auto] mt-80">
-        <div className="flex max-w-screen-xl w-[1280px] items-start px-[20px] py-0 relative flex-[0_0_auto]">
-          <div className="flex flex-col w-[738.8px] items-start pl-[26px] pr-0 pt-[26px] pb-[19.5px] relative">
+      <div className="flex flex-col w-[1440px] items-center px-[80px] pt-0 py-0 relative flex-[0_0_auto] mt-80">
+        <div className="flex max-w-screen-xl w-[1280px] items-start px-[20px]  relative flex-[0_0_auto]">
+          <div className="flex flex-col w-[738.8px] items-start pl-[26px] pr-0  pb-[19.5px] relative">
             <div className="relative self-stretch w-full h-[542.0px] bg-[url(https://c.animaapp.com/jsxmGnQm/img/image-2.png)] bg-cover bg-[50%_50%]" />
           </div>
           <div className="flex flex-col w-[501.2px] items-start pl-[26px] pr-0 py-0 relative">
@@ -126,13 +126,9 @@ export const KichThuoc = () => {
           </div>
         </div>
       </div>
-      <img
-        className="absolute w-[1440px] h-[357px] top-[808px] left-0"
-        alt="Image"
-        src="https://c.animaapp.com/jsxmGnQm/img/image.svg"
-      />
+      <Footer />
 
-      <div className="absolute w-[713px] h-[27px] top-[162px] left-[126px] pt-20 pb-20">
+      <div className="absolute w-[713px] h-[27px] top-[162px] left-[126px] pt-20 ">
         <ul className="steps">
           <a className="step step-info" href="/">
             {" "}

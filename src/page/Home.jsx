@@ -28,7 +28,7 @@ export const Home = () => {
     <>
       <Header />
       <div>
-        <div className="flex pt-40 rounded-[15px]">
+        <div className="flex rounded-[15px] ">
           <div
             className="hero min-h-screen"
             style={{

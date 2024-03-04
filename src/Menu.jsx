@@ -26,11 +26,15 @@ import DetailedProject from "./page/DetailedProject";
 =======
 import { ToastContainer } from "react-toastify";
 import { ManageCategory } from "./page/Staff/category";
+
+import SanPhamDon from "./page/SanPhamDon";
+=======
 import { Request } from "./page/Customer";
 import { ManageRequest } from "./page/Staff/request";
 import SanPham from "./page/SanPham";
 import { ManageQuotation } from "./page/Staff/quotation";
 import { QuotationRequest } from "./page/Customer/QuotationRequest";
+
 
 
 function Menu() {
@@ -50,14 +54,18 @@ function Menu() {
         <Route path="/profile" element={<Profiles />}></Route>
         <Route path="/SignUpPage" element={<SignUpPage />}></Route>
 
+        <Route path="/sanPhamDon" element={<SanPhamDon />}></Route>
+
+
         <Route path="/xemtintuc" element={<DetailedNews />}></Route>
         <Route path="/duan" element={<Project />}></Route>
         <Route path="/duanchitiet" element={<DetailedProject />}></Route>
         <Route path="/tintuc" element={<News />}></Route>
-=======
+
         <Route path="/request" element={<Request />}></Route>
         <Route path="/sanpham" element={<SanPham />}></Route>
         <Route path="/quotationrequest" element={<QuotationRequest />}></Route>
+
 
         <Route
           path="/ForgotPasswordPage"

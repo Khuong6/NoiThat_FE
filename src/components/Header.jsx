@@ -1,28 +1,30 @@
 import React from "react";
-import reactLogo from "/src/assets/react.svg";
-import viteLogo from "/vite.svg";
-import { useEffect, useState } from "react";
-import Footer from "../components/Footer";
 import { useDispatch, useSelector } from "react-redux";
-import { Button, Dropdown } from "antd";
+import { Button, Dropdown, Space } from "antd";
 import { Link } from "react-router-dom";
 import { logout } from "../redux/feature/authenSlice";
+import { DownOutlined, UserOutlined, CheckOutlined } from "@ant-design/icons";
+import "animate.css";
 
 export const Header = () => {
   const user = useSelector((store) => store.authen);
   const dispatch = useDispatch();
   const items = [
     {
-      key: "1",
       label: (
-        <Button>
+        <div className="text-center bg-green-500 p-1 rounded-3xl">
           <Link to={"/profile"}>Setting</Link>
-        </Button>
+        </div>
       ),
     },
     {
-      key: "2",
+      type: "divider",
+    },
+    {
       label: (
+
+        <div
+=======
         <Button>
           <Link to={"/quotationrequest"}>Quotation</Link>
         </Button>
@@ -32,18 +34,48 @@ export const Header = () => {
       key: "3",
       label: (
         <Button
+
           onClick={() => {
             dispatch(logout());
           }}
+          className="text-center bg-red-500 p-1 rounded-3xl"
         >
           Logout
-        </Button>
+        </div>
       ),
     },
   ];
-
+  const downLine = [
+    {
+      label: <a href="/phongngu">Phòng Ngủ</a>,
+    },
+    {
+      type: "divider",
+    },
+    {
+      label: <a href="/phongbep">Phòng Bếp</a>,
+    },
+    {
+      type: "divider",
+    },
+    {
+      label: <a href="/phongkhach">Phòng Khách</a>,
+    },
+  ];
   return (
     <>
+
+      <header className="animate__flipInX animate__animated bg-gradient-to-r from-white via-blue-200 to-white rounded-b-full sticky top-0 z-50">
+        <div class="pr-24 py-4">
+          <div class="flex justify-between items-end ">
+            <a href="/trangchu">
+              {/* <img
+                className="w-36 rounded-3xl"
+                src="/public/Capture.PNG"
+                alt=""
+              /> */}
+            </a>
+
       <div className="bg-white flex flex-row justify-center w-full">
         <div className="absolute w-[1200px] h-[50px] top-[85px] left-[120px] rounded-[10px]">
           <div className="absolute w-[1200px] h-[50px] top-0 left-0 bg-[#37667e] rounded-[10px] " />
@@ -151,43 +183,98 @@ export const Header = () => {
           </div>
         </div>
 
-        {user ? (
-          <>
-            <div className="inline-flex flex-col items-start absolute top-[51px] left-[1218px]">
-              <div className="flex items-center gap-[5px] relative self-stretch w-full flex-[0_0_auto]">
-                <img
-                  className="relative flex-[0_0_auto]"
-                  alt="Before"
-                  src="https://c.animaapp.com/jsxmGnQm/img/--before.svg"
-                />
-                <div className="relative w-fit mt-[-1.00px] [font-family:'Roboto',Helvetica] font-normal text-vinmuscommine-shaft text-[14px] tracking-[0] leading-[22px] whitespace-nowrap">
-                  <Dropdown menu={{ items }} placement="bottomLeft">
-                    <span>{user.username}</span>
+
+            <nav className="flex items-center">
+              <ul className="flex mr-8 ">
+                <div>
+                  <Dropdown
+                    menu={{ items: downLine }}
+                    trigger={["click"]}
+                    placement="bottomLeft"
+                  >
+                    <a onClick={(e) => e.preventDefault()}>
+                      <Space>
+                        <a
+                          className="px-3 py-11  capitalize text-sm font-medium transition duration-500 text-black"
+                          href="#"
+                        >
+                          <span>
+                            Bộ Sưu Tập
+                            <DownOutlined className="text-xs mt-[-3px] align-middle pl-1" />
+                          </span>
+                        </a>
+                      </Space>
+                    </a>
                   </Dropdown>
                 </div>
-              </div>
-            </div>
-          </>
-        ) : (
-          <a href="/login">
-            <div className="inline-flex flex-col items-start absolute top-[51px] left-[1218px]">
-              <div className="flex items-center gap-[5px] relative self-stretch w-full flex-[0_0_auto]">
-                <img
-                  className="relative flex-[0_0_auto]"
-                  alt="Before"
-                  src="https://c.animaapp.com/jsxmGnQm/img/--before.svg"
-                />
-                <div className="relative w-fit mt-[-1.00px] [font-family:'Roboto',Helvetica] font-normal text-vinmuscommine-shaft text-[14px] tracking-[0] leading-[22px] whitespace-nowrap">
-                  Thành viên
-                </div>
-              </div>
-            </div>
-          </a>
-        )}
+                <li>
+                  <a
+                    className="px-3 py-11 text-070120 capitalize text-sm font-medium transition duration-500 text-black"
+                    href="/sanPhamDon"
+                  >
+                    <span>Sản Phẩm</span>
+                  </a>
+                </li>
+                <li>
+                  <a
+                    className="px-3 py-11 text-070120 capitalize text-sm font-medium transition duration-500 text-black"
+                    href="#"
+                  >
+                    <span>Mẫu Thiết Kế</span>
+                  </a>
+                </li>
+                <li>
+                  <a
+                    className="px-3 py-11 text-070120 capitalize text-sm font-medium transition duration-500 text-black"
+                    href="#"
+                  >
+                    <span>Blogs</span>
+                  </a>
+                </li>
+                <li>
+                  <a
+                    className="px-3 py-11 text-070120 capitalize text-sm font-medium transition duration-500 text-black"
+                    href=""
+                  >
+                    <span>Tin Tức</span>
+                  </a>
+                </li>
+                <li>
+                  <a
+                    className="px-3 py-11 text-070120 capitalize text-sm font-medium transition duration-500 text-black"
+                    href=""
+                  >
+                    <span>Công Trình</span>
+                  </a>
+                </li>
+              </ul>
 
-        <div className="absolute h-[30px] top-[46px] left-[140px] [font-family:'Roboto',Helvetica] font-bold text-vinmuscomblack text-[12px] tracking-[0] leading-[30px] whitespace-nowrap">
-          HOTLINE: 012345678
+              {user ? (
+                <Dropdown
+                  menu={{ items }}
+                  trigger={["click"]}
+                  placement="bottom"
+                >
+                  <button className="px-8 py-5 text-sm font-medium bg-gradient-to-r from-yellow-500  to-orange-500 border transition-all duration-500 rounded-full text-white uppercaser">
+                    <UserOutlined />
+                    <span className="p-1  ">{user.username}</span>
+                    <DownOutlined className="text-xs " />
+                  </button>
+                </Dropdown>
+              ) : (
+                <a href="/login">
+                  <button className="px-8 py-5 text-sm font-medium bg-gradient-to-r from-yellow-500  to-orange-500 border transition-all duration-500 rounded-full text-white uppercaser">
+                    <UserOutlined />
+                    <span className="p-1  ">Đăng Nhập</span>
+                  </button>
+                </a>
+              )}
+            </nav>
+          </div>
         </div>
+
+      </header>
+
         <a
           className="absolute h-[20px] top-[51px] left-[285px] [font-family:'Roboto',Helvetica] font-normal text-[12px] tracking-[0] leading-[20px] whitespace-nowrap"
           href=""
@@ -197,6 +284,7 @@ export const Header = () => {
           EMAIL - HỎI ĐÁP
         </a>
       </div>
+
     </>
   );
 };
