@@ -1,18 +1,28 @@
 import React, { useState, useEffect } from "react";
-import { Radio, Tabs, List, Row, Col, Badge, Table, Button } from "antd";
+import {
+  Radio,
+  Tabs,
+  List,
+  Row,
+  Col,
+  Badge,
+  Table,
+  Button,
+  Descriptions,
+} from "antd";
 import api from "../config/axios";
 import { useDispatch, useSelector } from "react-redux";
 import { add, remove } from "../redux/feature/cartSlice";
 import { ShoppingCartOutlined } from "@ant-design/icons";
 
-const SanPham = () => {
+const SanPham = ({ info, handleCheckout }) => {
   const [mode, setMode] = useState("top");
   const [categories, setCategories] = useState([]);
   const [activeKey, setActiveKey] = useState(null);
   const [products, setProducts] = useState({});
   const dispatch = useDispatch();
   const cart = useSelector((store) => store.cart);
-
+  console.log(info);
   useEffect(() => {
     api
       .get("/categories")
@@ -48,6 +58,48 @@ const SanPham = () => {
     setActiveKey(key);
   };
 
+  const calculateTotalPrice = () => {
+    let totalPrice = 0;
+    cart.forEach((product) => {
+      totalPrice += product.price * product.quantity;
+    });
+    return totalPrice;
+  };
+
+  const handleSubmit = async () => {
+    try {
+      // Xây dựng dữ liệu sản phẩm từ giỏ hàng
+      const quotationDetailDTOS = cart.map((product) => ({
+        productDetailId: product.id, // ID của sản phẩm
+        quantity: product.quantity, // Số lượng sản phẩm
+        price: product.price * product.quantity, // Tổng giá của sản phẩm (số lượng * giá)
+      }));
+
+      // Gửi dữ liệu xuống API "/quotation"
+      const response = await api.post("/quotation", {
+        requestId: info.id, // requestId có thể là một giá trị cố định hoặc được tạo động
+        type: "PENDING",
+        quotationDetailDTOS: quotationDetailDTOS,
+      });
+
+      handleCheckout();
+
+      console.log(response);
+      // Xử lý response từ API ở đây (nếu cần)
+    } catch (error) {
+      console.error("Error submitting quotation:", error);
+      // Xử lý lỗi ở đây (nếu cần)
+    }
+  };
+
+  function convertToVND(money) {
+    const formattedAmount = new Intl.NumberFormat("vi-VN", {
+      style: "currency",
+      currency: "VND",
+    }).format(money);
+
+    return formattedAmount;
+  }
   return (
     <>
       <div>
@@ -66,6 +118,24 @@ const SanPham = () => {
             <ShoppingCartOutlined />
           </label>
         </Badge>
+
+        {info && (
+          <Descriptions>
+            <Descriptions.Item label="dienTich">
+              {info?.dienTich}
+            </Descriptions.Item>
+            <Descriptions.Item label="budget">
+              {convertToVND(info?.budget)}
+            </Descriptions.Item>
+            <Descriptions.Item label="description">
+              {info?.description}
+            </Descriptions.Item>
+            <Descriptions.Item label="Total">
+              {convertToVND(calculateTotalPrice())}
+            </Descriptions.Item>
+          </Descriptions>
+        )}
+
         <Radio.Group
           onChange={handleModeChange}
           value={mode}
@@ -94,60 +164,65 @@ const SanPham = () => {
                 border: "3px solid #ccc",
                 borderRadius: "15px",
                 padding: "12px",
+                zIndex: 100000000,
               }}
             >
               <Row gutter={[12, 12]}>
-                {products[category.id]?.map((product) => (
-                  <Col lg={8} sm={12} xs={24}>
-                    <div
-                      key={product.id}
-                      style={{
-                        backgroundColor: "#fff",
-                        borderRadius: 15,
-                        overflow: "hidden",
-                      }}
-                    >
-                      <figure>
-                        <img
-                          style={{
-                            width: "100%",
-                            height: "200px",
-                            objectFit: "cover",
-                          }}
-                          src={
-                            product.resources.length > 0
-                              ? product.resources[0].url
-                              : ""
-                          }
-                          alt={product.name}
-                        />
-                      </figure>
-                      <div className="card-body">
-                        <div>
-                          <h2 className="card-title">{product.name}</h2>
-                          <p>{product.price} VND</p>
-                        </div>
+                {products[category.id]?.map(
+                  (product) =>
+                    product.productDetails &&
+                    product.productDetails.length > 0 && (
+                      <Col lg={8} sm={12} xs={24}>
                         <div
+                          key={product.id}
                           style={{
-                            display: "flex",
-                            // justifyContent: "space-between",
-                            // alignContent: "flex-end",
-                            placeContent: "flex-end",
+                            backgroundColor: "#fff",
+                            borderRadius: 15,
+                            overflow: "hidden",
                           }}
                         >
-                          <button
-                            className="btn btn-primary"
-                            onClick={() => {
-                              dispatch(add(product));
-                            }}
-                          >
-                            Thêm
-                          </button>
+                          <figure>
+                            <img
+                              style={{
+                                width: "100%",
+                                height: "200px",
+                                objectFit: "cover",
+                              }}
+                              src={
+                                product.resources.length > 0
+                                  ? product.resources[0].url
+                                  : ""
+                              }
+                              alt={product.name}
+                            />
+                          </figure>
+                          <div className="card-body">
+                            <div>
+                              <h2 className="card-title">{product.name}</h2>
+                              <p>{product.price} VND</p>
+                            </div>
+                            <div
+                              style={{
+                                display: "flex",
+                                // justifyContent: "space-between",
+                                // alignContent: "flex-end",
+                                placeContent: "flex-end",
+                              }}
+                            >
+                              <button
+                                className="btn btn-primary"
+                                onClick={() => {
+                                  dispatch(add(product.productDetails[0]));
+                                }}
+                              >
+                                Thêm
+                              </button>
+                            </div>
+                          </div>
                         </div>
-                      </div>
-                    </div>
-                  </Col>
-                ))}
+                      </Col>
+                    )
+                )}
               </Row>
             </Tabs.TabPane>
           ))}
@@ -200,8 +275,8 @@ const SanPham = () => {
                   </>
                 );
               })}
-              <div>Tổng chi phí xây dựng dự tính:</div>
-              <Button>Checkout</Button>
+              <div>Tổng chi phí: {calculateTotalPrice()} VND</div>
+              <Button onClick={handleSubmit}>Checkout</Button>
             </ul>
           </div>
         </div>

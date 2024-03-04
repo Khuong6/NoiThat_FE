@@ -31,10 +31,14 @@ export const cartSlice = createSlice({
       }
       return state;
     },
+
+    reset: () => {
+      return initialState;
+    },
   },
 });
 
 // Action creators are generated for each case reducer function
-export const { add, remove } = cartSlice.actions;
+export const { add, remove, reset } = cartSlice.actions;
 
 export default cartSlice.reducer;

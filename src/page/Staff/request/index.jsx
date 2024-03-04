@@ -1,17 +1,33 @@
 import React, { useEffect, useState } from "react";
-import { Button, Table, Modal, Form, Input } from "antd";
+import { Button, Table, Modal, Form, Input, Tag } from "antd";
 import api from "../../../config/axios";
+import SanPham from "../../Test";
+import { useDispatch } from "react-redux";
+import { reset } from "../../../redux/feature/cartSlice";
+import { toast } from "react-toastify";
 
 export const ManageRequest = () => {
   const [request, setCategories] = useState([]);
   const [isModalOpen, setIsModalOpen] = useState(false);
+  const [currentRequest, setCurrentRequest] = useState(null);
   const [form] = Form.useForm();
+  const dispatch = useDispatch();
 
   const columns = [
+    {
+      title: "Images",
+      dataIndex: "resources",
+      render: (resource) => (
+        <img src={resource[0].url} alt="resources" style={{ width: 100 }} />
+      ),
+    },
     {
       title: "Type",
       dataIndex: "type",
       width: "20%",
+      render: (value) => {
+        return <Tag color="green">{value}</Tag>;
+      },
     },
     {
       title: "Description",
@@ -29,11 +45,21 @@ export const ManageRequest = () => {
       width: "20%",
     },
     {
-      title: "Images",
-      dataIndex: "resources",
-      render: (resource) => (
-        <img src={resource[0].url} alt="resources" style={{ width: 100 }} />
-      ),
+      title: "Action",
+      render: (value, record) => {
+        return (
+          <Button
+            type="primary"
+            onClick={() => {
+              setIsModalOpen(true);
+              setCurrentRequest(record);
+            }}
+          >
+            {" "}
+            Quotation{" "}
+          </Button>
+        );
+      },
     },
     // {
     //   title: "Images",
@@ -91,13 +117,30 @@ export const ManageRequest = () => {
     }
   };
 
+  const handleCheckout = () => {
+    dispatch(reset());
+    setIsModalOpen(false);
+    toast.success("Successfully!");
+  };
+
   return (
     <div>
-      <Button onClick={showModal} type="primary">
+      {/* <Button onClick={showModal} type="primary">
         Add
-      </Button>
+      </Button> */}
       <Table columns={columns} dataSource={request} />
       <Modal
+        open={isModalOpen}
+        width={1300}
+        onCancel={() => {
+          dispatch(reset());
+          setIsModalOpen(false);
+          setCurrentRequest(null);
+        }}
+      >
+        <SanPham info={currentRequest} handleCheckout={handleCheckout} />
+      </Modal>
+      {/* <Modal
         title="Add Request"
         visible={isModalOpen}
         onOk={handleOk}
@@ -140,7 +183,7 @@ export const ManageRequest = () => {
             <Input />
           </Form.Item>
         </Form>
-      </Modal>
+      </Modal> */}
     </div>
   );
 };

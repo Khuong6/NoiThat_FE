@@ -21,7 +21,6 @@ const ThietKe = () => {
   useEffect(() => {
     fetchCategory();
   }, []);
-
   const changeTotalPrice = (price) => {
     setTotal(total + price);
   };

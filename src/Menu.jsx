@@ -22,6 +22,8 @@ import { ManageCategory } from "./page/Staff/category";
 import { Request } from "./page/Customer";
 import { ManageRequest } from "./page/Staff/request";
 import SanPham from "./page/SanPham";
+import { ManageQuotation } from "./page/Staff/quotation";
+import { QuotationRequest } from "./page/Customer/QuotationRequest";
 
 function Menu() {
   return (
@@ -41,6 +43,7 @@ function Menu() {
         <Route path="/SignUpPage" element={<SignUpPage />}></Route>
         <Route path="/request" element={<Request />}></Route>
         <Route path="/sanpham" element={<SanPham />}></Route>
+        <Route path="/quotationrequest" element={<QuotationRequest />}></Route>
         <Route
           path="/ForgotPasswordPage"
           element={<ForgotPasswordPage />}
@@ -51,6 +54,7 @@ function Menu() {
             <Route path="product" element={<ManageProduct />}></Route>
             <Route path="category" element={<ManageCategory />}></Route>
             <Route path="request" element={<ManageRequest />}></Route>
+            <Route path="quotation" element={<ManageQuotation />}></Route>
           </Route>
           <Route path="admin" element={<Dashboard role={"ADMIN"} />}></Route>
         </Route>

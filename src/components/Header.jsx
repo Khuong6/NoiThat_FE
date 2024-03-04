@@ -23,6 +23,14 @@ export const Header = () => {
     {
       key: "2",
       label: (
+        <Button>
+          <Link to={"/quotationrequest"}>Quotation</Link>
+        </Button>
+      ),
+    },
+    {
+      key: "3",
+      label: (
         <Button
           onClick={() => {
             dispatch(logout());
