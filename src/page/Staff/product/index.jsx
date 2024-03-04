@@ -16,17 +16,26 @@ import { PlusOutlined } from "@ant-design/icons";
 import uploadFile from "../../../utils/upload";
 import { ToastContainer, toast } from "react-toastify";
 import { Checkbox, Divider } from "antd";
+import { message } from "antd";
 
 export const ManageProduct = () => {
   const [options, setOptions] = useState([]);
   const [products, setProducts] = useState([]);
   const [form] = useForm();
+
   const columns = [
     {
       title: "Images",
-      dataIndex: "img",
+
+      dataIndex: "resources",
       render: (value) => {
-        return <Image width={200} src={value} />;
+        return (
+          <Image
+            width={200}
+            src={value[0].url}
+            style={{ borderRadius: "10px" }}
+          />
+        );
       },
     },
     {
@@ -88,42 +97,17 @@ export const ManageProduct = () => {
       filterSearch: true,
       width: "40%",
     },
+
     {
+      title: "Actions",
       render: (value, record) => (
-        <Checkbox
-          onChange={(e) => handleCheckboxChange(record.id, e.target.checked)}
-          style={{ border: "2px solid black", borderColor: "black" }}
-        />
+        <Button type="dashed" onClick={() => handleDelete(record.id)}>
+          Delete
+        </Button>
       ),
     },
   ];
 
-  const data = [
-    {
-      key: "1",
-      name: "John Brown",
-      age: 32,
-      address: "New York No. 1 Lake Park",
-    },
-    {
-      key: "2",
-      name: "Jim Green",
-      age: 42,
-      address: "London No. 1 Lake Park",
-    },
-    {
-      key: "3",
-      name: "Joe Black",
-      age: 32,
-      address: "Sydney No. 1 Lake Park",
-    },
-    {
-      key: "4",
-      name: "Jim Red",
-      age: 32,
-      address: "London No. 2 Lake Park",
-    },
-  ];
   const onChange = (pagination, filters, sorter, extra) => {
     console.log("params", pagination, filters, sorter, extra);
   };
@@ -159,10 +143,23 @@ export const ManageProduct = () => {
     );
   };
 
+  // const fetchProducts = async () => {
+  //   const response = await api.get("/product");
+  //   console.log(response.data);
+  //   setProducts(response.data);
+  // };
+
   const fetchProducts = async () => {
-    const response = await api.get("/product");
-    console.log(response.data);
-    setProducts(response.data);
+    try {
+      const response = await api.get("/product");
+      const filteredProducts = response.data.filter(
+        (product) => !product.deleted
+      );
+      setProducts(filteredProducts);
+    } catch (error) {
+      console.error("Error fetching products:", error);
+      message.error("Failed to fetch products");
+    }
   };
 
   useEffect(() => {
@@ -234,19 +231,33 @@ export const ManageProduct = () => {
     fetchProducts();
   };
 
-  const handleCheckboxChange = (productId, isChecked) => {
-    setProducts(
-      products.map((product) => {
-        if (product.id === productId) {
-          return { ...product, checked: isChecked };
-        }
-        return product;
-      })
-    );
-  };
+  // const handleDelete = async (id) => {
+  //   try {
+  //     await api.delete(`/product/${id}`);
 
-  const handleDeleteClick = () => {
-    setProducts(items.filter((item) => !item.checked));
+  //     message.success("Product deleted successfully");
+  //     fetchProducts();
+  //   } catch (error) {
+  //     console.error("Error deleting product:", error);
+  //     message.error("Failed to delete product");
+  //   }
+  // };
+
+  const handleDelete = async (id) => {
+    try {
+      await api.delete(`/product/${id}`);
+
+      message.success("Product deleted successfully");
+      const response = await api.get(`/product/${id}`);
+      if (response.data.deleted) {
+        // Nếu sản phẩm đã được đánh dấu là đã xóa thì không hiển thị nó trên màn hình
+        return;
+      }
+      fetchProducts();
+    } catch (error) {
+      console.error("Error deleting product:", error);
+      message.error("Failed to delete product");
+    }
   };
 
   /////////////////////////////
@@ -255,7 +266,7 @@ export const ManageProduct = () => {
       <Button onClick={showModal} type="primary">
         Add
       </Button>
-      <button onClick={handleDeleteClick}>Delete</button>
+      {/* <button onClick={handleDeleteClick}>Delete</button> */}
       <Table columns={columns} dataSource={products} onChange={onChange} />
       <Modal
         title="Basic Modal"
