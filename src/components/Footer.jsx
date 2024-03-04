@@ -25,7 +25,7 @@ function Footer() {
   return (
     <>
       <div
-        className="mainFooter hidden-sm hidden-xs bg-black "
+        className="mainFooter hidden-sm hidden-xsoverflow-hidden bg-gradient-to-r from-white via-gray-300  to-white p-8 rounded-t-3xl"
         style={borderTopStyle}
       >
         <footer className="footer p-10 text-base-content ">
@@ -47,8 +47,8 @@ function Footer() {
             </div>
           </aside>
 
-          <nav className="text-white ">
-            <h6 className="mb-2 font-bold uppercase border-b  border-green-500">
+          <nav className="text-black text-sm font-medium">
+            <h6 className="mb-2 font-bold uppercase border-b  border-pink-400">
               Sản Phẩm
             </h6>
             <a
@@ -75,8 +75,8 @@ function Footer() {
           </nav>
           {/* Thông Tin Về Web */}
 
-          <nav className="text-white ">
-            <h6 className="mb-2 font-bold uppercase border-b border-green-500">
+          <nav className="text-black text-sm font-medium">
+            <h6 className="mb-2 font-bold uppercase border-b border-pink-500">
               Liên Lạc
             </h6>
             <a
@@ -199,8 +199,8 @@ function Footer() {
           </nav>
           {/* thông tin thêm */}
 
-          <nav className="text-white">
-            <h6 className="mb-2 font-bold uppercase border-b border-green-500">
+          <nav className="text-black text-sm font-medium">
+            <h6 className=" mb-2 font-bold uppercase border-b border-pink-500">
               Thông Tin Thêm
             </h6>
             <a className="link link-hover opacity-80">Tin Tức</a>

@@ -6,7 +6,7 @@ import { logout } from "../redux/feature/authenSlice";
 import { DownOutlined, UserOutlined, CheckOutlined } from "@ant-design/icons";
 import "animate.css";
 
-export const Header  = () => {
+export const Header = () => {
   const user = useSelector((store) => store.authen);
   const dispatch = useDispatch();
   const items = [
@@ -52,7 +52,7 @@ export const Header  = () => {
   ];
   return (
     <>
-      <header className="bg-gradient-to-r from-white via-gray-300  to-white p-8">
+      <header className="bg-gradient-to-r from-white via-gray-300  to-white p-8 rounded-b-3xl">
         <div class="max-w-7xl mx-auto">
           <div class="flex justify-between items-center m-0 p-0">
             <a href="/trangchu">
