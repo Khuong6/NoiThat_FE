@@ -29,7 +29,7 @@ const ThietKe = () => {
     <>
       <Header />
 
-      <div className="flex flex-col h-[1165px] items-start relative bg-vinmuscomnero mt-60">
+      <div className="flex flex-col h-[1165px] items-start  mt-60">
         <div className="flex flex-col w-[1440px] items-center gap-[26px] pt-[50px] pb-[300px] px-0 relative flex-[0_0_auto]">
           <div className="relative max-w-screen-xl w-[1280px] flex-[0_0_auto]" />
           <div className="flex flex-col items-center px-[80px] py-0 relative self-stretch w-full flex-[0_0_auto]">
@@ -114,7 +114,7 @@ const ThietKe = () => {
                       </div>
                     </div>
                     <a
-                      className="flex w-[475px] items-center justify-center pl-[27px] pr-[33.5px] py-[10.75px] relative self-stretch w-full flex-[0_0_auto] mt-[-0.25px] rounded-[15px]"
+                      className="flex  items-center justify-center pl-[27px] pr-[33.5px] py-[10.75px] relative self-stretch w-full flex-[0_0_auto] mt-[-0.25px] rounded-[15px]"
                       href="/HoanThanh"
                     >
                       <button className="btn btn-outline btn-info  flex min-w-[156px] items-center justify-center pl-[27px] pr-[33.5px] py-[10.75px] relative self-stretch w-full flex-[0_0_auto] mt-[-0.25px] rounded-[15px]">
@@ -136,7 +136,7 @@ const ThietKe = () => {
           </div>
         </div>
         <img
-          className="relative self-stretch w-full h-[357px] object-cover"
+          className="relative self-stretch w-full h-[357px] object-cover pb-8 rounded-3xl"
           alt="Footer"
           src="https://c.animaapp.com/jFT1CjYZ/img/footer.svg"
         />
@@ -162,6 +162,7 @@ const ThietKe = () => {
           </a>
         </ul>
       </div>
+      <Footer />
     </>
   );
 };

@@ -52,7 +52,7 @@ export const Header = () => {
   ];
   return (
     <>
-      <header className="bg-gradient-to-r from-white via-gray-300 p-1 to-white rounded-b-full sticky top-0">
+      <header className="bg-gradient-to-r from-white via-gray-400 p-1x to-white rounded-b-full sticky top-0 z-50">
         <div class="max-w-7xl mx-auto">
           <div class="flex justify-between items-center m-0 p-0">
             <a href="/trangchu">
