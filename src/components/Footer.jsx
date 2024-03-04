@@ -25,7 +25,7 @@ function Footer() {
   return (
     <>
       <div
-        className="mainFooter hidden-sm hidden-xsoverflow-hidden bg-gradient-to-r from-white via-gray-400 to-white p-8 rounded-t-3xl z-40"
+        className="mainFooter hidden-sm hidden-xsoverflow-hidden bg-gradient-to-r from-white via-gray-400 to-white p-8 rounded-t-3xl"
         style={borderTopStyle}
       >
         <footer className="footer p-2 text-base-content ">

@@ -8,7 +8,7 @@ export const HoanThanh = () => {
   return (
     <>
       <Header />
-      <div className="bg-gray-100 h-screen">
+      <div className="bg-gray-100 ">
         <div className="bg-white p-6  md:mx-auto mt-40">
           <svg
             viewBox="0 0 24 24"
@@ -31,13 +31,14 @@ export const HoanThanh = () => {
             <div className="py-10 text-center">
               <a
                 href="/"
-                className="px-12 bg-indigo-600 hover:bg-indigo-500 text-white font-semibold py-3"
+                className="px-12 bg-indigo-600 hover:bg-indigo-500 text-white font-semibold py-3 rounded-3xl"
               >
                 Quay trở lại Trang chủ
               </a>
             </div>
           </div>
         </div>
+        <Footer />
       </div>
     </>
   );

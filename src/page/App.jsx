@@ -4,6 +4,7 @@
 //  import Footer from "../components/Footer";
 import { useEffect, useState } from "react";
 import Header from "../components/Header";
+import Footer from "../components/Footer";
 import { useDispatch, useSelector } from "react-redux";
 import {
   decrement,
@@ -39,17 +40,17 @@ export const App = () => {
   return (
     <>
       <Header />
-      <div className="bg-white flex flex-row justify-center w-full">
-        <div className="flex flex-col w-[1440px] h-[4000px] items-end gap-[40px] absolute top-[190px] left-0">
+      <div className="bg-white flex flex-row justify-center w-full ">
+        <div className="flex flex-col w-[1440px] h-[4000px]  gap-[40px] mt-5 top-[190px] left-0">
           <div className="flex flex-col h-[4000px] items-center pt-0 pb-[50px] px-[320px] relative self-stretch w-full">
             <div className="relative max-w-[1200px] w-[1200px] h-[3977px] mb-[-27.00px] ml-[-200.00px] mr-[-200.00px]">
-              <div className="flex flex-col w-[1170px] items-start absolute top-0 left-[15px] bg-vinmuscomalabaster">
-                <div className="flex flex-wrap items-center gap-[0px_0px] relative self-stretch w-full flex-[0_0_auto]">
-                  <div className="flex flex-col w-[585px] items-start relative">
-                    <div className="flex flex-col items-start gap-[20px] p-[30px] relative self-stretch w-full flex-[0_0_auto]">
+              <div className="flex flex-col w-[1170px] items-start top-0 left-[15px] bg-vinmuscomalabaster">
+                <div className="flex flex-wrap items-center gap-[0px_0px]  self-stretch w-full flex-[0_0_auto]">
+                  <div className="flex flex-col w-[585px] items-start ">
+                    <div className="flex flex-col  gap-[20px] p-[30px]  self-stretch w-full flex-[0_0_auto]">
                       <div className="flex flex-col items-start pt-0 pb-[20px] px-0 relative self-stretch w-full flex-[0_0_auto]">
-                        <div className="pl-0 pr-[285px] py-0 flex flex-col items-start relative self-stretch w-full flex-[0_0_auto]">
-                          <div className="relative w-fit mt-[-1.00px] [font-family:'Roboto',Helvetica] font-bold text-vinmuscommine-shaft text-[25px] tracking-[0] leading-[33px] whitespace-nowrap">
+                        <div className="pl-0 pr-[285px] py-0 flex flex-col  relative  w-full flex-[0_0_auto]">
+                          <div className="relative w-fit mt-[-1.00px] [font-family:'Roboto',Helvetica] font-bold text-vinmuscommine-shaft text-[25px] leading-[33px] ">
                             PHÒNG NGỦ URBINO
                           </div>
                         </div>
@@ -208,6 +209,7 @@ export const App = () => {
                   </div>
                 </div>
               </div>
+
               <a
                 className="inline-flex items-start absolute top-[435px] left-[12px]"
                 href="http://vinmus.com/vn/phong-ngu-urbino.html/"
@@ -218,6 +220,7 @@ export const App = () => {
               </a>
             </div>
           </div>
+          <Footer />
         </div>
 
         {/* <div className="absolute w-[713px] h-[27px] top-[162px] left-[126px]">
@@ -231,6 +234,7 @@ export const App = () => {
           </ul>
 
 
+         
 
         </div> */}
       </div>
