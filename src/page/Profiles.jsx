@@ -7,11 +7,92 @@ function Profiles() {
   return (
     <div className="container mx-auto mt-8  bg-gradient-to-r from-white via-blue-200 to-white ">
       <h1 className="text-3xl font-bold mb-4">Thông Tin</h1>
-      <div className="avatar">
-        <div className="w-24 rounded-full ring ring-primary ring-offset-base-100 ring-offset-2">
-          <img src="https://daisyui.com/images/stock/photo-1534528741775-53994a69daeb.jpg" />
+      <div
+        style={{
+          display: "flex",
+          justifyContent: "space-between",
+          alignItems: "center",
+        }}
+      >
+        <div className="avatar">
+          <div className="w-24 rounded-full ring ring-primary ring-offset-base-100 ring-offset-2">
+            <img src="https://daisyui.com/images/stock/photo-1534528741775-53994a69daeb.jpg" />
+          </div>
+        </div>
+        <div className="">
+          <button
+            className="border border-info rounded-[15px] py-1 px-2"
+            onClick={() => document.getElementById("my_modal_1").showModal()}
+          >
+            {" "}
+            Chỉnh sửa
+          </button>
+          <dialog id="my_modal_1" className="modal">
+            <div className="modal-box">
+              <h3 className="font-bold text-lg">Cập Nhật Tài Khoản</h3>
+              {/* <p className="py-4">
+                Press ESC key or click the button below to close
+              </p> */}
+              <div>
+                <text>Username: </text>
+                <input
+                  type="text"
+                  placeholder="Type here"
+                  className="input input-bordered w-full max-w-xs mx-2 my-2"
+                />
+              </div>
+              <div>
+                <text>Password: </text>
+                <input
+                  type="text"
+                  placeholder="Type here"
+                  className="input input-bordered w-full max-w-xs mx-2 my-2 ml-[10px]"
+                />
+              </div>
+              <div>
+                <text>Họ Tên: </text>
+                <input
+                  type="text"
+                  placeholder="Type here"
+                  className="input input-bordered w-full max-w-xs mx-2 my-2 ml-[25px]"
+                />
+              </div>
+              <div>
+                <text>Email: </text>
+                <input
+                  type="text"
+                  placeholder="Type here"
+                  className="input input-bordered w-full max-w-xs mx-2 my-2 ml-[36px]"
+                />
+              </div>
+              <div>
+                <text>SDT: </text>
+                <input
+                  type="text"
+                  placeholder="Type here"
+                  className="input input-bordered w-full max-w-xs mx-2 my-2 ml-[46px]"
+                />
+              </div>
+              <div>
+                <text>Địa Chỉ: </text>
+                <input
+                  type="text"
+                  placeholder="Type here"
+                  className="input input-bordered w-full max-w-xs mx-2 my-2 ml-[24px]"
+                />
+              </div>
+
+              <div className="modal-action">
+                <form method="dialog">
+                  {/* if there is a button in form, it will close the modal */}
+                  <button className="btn">Close</button>
+                </form>
+              </div>
+            </div>
+          </dialog>
         </div>
       </div>
+
       <div className="bg-white p-8 rounded-lg shadow-md">
         <div className="grid grid-cols-2 gap-x-4">
           <div>

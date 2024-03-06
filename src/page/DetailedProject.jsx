@@ -68,9 +68,17 @@ export const DetailedProject = () => {
             Your browser does not support the video tag.
           </video>
         </div>
-        <div className="mb-5 ml-80 text-4xl font-bold ">
-          CHI TIẾT PHÒNG KHÁCH
+        <div
+          style={{
+            display: "flex",
+            justifyContent: "center",
+            marginTop: "5rem",
+            marginBottom: "2rem",
+          }}
+        >
+          <div className="text-4xl font-bold">CHI TIẾT PHÒNG KHÁCH</div>
         </div>
+
         <Row className="mb-20">
           <Col
             span={6}
@@ -115,7 +123,17 @@ export const DetailedProject = () => {
             )}
           </Col>
         </Row>
-        <div className="mb-5 ml-80 text-4xl font-bold ">CHI TIẾT PHÒNG NGỦ</div>
+        <div
+          style={{
+            display: "flex",
+            justifyContent: "center",
+            marginTop: "5rem",
+            marginBottom: "2rem",
+          }}
+        >
+          <div className="text-4xl font-bold">CHI TIẾT PHÒNG NGỦ</div>
+        </div>
+
         <Row className="mb-20">
           <Col
             span={6}
@@ -160,9 +178,17 @@ export const DetailedProject = () => {
             )}
           </Col>
         </Row>
-        <div className=" mb-5 ml-80 text-4xl font-bold ">
-          CHI TIẾT PHÒNG BẾP
+        <div
+          style={{
+            display: "flex",
+            justifyContent: "center",
+            marginTop: "5rem",
+            marginBottom: "2rem",
+          }}
+        >
+          <div className="text-4xl font-bold">CHI TIẾT PHÒNG BẾP</div>
         </div>
+
         <Row className="mb-20 ">
           <Col
             span={6}

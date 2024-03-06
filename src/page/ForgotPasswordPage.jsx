@@ -71,7 +71,7 @@ function ForgotPasswordPage() {
                   data-te-ripple-init=""
                   data-te-ripple-color="light"
                 >
-                  Verify
+                  Xác Minh
                 </button>
               </form>
             </div>

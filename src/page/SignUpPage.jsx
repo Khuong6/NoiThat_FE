@@ -1,6 +1,7 @@
 import { useState } from "react";
 import api from "../config/axios";
 import { useNavigate } from "react-router-dom";
+import { toast } from "react-toastify";
 
 function SignUpPage() {
   const [username, setUsername] = useState("");
@@ -8,7 +9,7 @@ function SignUpPage() {
   const [confirmPassword, setConfirmPassword] = useState("");
 
   const [email, setEmail] = useState("");
-  const [phoneNumber, setPhoneNumber] = useState("");
+  const [phone, setPhoneNumber] = useState("");
   const [address, setAddress] = useState("");
   const navigate = useNavigate();
 
@@ -23,17 +24,23 @@ function SignUpPage() {
 
     // Kiểm tra các trường nhập liệu khác ở đây (ví dụ: email, số điện thoại, ...)
 
-    const response = await api.post("/authentication/signup", {
-      username,
-      password,
+    try {
+      const response = await api.post("/authentication/register", {
+        username,
+        password,
+        email,
+        phone,
+        address,
+      });
 
-      email,
-      phoneNumber,
-      address,
-    });
-
-    localStorage.setItem("account", JSON.stringify(response.data));
-    navigate("/");
+      localStorage.setItem("account", JSON.stringify(response.data));
+      navigate("/login");
+      // setSuccessMessage("Đăng ký thành công!");
+      toast.success("Đăng ký thành công!");
+    } catch (error) {
+      // Xử lý lỗi từ server nếu cần
+      toast.error(error.response.data);
+    }
   };
 
   return (
@@ -45,6 +52,9 @@ function SignUpPage() {
             "url(https://th.bing.com/th/id/OIP.hgo-g05JwPdwODy1WDeFvgHaEu?w=1920&h=1224&rs=1&pid=ImgDetMain)",
         }}
       >
+        {/* {successMessage && (
+          <div className="bg-green-500 text-white p-3">{successMessage}</div>
+        )} */}
         <div className="hero-overlay bg-opacity-60 inset-0"></div>
         <div className="hero-content flex-col lg:flex-row-reverse relative z-10">
           <div className="text-center lg:text-left">
