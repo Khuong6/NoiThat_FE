@@ -22,6 +22,9 @@ import News from "./page/News";
 import { DetailedNews } from "./page/DetailedNews";
 import Project from "./page/Project";
 import DetailedProject from "./page/DetailedProject";
+import Blog from "./page/Blog";
+import XemBlog from "./page/XemBlog";
+
 function Menu() {
   return (
     <BrowserRouter>
@@ -42,11 +45,13 @@ function Menu() {
         <Route path="/duan" element={<Project />}></Route>
         <Route path="/duanchitiet" element={<DetailedProject />}></Route>
         <Route path="/tintuc" element={<News />}></Route>
+        <Route path="/blog" element={<Blog />}></Route>
+        <Route path="/xemblog" element={<XemBlog />}></Route>
+
         <Route
           path="/ForgotPasswordPage"
           element={<ForgotPasswordPage />}
         ></Route>
-
         <Route path="/dashboard">
           <Route path="staff" element={<Dashboard role={"STAFF"} />}>
             <Route path="product" element={<ManageProduct />}></Route>

@@ -1,5 +1,5 @@
-import axios from 'axios';
-const baseUrl = 'http://167.99.69.197:8081';
+import axios from "axios";
+const baseUrl = "http://167.99.69.197:8081";
 
 const config = {
   baseUrl,
@@ -7,12 +7,14 @@ const config = {
 };
 const api = axios.create(config);
 api.defaults.baseURL = baseUrl;
-const handleBefore = config => {
-  const token = localStorage.getItem('token')?.replaceAll('"', '');
-  config.headers['Authorization'] = `Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJwaG9uZyIsImlhdCI6MTcwODkyMDU1MywiZXhwIjoxNzA5MDA2OTUzfQ.gzb3NdfQ7oY_QAL8y6xBAstCvbMXK5IH8b-P331jfM3HHn3A1oKDM0mIN2xY2RPumrCCElW0L9P8s-b1rL_QXA`;
+const handleBefore = (config) => {
+  const token = localStorage.getItem("token")?.replaceAll('"', "");
+  config.headers[
+    "Authorization"
+  ] = `Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJraHVvbmciLCJpYXQiOjE3MDk3NzYyMTUsImV4cCI6MTcwOTg2MjYxNX0.D3LsYeSeF42uLPCfPF36R6o6ZA_RHBSpk4R4jWI4FmLiq_6L2qnosDURmh6VnSiJngpu8JYJYKMLYWhDYPz9kQ`;
   return config;
 };
-const handleError = error => {
+const handleError = (error) => {
   console.log(error);
   return;
 };
