@@ -28,10 +28,19 @@ function LoginPage() {
       dispatch(login(response.data));
 
       localStorage.setItem("account", JSON.stringify(response.data));
+      navigate("/trangchu");
+      // setSuccessMessage("Đăng ký thành công!");
+      toast.success("Đăng Nhập thành công!");
       localStorage.setItem("token", JSON.stringify(response.data.token));
-      navigate("/");
+      if (response.data.role === "ADMIN") {
+        navigate("/dashboard/admin");
+      } else if (response.data.role === "STAFF") {
+        navigate("/dashboard/staff");
+      } else {
+        navigate("/");
+      }
     } catch (e) {
-      toast.error(e.response.data);
+      toast.error("Đăng Nhập Thất Bại");
     }
   };
 

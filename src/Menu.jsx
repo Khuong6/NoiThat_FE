@@ -17,16 +17,23 @@ import SignUpPage from "./page/SignUpPage";
 import ForgotPasswordPage from "./page/ForgotPasswordPage";
 import Dashboard from "./components/dashboard";
 import { ManageProduct } from "./page/Staff/product";
-// import { ToastContainer } from "react-toastify";
 import News from "./page/News";
 import { DetailedNews } from "./page/DetailedNews";
 import Project from "./page/Project";
 import DetailedProject from "./page/DetailedProject";
+//  import { ToastContainer } from "react-toastify";
+// import { ManageCategory } from "./page/Staff/category";
+// import { Request } from "./page/Customer";
+import { ManageRequest } from "./page/Staff/request";
+// import SanPham from "./page/SanPham";
+import { ManageQuotation } from "./page/Staff/quotation";
+// import { QuotationRequest } from "./page/Customer/QuotationRequest";
+
 function Menu() {
   return (
     <BrowserRouter>
       <Routes>
-        <Route path="/" element={<App />}></Route>
+        <Route path="/" element={<Home />}></Route>
         <Route path="/thietke" element={<ThietKe />}></Route>
         <Route path="/kichthuoc" element={<KichThuoc />}></Route>
         <Route path="/test" element={<Test />}></Route>
@@ -38,11 +45,11 @@ function Menu() {
         <Route path="/phongbep" element={<PhongBep />}></Route>
         <Route path="/profile" element={<Profiles />}></Route>
         <Route path="/SignUpPage" element={<SignUpPage />}></Route>
+
         <Route path="/xemtintuc" element={<DetailedNews />}></Route>
         <Route path="/duan" element={<Project />}></Route>
         <Route path="/duanchitiet" element={<DetailedProject />}></Route>
         <Route path="/tintuc" element={<News />}></Route>
-
         <Route
           path="/ForgotPasswordPage"
           element={<ForgotPasswordPage />}
@@ -51,6 +58,9 @@ function Menu() {
         <Route path="/dashboard">
           <Route path="staff" element={<Dashboard role={"STAFF"} />}>
             <Route path="product" element={<ManageProduct />}></Route>
+            {/* <Route path="category" element={<ManageCategory />}></Route> */}
+            <Route path="request" element={<ManageRequest />}></Route>
+            <Route path="quotation" element={<ManageQuotation />}></Route>
           </Route>
           <Route path="admin" element={<Dashboard role={"ADMIN"} />}></Route>
         </Route>

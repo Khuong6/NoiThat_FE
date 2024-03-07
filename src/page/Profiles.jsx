@@ -5,7 +5,7 @@
 
 function Profiles() {
   return (
-    <div className="container mx-auto mt-8  bg-gradient-to-r from-white via-blue-200 to-white ">
+    <div className=" mt-8  bg-gradient-to-r from-white via-blue-200 to-white ">
       <h1 className="text-3xl font-bold mb-4">Thông Tin</h1>
       <div
         style={{
@@ -85,7 +85,7 @@ function Profiles() {
               <div className="modal-action">
                 <form method="dialog">
                   {/* if there is a button in form, it will close the modal */}
-                  <button className="btn">Close</button>
+                  <button className="btn">Lưu</button>
                 </form>
               </div>
             </div>
@@ -223,7 +223,7 @@ function Profiles() {
           data-te-ripple-init=""
           data-te-ripple-color="light"
         >
-          Lưu
+          Trang chủ
         </button>
       </div>
     </div>

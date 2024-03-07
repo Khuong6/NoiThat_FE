@@ -78,7 +78,6 @@ export const DetailedProject = () => {
         >
           <div className="text-4xl font-bold">CHI TIẾT PHÒNG KHÁCH</div>
         </div>
-
         <Row className="mb-20">
           <Col
             span={6}
@@ -133,7 +132,6 @@ export const DetailedProject = () => {
         >
           <div className="text-4xl font-bold">CHI TIẾT PHÒNG NGỦ</div>
         </div>
-
         <Row className="mb-20">
           <Col
             span={6}
@@ -188,7 +186,6 @@ export const DetailedProject = () => {
         >
           <div className="text-4xl font-bold">CHI TIẾT PHÒNG BẾP</div>
         </div>
-
         <Row className="mb-20 ">
           <Col
             span={6}
@@ -233,120 +230,142 @@ export const DetailedProject = () => {
             )}
           </Col>
         </Row>
-
+        <div className="flex justify-center items-center">
+          <div className="text-4xl font-bold">
+            Những Dự Án Đã Hoàn Thiện Khác
+          </div>
+        </div>
         <Row>
           <Col span={8}>
-            <div className="border ml-5 border-gray-300 overflow-hidden rounded-[15px]">
-              <img
-                src="https://www.lanha.vn/wp-content/uploads/2024/01/dsc03304.jpg.webp"
-                style={{
-                  borderRadius: "15px",
-                  width: "700px",
-                  height: "300px",
-                  transform: isHovered1 ? "scale(1.2)" : "scale(1)",
-                  transition: "transform 0.5s, filter 0.5s ease-out", // Chỉnh sửa transition để cả hiệu ứng mờ
-                  filter: isHovered1
-                    ? "brightness(70%) sepia(80%)"
-                    : "brightness(100%)", // Thêm filter để làm mờ ảnh
-                }}
-                onMouseEnter={() => setIsHovered1(true)}
-                onMouseLeave={() => setIsHovered1(false)}
-              />
+            <div className=" mt-5 ml-5 border border-gray-300 overflow-hidden rounded-[15px]">
+              <div className="  border border-gray-300 overflow-hidden rounded-[15px]">
+                <img
+                  src="https://feeldecor.com.vn/wp-content/uploads/2017/05/khach-4.jpg"
+                  style={{
+                    borderRadius: "15px",
+
+                    transform: isHovered1 ? "scale(1.2)" : "scale(1)",
+                    transition: "transform 0.5s",
+                  }}
+                  onMouseEnter={() => setIsHovered1(true)}
+                  onMouseLeave={() => setIsHovered1(false)}
+                />
+              </div>
+              <div className="px-5 py-5 pl-5 ">
+                <button className="  ml-10 font-medium hover:text-blue-500">
+                  VẺ ĐẸP TỐI GIẢN CỦA GIAN BẾP HIỆN ĐẠI
+                </button>
+              </div>
             </div>
           </Col>
           <Col span={8}>
-            <div className="border ml-5 border-gray-300 overflow-hidden rounded-[15px]">
-              <img
-                src="https://www.lanha.vn/wp-content/uploads/2024/01/dsc03304.jpg.webp"
-                style={{
-                  borderRadius: "15px",
-                  width: "700px",
-                  height: "300px",
-                  transform: isHovered2 ? "scale(1.2)" : "scale(1)",
-                  transition: "transform 0.5s, filter 0.5s ease-out", // Chỉnh sửa transition để cả hiệu ứng mờ
-                  filter: isHovered2
-                    ? "brightness(70%) sepia(80%)"
-                    : "brightness(100%)", // Thêm filter để làm mờ ảnh
-                }}
-                onMouseEnter={() => setIsHovered2(true)}
-                onMouseLeave={() => setIsHovered2(false)}
-              />
+            <div className=" mt-5 ml-5 border border-gray-300 overflow-hidden rounded-[15px]">
+              <div className="  border border-gray-300 overflow-hidden rounded-[15px]">
+                <img
+                  src="https://feeldecor.com.vn/wp-content/uploads/2017/05/khach-4.jpg"
+                  style={{
+                    borderRadius: "15px",
+
+                    transform: isHovered2 ? "scale(1.2)" : "scale(1)",
+                    transition: "transform 0.5s",
+                  }}
+                  onMouseEnter={() => setIsHovered2(true)}
+                  onMouseLeave={() => setIsHovered2(false)}
+                />
+              </div>
+              <div className="px-5 py-5 pl-5 ">
+                <button className="  ml-10 font-medium hover:text-blue-500">
+                  VẺ ĐẸP TỐI GIẢN CỦA GIAN BẾP HIỆN ĐẠI
+                </button>
+              </div>
             </div>
           </Col>
           <Col span={8}>
-            <div className="border ml-5 border-gray-300 overflow-hidden rounded-[15px]">
-              <img
-                src="https://www.lanha.vn/wp-content/uploads/2024/01/dsc03304.jpg.webp"
-                style={{
-                  borderRadius: "15px",
-                  width: "700px",
-                  height: "300px",
-                  transform: isHovered3 ? "scale(1.2)" : "scale(1)",
-                  transition: "transform 0.5s, filter 0.5s ease-out", // Chỉnh sửa transition để cả hiệu ứng mờ
-                  filter: isHovered3
-                    ? "brightness(70%) sepia(80%)"
-                    : "brightness(100%)", // Thêm filter để làm mờ ảnh
-                }}
-                onMouseEnter={() => setIsHovered3(true)}
-                onMouseLeave={() => setIsHovered3(false)}
-              />
+            <div className=" mt-5 ml-5 border border-gray-300 overflow-hidden rounded-[15px]">
+              <div className="  border border-gray-300 overflow-hidden rounded-[15px]">
+                <img
+                  src="https://feeldecor.com.vn/wp-content/uploads/2017/05/khach-4.jpg"
+                  style={{
+                    borderRadius: "15px",
+
+                    transform: isHovered6 ? "scale(1.2)" : "scale(1)",
+                    transition: "transform 0.5s",
+                  }}
+                  onMouseEnter={() => setIsHovered6(true)}
+                  onMouseLeave={() => setIsHovered6(false)}
+                />
+              </div>
+              <div className="px-5 py-5 pl-5 ">
+                <button className="  ml-10 font-medium hover:text-blue-500">
+                  VẺ ĐẸP TỐI GIẢN CỦA GIAN BẾP HIỆN ĐẠI
+                </button>
+              </div>
             </div>
           </Col>
           <Col span={8}>
-            <div className="border ml-5 border-gray-300 overflow-hidden rounded-[15px] mt-5">
-              <img
-                src="https://www.lanha.vn/wp-content/uploads/2024/01/dsc03304.jpg.webp"
-                style={{
-                  borderRadius: "15px",
-                  width: "700px",
-                  height: "300px",
-                  transform: isHovered4 ? "scale(1.2)" : "scale(1)",
-                  transition: "transform 0.5s, filter 0.5s ease-out", // Chỉnh sửa transition để cả hiệu ứng mờ
-                  filter: isHovered4
-                    ? "brightness(70%) sepia(80%)"
-                    : "brightness(100%)", // Thêm filter để làm mờ ảnh
-                }}
-                onMouseEnter={() => setIsHovered4(true)}
-                onMouseLeave={() => setIsHovered4(false)}
-              />
+            <div className=" mt-5 ml-5 border border-gray-300 overflow-hidden rounded-[15px]">
+              <div className="  border border-gray-300 overflow-hidden rounded-[15px]">
+                <img
+                  src="https://feeldecor.com.vn/wp-content/uploads/2017/05/khach-4.jpg"
+                  style={{
+                    borderRadius: "15px",
+
+                    transform: isHovered3 ? "scale(1.2)" : "scale(1)",
+                    transition: "transform 0.5s",
+                  }}
+                  onMouseEnter={() => setIsHovered3(true)}
+                  onMouseLeave={() => setIsHovered3(false)}
+                />
+              </div>
+              <div className="px-5 py-5 pl-5 ">
+                <button className="  ml-10 font-medium hover:text-blue-500">
+                  VẺ ĐẸP TỐI GIẢN CỦA GIAN BẾP HIỆN ĐẠI
+                </button>
+              </div>
             </div>
           </Col>
           <Col span={8}>
-            <div className="border ml-5 border-gray-300 overflow-hidden rounded-[15px] mt-5">
-              <img
-                src="https://www.lanha.vn/wp-content/uploads/2024/01/dsc03304.jpg.webp"
-                style={{
-                  borderRadius: "15px",
-                  width: "700px",
-                  height: "300px",
-                  transform: isHovered5 ? "scale(1.2)" : "scale(1)",
-                  transition: "transform 0.5s, filter 0.5s ease-out", // Chỉnh sửa transition để cả hiệu ứng mờ
-                  filter: isHovered5
-                    ? "brightness(70%) sepia(80%)"
-                    : "brightness(100%)", // Thêm filter để làm mờ ảnh
-                }}
-                onMouseEnter={() => setIsHovered5(true)}
-                onMouseLeave={() => setIsHovered5(false)}
-              />
+            <div className=" mt-5 ml-5 border border-gray-300 overflow-hidden rounded-[15px]">
+              <div className="  border border-gray-300 overflow-hidden rounded-[15px]">
+                <img
+                  src="https://feeldecor.com.vn/wp-content/uploads/2017/05/khach-4.jpg"
+                  style={{
+                    borderRadius: "15px",
+
+                    transform: isHovered4 ? "scale(1.2)" : "scale(1)",
+                    transition: "transform 0.5s",
+                  }}
+                  onMouseEnter={() => setIsHovered4(true)}
+                  onMouseLeave={() => setIsHovered4(false)}
+                />
+              </div>
+              <div className="px-5 py-5 pl-5 ">
+                <button className="  ml-10 font-medium hover:text-blue-500">
+                  VẺ ĐẸP TỐI GIẢN CỦA GIAN BẾP HIỆN ĐẠI
+                </button>
+              </div>
             </div>
           </Col>
           <Col span={8}>
-            <div className="border ml-5 border-gray-300 overflow-hidden rounded-[15px] mt-5">
-              <img
-                src="https://www.lanha.vn/wp-content/uploads/2024/01/dsc03304.jpg.webp"
-                style={{
-                  borderRadius: "15px",
-                  width: "700px",
-                  height: "300px",
-                  transform: isHovered6 ? "scale(1.2)" : "scale(1)",
-                  transition: "transform 0.5s, filter 0.5s ease-out", // Chỉnh sửa transition để cả hiệu ứng mờ
-                  filter: isHovered6
-                    ? "brightness(70%) sepia(80%)"
-                    : "brightness(100%)", // Thêm filter để làm mờ ảnh
-                }}
-                onMouseEnter={() => setIsHovered6(true)}
-                onMouseLeave={() => setIsHovered6(false)}
-              />
+            <div className=" mt-5 ml-5 border border-gray-300 overflow-hidden rounded-[15px]">
+              <div className="  border border-gray-300 overflow-hidden rounded-[15px]">
+                <img
+                  src="https://feeldecor.com.vn/wp-content/uploads/2017/05/khach-4.jpg"
+                  style={{
+                    borderRadius: "15px",
+
+                    transform: isHovered5 ? "scale(1.2)" : "scale(1)",
+                    transition: "transform 0.5s",
+                  }}
+                  onMouseEnter={() => setIsHovered5(true)}
+                  onMouseLeave={() => setIsHovered5(false)}
+                />
+              </div>
+              <div className="px-5 py-5 pl-5 ">
+                <button className="  ml-10 font-medium hover:text-blue-500">
+                  VẺ ĐẸP TỐI GIẢN CỦA GIAN BẾP HIỆN ĐẠI
+                </button>
+              </div>
             </div>
           </Col>
         </Row>
