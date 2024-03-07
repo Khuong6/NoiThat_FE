@@ -51,7 +51,7 @@ export const XemBlog = () => {
             Đặc trưng của phòng ngủ kiểu Nhật
           </p>
           <p className="pl-7 pt-5 font-normal">
-            Khi nhìn vào phòng ngủ truyền thống của Nhật Bản, về mặt chức năng,
+            -Khi nhìn vào phòng ngủ truyền thống của Nhật Bản, về mặt chức năng,
             chúng không có điểm gì khác biệt so với các kiểu phòng ngủ khác,
             cũng được dùng để phục vụ cho sinh hoạt hằng ngày như ngủ, học tập,
             làm việc,... Thế nhưng, điểm đặc biệt của kiểu thiết kế này nằm ở
@@ -60,18 +60,18 @@ export const XemBlog = () => {
             khác biệt hẳn so với các phong cách truyền thống.
           </p>
           <p className="pl-7 pt-5 font-normal">
-            Tất cả đồ nội thất được sử dụng trong phòng ngủ truyền thống của
+            -Tất cả đồ nội thất được sử dụng trong phòng ngủ truyền thống của
             người Nhật đều có đặc điểm chung là có khoảng thông tầng thấp, hầu
             như không có hoặc có rất ít khoảng trống giữa đồ đạc và sàn nhà.
             Khác với kiểu phòng ngủ phương Tây, người Nhật không có thói quen
             ngủ trên giường nệm, thay vào đó họ sử dụng những tấm đệm truyền
             thống của Nhật Bản - gọi là Futon.
-            <br /> Ngoài ra, họ còn sử dụng một loại gối chuyên dụng có tên gọi
-            là Takamakura, ngoài mục đích dùng để tạo sự thoải mái khi nghỉ
-            ngơi, chúng còn có thể bảo vệ và không làm hư hại tóc của bạn - đây
-            là một phần trong văn hóa Geisha của Nhật Bản. Thông thường, hạt
-            kiều mạch sẽ được sử dụng để làm lõi gối, tránh gây đau mỏi cổ vai
-            gáy và cột sống khi nằm.
+            <p className="pl-7 pt-5 font-normal" /> -Ngoài ra, họ còn sử dụng
+            một loại gối chuyên dụng có tên gọi là Takamakura, ngoài mục đích
+            dùng để tạo sự thoải mái khi nghỉ ngơi, chúng còn có thể bảo vệ và
+            không làm hư hại tóc của bạn - đây là một phần trong văn hóa Geisha
+            của Nhật Bản. Thông thường, hạt kiều mạch sẽ được sử dụng để làm lõi
+            gối, tránh gây đau mỏi cổ vai gáy và cột sống khi nằm.
           </p>
         </div>
         <div className="px-10 py-10 "></div>
