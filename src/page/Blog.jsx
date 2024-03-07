@@ -17,7 +17,7 @@ export const Blog = () => {
   return (
     <>
       <Header />
-      <div className="pt-52  pb-10">
+      <div className="pt-52  pb-10 bg-gradient-to-r from-white via-blue-200 to-white">
         <p className="pb-8 text-2xl text-center">
           Những Mẫu THiết Kế Của NoiTHat
         </p>

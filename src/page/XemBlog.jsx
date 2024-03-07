@@ -24,7 +24,7 @@ export const XemBlog = () => {
   return (
     <>
       <Header />
-      <div className="pt-64 mb-20 pl-20 pr-20  ">
+      <div className="pt-64 mb-20 pl-20 pr-20  bg-gradient-to-r from-white via-blue-200 to-white">
         <div className=" mb-5 text-4xl font-bold text-center ">
           <p>
             Bí quyết thiết kế phòng ngủ kiểu Nhật <br /> đẹp, tối giản, hiện đại
