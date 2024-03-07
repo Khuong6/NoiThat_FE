@@ -96,7 +96,7 @@ export const XemBlog = () => {
                         width: "100%",
                         height: "auto",
                         maxWidth: "300px",
-                        borderRadius: "8px",
+                        borderRadius: "15px",
                         border:
                           selectedImage1 === url ? "2px solid blue" : "none",
                       }}
@@ -106,7 +106,7 @@ export const XemBlog = () => {
               </ul>
             </div>
           </Col>
-          <Col span={18} className="border border-gray-300 rounded p-15">
+          <Col span={18} className=" border-gray-300 pl-15 ">
             {selectedImage1 && (
               <img
                 src={selectedImage1}
@@ -115,6 +115,8 @@ export const XemBlog = () => {
                   width: "100%",
                   height: "auto",
                   objectFit: "cover",
+                  borderRadius: "25px",
+                  paddingLeft: "10px",
                 }}
               />
             )}
