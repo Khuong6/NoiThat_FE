@@ -53,95 +53,97 @@ export const Header = () => {
   ];
   return (
     <>
-      <header className="  top-0 sticky z-50 ">
-        <div class="pt-10 rounded-b-full pr-20 pb-10 py-4 bg-gradient-to-r from-white via-blue-200 to-white  ">
-          <div className=" flex flex-row justify-end w-full  ">
-            <nav className="flex items-center">
-              <ul className="flex mr-8 ">
-                <div>
-                  <Dropdown
-                    menu={{ items: downLine }}
-                    trigger={["click"]}
-                    placement="bottomLeft"
-                  >
-                    <a onClick={(e) => e.preventDefault()}>
-                      <Space>
-                        <a
-                          className="px-3 py-11  capitalize text-sm font-medium transition duration-500 text-black"
-                          href="#"
-                        >
-                          <span>
-                            Bộ Sưu Tập
-                            <DownOutlined className="text-xs mt-[-3px] align-middle pl-1" />
-                          </span>
-                        </a>
-                      </Space>
+      <header className=" top-0 sticky z-50  ">
+        <div className="  bg-gradient-to-r from-gray-200 via-blue-200 to-white ">
+          <div class=" pt-10  pr-20 pb-10 py-4 ">
+            <div className=" flex flex-row justify-end w-full  ">
+              <nav className="flex items-center ">
+                <ul className="flex mr-8 ">
+                  <div>
+                    <Dropdown
+                      menu={{ items: downLine }}
+                      trigger={["click"]}
+                      placement="bottomLeft"
+                    >
+                      <a onClick={(e) => e.preventDefault()}>
+                        <Space>
+                          <a
+                            className="px-3 py-11  capitalize text-sm font-medium transition duration-500 text-black"
+                            href="#"
+                          >
+                            <span>
+                              Bộ Sưu Tập
+                              <DownOutlined className="text-xs mt-[-3px] align-middle pl-1" />
+                            </span>
+                          </a>
+                        </Space>
+                      </a>
+                    </Dropdown>
+                  </div>
+                  <li>
+                    <a
+                      className="px-3 py-11 text-070120 capitalize text-sm font-medium transition duration-500 text-black"
+                      href="/sanPhamDon"
+                    >
+                      <span>Sản Phẩm</span>
                     </a>
-                  </Dropdown>
-                </div>
-                <li>
-                  <a
-                    className="px-3 py-11 text-070120 capitalize text-sm font-medium transition duration-500 text-black"
-                    href="/sanPhamDon"
-                  >
-                    <span>Sản Phẩm</span>
-                  </a>
-                </li>
-                <li>
-                  <a
-                    className="px-3 py-11 text-070120 capitalize text-sm font-medium transition duration-500 text-black"
-                    href="#"
-                  >
-                    <span>Mẫu Thiết Kế</span>
-                  </a>
-                </li>
-                <li>
-                  <a
-                    className="px-3 py-11 text-070120 capitalize text-sm font-medium transition duration-500 text-black"
-                    href="#"
-                  >
-                    <span>Blogs</span>
-                  </a>
-                </li>
-                <li>
-                  <a
-                    className="px-3 py-11 text-070120 capitalize text-sm font-medium transition duration-500 text-black"
-                    href=""
-                  >
-                    <span>Tin Tức</span>
-                  </a>
-                </li>
-                <li>
-                  <a
-                    className="px-3 py-11 text-070120 capitalize text-sm font-medium transition duration-500 text-black"
-                    href=""
-                  >
-                    <span>Công Trình</span>
-                  </a>
-                </li>
-              </ul>
+                  </li>
+                  <li>
+                    <a
+                      className="px-3 py-11 text-070120 capitalize text-sm font-medium transition duration-500 text-black"
+                      href="#"
+                    >
+                      <span>Mẫu Thiết Kế</span>
+                    </a>
+                  </li>
+                  <li>
+                    <a
+                      className="px-3 py-11 text-070120 capitalize text-sm font-medium transition duration-500 text-black"
+                      href="#"
+                    >
+                      <span>Blogs</span>
+                    </a>
+                  </li>
+                  <li>
+                    <a
+                      className="px-3 py-11 text-070120 capitalize text-sm font-medium transition duration-500 text-black"
+                      href=""
+                    >
+                      <span>Tin Tức</span>
+                    </a>
+                  </li>
+                  <li>
+                    <a
+                      className="px-3 py-11 text-070120 capitalize text-sm font-medium transition duration-500 text-black"
+                      href=""
+                    >
+                      <span>Công Trình</span>
+                    </a>
+                  </li>
+                </ul>
 
-              {user ? (
-                <Dropdown
-                  menu={{ items }}
-                  trigger={["click"]}
-                  placement="bottom"
-                >
-                  <button className="px-8 py-5 text-sm font-medium bg-gradient-to-r from-yellow-500  to-orange-500 border transition-all duration-500 rounded-full text-white uppercaser">
-                    <UserOutlined />
-                    <span className="p-1  ">{user.username}</span>
-                    <DownOutlined className="text-xs " />
-                  </button>
-                </Dropdown>
-              ) : (
-                <a href="/login">
-                  <button className="px-8 py-5 text-sm font-medium bg-gradient-to-r from-yellow-500  to-orange-500 border transition-all duration-500 rounded-full text-white uppercaser">
-                    <UserOutlined />
-                    <span className="p-1  ">Đăng Nhập</span>
-                  </button>
-                </a>
-              )}
-            </nav>
+                {user ? (
+                  <Dropdown
+                    menu={{ items }}
+                    trigger={["click"]}
+                    placement="bottom"
+                  >
+                    <button className="px-8 py-5 text-sm font-medium bg-gradient-to-r from-yellow-500  to-orange-500 border transition-all duration-500 rounded-full text-white uppercaser">
+                      <UserOutlined />
+                      <span className="p-1  ">{user.username}</span>
+                      <DownOutlined className="text-xs " />
+                    </button>
+                  </Dropdown>
+                ) : (
+                  <a href="/login">
+                    <button className="px-8 py-5 text-sm font-medium bg-gradient-to-r from-yellow-500  to-orange-500 border transition-all duration-500 rounded-full text-white uppercaser">
+                      <UserOutlined />
+                      <span className="p-1  ">Đăng Nhập</span>
+                    </button>
+                  </a>
+                )}
+              </nav>
+            </div>
           </div>
         </div>
       </header>

@@ -11,7 +11,7 @@ const handleBefore = (config) => {
   const token = localStorage.getItem("token")?.replaceAll('"', "");
   config.headers[
     "Authorization"
-  ] = `bear eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJLaHVvbmciLCJpYXQiOjE3MDk1MzU2MDUsImV4cCI6MTcwOTYyMjAwNX0.ZlqvSJK9I4mzUdFs2GwYT1UvF2B3uKsX-xN4plcOr_Y7qC3eEgvhYM7q_BNxl7PVX6w23-2lw-KJZKS94TORvg`;
+  ] = `bear eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJraHVvbmciLCJpYXQiOjE3MDk3ODM0NzcsImV4cCI6MTcwOTg2OTg3N30.UkOyB6jl9jlCz48cHozlfYKStYwlUmurRF52GJFOjWgeZ1_k6vC0GLxh58CF-QIAYGWWrGN365poS9CqqP0E2g`;
   return config;
 };
 const handleError = (error) => {

@@ -25,7 +25,7 @@ function Footer() {
   return (
     <>
       <div
-        className="  bg-gradient-to-r from-white  via-blue-200 to-white p-8 rounded-t-3xl"
+        className="  bg-gradient-to-r from-gray-200  via-blue-200 to-gray-200  p-8 "
         style={borderTopStyle}
       >
         <footer className="footer text-base-content ">

@@ -27,17 +27,17 @@ export const Home = () => {
   return (
     <>
       <Header />
-      <div>
-        <div className="flex rounded-[15px] ">
+      <div className=" ">
+        <div className="flex rounded-[15px]  ">
           <div
-            className="hero min-h-screen"
+            className="hero min-h-screen "
             style={{
               backgroundImage:
                 "url(https://thegioidogo.com/wp-content/uploads/2022/12/noi-that-go-tu-nhien-12.jpg)",
             }}
           >
-            <div className="hero-overlay bg-opacity-60"></div>
-            <div className="hero-content lg:flex text-center text-neutral-content">
+            <div className="hero-overlay bg-opacity-60 bg-white"></div>
+            <div className="hero-content lg:flex text-center text-neutral-content ">
               <div className="max-w-md">
                 <h1 className="mb-5 text-5xl font-bold ">Efurniture</h1>
                 <p className="mb-5">
