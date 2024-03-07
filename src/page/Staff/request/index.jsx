@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { Button, Table, Modal, Form, Input, Tag } from "antd";
 import api from "../../../config/axios";
-import SanPham from "../../Test";
 import { useDispatch } from "react-redux";
 import { reset } from "../../../redux/feature/cartSlice";
 import { toast } from "react-toastify";

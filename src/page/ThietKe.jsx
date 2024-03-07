@@ -30,7 +30,7 @@ const ThietKe = () => {
       <Header />
 
       <div className="flex flex-col  items-start mt-24">
-        <div className="flex flex-col items-center gap-[26px] pt-[50px]  px-0 relative flex-[0_0_auto]">
+        <div className="flex flex-col items-center gap-[26px] pt-[50px] npm i axios px-0 relative flex-[0_0_auto]">
           <div className="relative max-w-screen-xl flex-[0_0_auto]" />
           <div className="flex flex-col items-center px-[80px] py-0 relative self-stretch w-full flex-[0_0_auto]">
             <div className="flex max-w-screen-xl  items-start px-[20px] py-0 relative flex-[0_0_auto]">

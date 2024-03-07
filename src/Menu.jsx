@@ -1,9 +1,8 @@
 import React from "react";
-// import ReactDOM from "react-dom/client";
+import ReactDOM from "react-dom/client";
 import { BrowserRouter, Routes, Route, useNavigate } from "react-router-dom";
 import "./index.scss";
 import ThietKe from "./page/ThietKe";
-import App from "./page/App";
 import KichThuoc from "./page/KichThuoc";
 import Test from "./page/Test";
 import LoginPage from "./page/LoginPage";
@@ -17,18 +16,14 @@ import SignUpPage from "./page/SignUpPage";
 import ForgotPasswordPage from "./page/ForgotPasswordPage";
 import Dashboard from "./components/dashboard";
 import { ManageProduct } from "./page/Staff/product";
-
 // import { ToastContainer } from "react-toastify";
 import News from "./page/News";
 import { DetailedNews } from "./page/DetailedNews";
 import Project from "./page/Project";
 import DetailedProject from "./page/DetailedProject";
-=======
 import { ToastContainer } from "react-toastify";
 import { ManageCategory } from "./page/Staff/category";
-
 import SanPhamDon from "./page/SanPhamDon";
-=======
 import { Request } from "./page/Customer";
 import { ManageRequest } from "./page/Staff/request";
 import SanPham from "./page/SanPham";
@@ -53,25 +48,18 @@ function Menu() {
         <Route path="/phongbep" element={<PhongBep />}></Route>
         <Route path="/profile" element={<Profiles />}></Route>
         <Route path="/SignUpPage" element={<SignUpPage />}></Route>
-
         <Route path="/sanPhamDon" element={<SanPhamDon />}></Route>
-
-
         <Route path="/xemtintuc" element={<DetailedNews />}></Route>
         <Route path="/duan" element={<Project />}></Route>
         <Route path="/duanchitiet" element={<DetailedProject />}></Route>
         <Route path="/tintuc" element={<News />}></Route>
-
         <Route path="/request" element={<Request />}></Route>
         <Route path="/sanpham" element={<SanPham />}></Route>
         <Route path="/quotationrequest" element={<QuotationRequest />}></Route>
-
-
         <Route
           path="/ForgotPasswordPage"
           element={<ForgotPasswordPage />}
         ></Route>
-
         <Route path="/dashboard">
           <Route path="staff" element={<Dashboard role={"STAFF"} />}>
             <Route path="product" element={<ManageProduct />}></Route>
