@@ -9,9 +9,7 @@ const api = axios.create(config);
 api.defaults.baseURL = baseUrl;
 const handleBefore = (config) => {
   const token = localStorage.getItem("token")?.replaceAll('"', "");
-  config.headers[
-    "Authorization"
-  ] = `bear eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJLaHVvbmciLCJpYXQiOjE3MDk1MzU2MDUsImV4cCI6MTcwOTYyMjAwNX0.ZlqvSJK9I4mzUdFs2GwYT1UvF2B3uKsX-xN4plcOr_Y7qC3eEgvhYM7q_BNxl7PVX6w23-2lw-KJZKS94TORvg`;
+  config.headers["Authorization"] = `bear ${token}`;
   return config;
 };
 const handleError = (error) => {

@@ -24,12 +24,14 @@ import { ManageRequest } from "./page/Staff/request";
 import SanPham from "./page/SanPham";
 import { ManageQuotation } from "./page/Staff/quotation";
 import { QuotationRequest } from "./page/Customer/QuotationRequest";
+import { Quotation } from "./page/quotation";
 
 function Menu() {
   return (
     <BrowserRouter>
       <Routes>
         <Route path="/" element={<Home />}></Route>
+        <Route path="/quotation" element={<Quotation />}></Route>
         <Route path="/thietke" element={<ThietKe />}></Route>
         <Route path="/kichthuoc" element={<KichThuoc />}></Route>
         <Route path="/test" element={<Test />}></Route>

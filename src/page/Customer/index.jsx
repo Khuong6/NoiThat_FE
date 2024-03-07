@@ -5,6 +5,8 @@ import React, { useState } from "react";
 import uploadFile from "../../utils/upload";
 import api from "../../config/axios";
 
+import { toast } from "react-toastify";
+
 export const Request = () => {
   const getBase64 = (file) =>
     new Promise((resolve, reject) => {
@@ -50,92 +52,100 @@ export const Request = () => {
       </div>
     </button>
   );
+  const [form] = Form.useForm();
 
   const handleSubmit = async (values) => {
     values.type = "QUOTATION_REQUEST";
     const urls = [];
     if (values.resourceDTOS.fileList) {
-      console.log(values.resourceDTOS.fileList);
       await Promise.all(
         values.resourceDTOS.fileList.map(async (file) => {
-          console.log(file);
           const url = await uploadFile(file.originFileObj);
-          console.log(file.originFileObj);
           urls.push({
             url: url,
             type: "IMG",
           });
-          console.log(url);
         })
       );
     }
     values.resourceDTOS = urls;
-    console.log(values);
-    const response = await api.post("/request", values);
-    console.log(response);
+    try {
+      const response = await api.post("/request", values);
+      // Nếu request thành công, hiển thị toast "Gửi thành công"
+      toast.success("Gửi yêu cầu thành công");
+      console.log(response);
+      form.resetFields();
+    } catch (error) {
+      // Xử lý lỗi khi gửi request
+      console.error("Lỗi khi gửi request:", error);
+      // Hiển thị thông báo lỗi nếu cần
+      toast.error("Đã xảy ra lỗi khi gửi request");
+    }
   };
 
   return (
-    <div
-      style={{
-        padding: 100,
-        border: "3px solid #ccc",
-        borderRadius: "10px",
-        backgroundColor: "white",
-        borderColor: "#4299e1",
-      }}
-    >
-      <div>
-        <Form onFinish={handleSubmit}>
-          <Form.Item label="Mức giá mong muốn" name={"budget"}>
-            <Input type="number" />
-          </Form.Item>
+    <div style={{ padding: 100, backgroundColor: "white" }}>
+      <div
+        style={{
+          padding: 50,
+          border: "3px solid #ccc",
+          borderRadius: "10px",
+          backgroundColor: "white",
+          borderColor: "#4299e1",
+        }}
+      >
+        <div>
+          <Form form={form} onFinish={handleSubmit}>
+            <Form.Item label="Mức giá mong muốn" name={"budget"}>
+              <Input type="number" />
+            </Form.Item>
 
-          <Form.Item label="Mô tả" name={"description"}>
-            <TextArea />
-          </Form.Item>
+            <Form.Item label="Mô tả" name={"description"}>
+              <TextArea />
+            </Form.Item>
 
-          <Form.Item label="Diện tích" name={"dienTich"}>
-            <TextArea />
-          </Form.Item>
+            <Form.Item label="Diện tích" name={"dienTich"}>
+              <TextArea />
+            </Form.Item>
 
-          <Form.Item
-            name={"resourceDTOS"}
-            label="Tải lên hình ảnh"
-            className="post-form-item"
-          >
-            <Upload
-              action={() => {
-                console.log(123);
-              }}
-              beforeUpload={false}
-              listType="picture-card"
-              fileList={fileList}
-              onPreview={handlePreview}
-              onChange={handleChangeImage}
+            <Form.Item
+              name={"resourceDTOS"}
+              label="Tải lên hình ảnh"
+              className="post-form-item"
             >
-              {uploadButton}
-            </Upload>
-          </Form.Item>
-          <Form.Item
-            style={{
-              display: "flex",
-              placeContent: "flex-end",
-            }}
+              <Upload
+                action={() => {
+                  console.log(123);
+                }}
+                beforeUpload={false}
+                listType="picture-card"
+                fileList={fileList}
+                onPreview={handlePreview}
+                onChange={handleChangeImage}
+              >
+                {uploadButton}
+              </Upload>
+            </Form.Item>
+            <Form.Item
+              style={{
+                display: "flex",
+                placeContent: "flex-end",
+              }}
+            >
+              <Button type="primary" htmlType="submit">
+                Gửi
+              </Button>
+            </Form.Item>
+          </Form>
+          <Modal
+            open={previewOpen}
+            title={previewTitle}
+            footer={null}
+            onCancel={() => setPreviewOpen(false)}
           >
-            <Button type="primary" htmlType="submit">
-              Gửi
-            </Button>
-          </Form.Item>
-        </Form>
-        <Modal
-          open={previewOpen}
-          title={previewTitle}
-          footer={null}
-          onCancel={() => setPreviewOpen(false)}
-        >
-          <img alt="example" style={{ width: "100%" }} src={previewImage} />
-        </Modal>
+            <img alt="example" style={{ width: "100%" }} src={previewImage} />
+          </Modal>
+        </div>
       </div>
     </div>
   );
