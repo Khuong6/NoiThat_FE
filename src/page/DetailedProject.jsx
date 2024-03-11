@@ -48,24 +48,49 @@ export const DetailedProject = () => {
   const handleImageClick3 = (url) => {
     setSelectedImage3(url);
   };
+  const [buttonColor, setButtonColor] = useState("#3498db"); // Màu sắc mặc định của button
+
+  useEffect(() => {
+    // Hàm này sẽ chạy mỗi khi component được render và mỗi khi buttonColor thay đổi
+    const intervalId = setInterval(() => {
+      // Đổi màu sắc của button ngẫu nhiên
+      const randomColor = getRandomColor();
+      setButtonColor(randomColor);
+    }, 1000); // Thay đổi màu sắc mỗi giây
+
+    // Xóa interval khi component unmount
+    return () => clearInterval(intervalId);
+  }, [buttonColor]);
+
+  const getRandomColor = () => {
+    // Hàm này trả về một màu sắc ngẫu nhiên
+    const letters = "0123456789ABCDEF";
+    let color = "#";
+    for (let i = 0; i < 6; i++) {
+      color += letters[Math.floor(Math.random() * 16)];
+    }
+    return color;
+  };
   return (
     <>
       <Header />
-      <div className="pt-64 pb-60 pl-20 pr-20 bg-gradient-to-r from-white via-blue-200 to-white  ">
+      <div className="pt-64 pb-5 pl-20 pr-20 bg-gradient-to-r from-white via-blue-200 to-white  ">
         <div className="ml-80 mb-5 text-4xl font-bold ">
           VINHOMES Q9 – JAPANDI – 90TR
         </div>
-        <div className="px-10 py-10 ">
+        <div
+          className="px-10 py-10 "
+          style={{ height: "100vh", overflow: "hidden" }}
+        >
           <video
             controls
             className="mt-5 mb-30 rounded-[15px]"
-            style={{ maxWidth: "100%" }}
+            style={{ Width: "100%", height: "100%", objectFit: "cover" }}
           >
             <source
               src="https://design-community-us-s3.coohom.com/design/video/perm/MM65N2IKTIZYYAABAAAAABQ8.mp4"
               type="video/mp4"
             />
-            Your browser does not support the video tag.
           </video>
         </div>
         <div
@@ -76,7 +101,12 @@ export const DetailedProject = () => {
             marginBottom: "2rem",
           }}
         >
-          <div className="text-4xl font-bold">CHI TIẾT PHÒNG KHÁCH</div>
+          <div
+            className="text-3xl font-semibold"
+            style={{ fontFamily: "Arial", fontStyle: "italic" }}
+          >
+            Chi Tiết Phòng Khách
+          </div>
         </div>
         <Row className="mb-20">
           <Col
@@ -130,7 +160,12 @@ export const DetailedProject = () => {
             marginBottom: "2rem",
           }}
         >
-          <div className="text-4xl font-bold">CHI TIẾT PHÒNG NGỦ</div>
+          <div
+            className="text-3xl font-semibold"
+            style={{ fontFamily: "Arial", fontStyle: "italic" }}
+          >
+            Chi Tiết Phòng Ngủ
+          </div>
         </div>
         <Row className="mb-20">
           <Col
@@ -184,7 +219,12 @@ export const DetailedProject = () => {
             marginBottom: "2rem",
           }}
         >
-          <div className="text-4xl font-bold">CHI TIẾT PHÒNG BẾP</div>
+          <div
+            className="text-3xl font-semibold"
+            style={{ fontFamily: "Arial", fontStyle: "italic" }}
+          >
+            Chi Tiết Phong Bếp
+          </div>
         </div>
         <Row className="mb-20 ">
           <Col
@@ -369,6 +409,26 @@ export const DetailedProject = () => {
             </div>
           </Col>
         </Row>
+      </div>
+
+      <div className="flex flex-col justify-center items-center ">
+        <img
+          className="rounded-[15px] w-full "
+          loading="lazy"
+          srcSet="//qhstatic-sg-s3.coohom.com/image/png/1669707989886/E9FC6F646B6CEFD2ED934258842A35F0.png"
+          alt="Where ideas turn into stunning designs"
+        />
+        <div className="absolute text-center w-full">
+          <p className="text-3xl font-bold text-white p-4">
+            Những dự án đã được thực hiện đẹp nhất thời đại
+          </p>
+          <button
+            className="bg-blue-500 text-white py-2 px-4 rounded-md mt-4"
+            style={{ backgroundColor: buttonColor }}
+          >
+            Biết thêm chi tiết
+          </button>
+        </div>
       </div>
       <Footer />
     </>

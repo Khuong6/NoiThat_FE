@@ -1,18 +1,18 @@
 import { useState } from "react";
 import api from "../config/axios";
 import { useNavigate } from "react-router-dom";
+import Password from "antd/es/input/Password";
 
 function ForgotPasswordPage() {
-  const [username, setUsername] = useState("");
   const [email, setEmail] = useState("");
-  const [phoneNumber, setPhoneNumber] = useState("");
+
   const navigate = useNavigate();
 
   const handleSignUp = async (e) => {
     e.preventDefault();
 
     // Kiểm tra mật khẩu nhập lại
-    if (password !== confirmPassword) {
+    if (Password !== confirmPassword) {
       alert("Mật khẩu và mật khẩu nhập lại không khớp");
       return;
     }
@@ -20,11 +20,9 @@ function ForgotPasswordPage() {
     // Kiểm tra các trường nhập liệu khác ở đây (ví dụ: email, số điện thoại, ...)
 
     const response = await api.post("/authentication/signup", {
-      username,
-      password,
+      Password,
 
       email,
-      phoneNumber,
     });
 
     localStorage.setItem("account", JSON.stringify(response.data));

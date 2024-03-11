@@ -45,12 +45,16 @@ export const News = () => {
               </div>
             </Col>
             <Col span={12}>
+              <div className=" ml-10 mt-10">
+                <p>24/2/2024</p>
+              </div>
               <a
                 href="/xemtintuc"
-                className="ml-20 mt-10 font-medium hover:text-blue-500"
+                className="ml-20  font-medium hover:text-blue-500"
               >
                 LỰA CHỌN CHẤT LIỆU SOFA NHƯ THẾ NÀO LÀ PHÙ HỢP?
               </a>
+
               <p className="mt-5 ml-20 mr-20">
                 Bạn vẫn chưa biết nên chọn chất liệu sofa như thế nào cho phù
                 hợp với nhu cầu nhà mình? Cùng tham khảo một số đặc trưng của
@@ -64,6 +68,9 @@ export const News = () => {
           </Row>
           <Row>
             <Col span={12}>
+              <div className=" ml-10 mt-10">
+                <p>24/2/2024</p>
+              </div>
               <button className="ml-20 mt-10 font-medium hover:text-blue-500  ">
                 VẺ ĐẸP TỐI GIẢN CỦA GIAN BẾP HIỆN ĐẠI
               </button>
@@ -112,6 +119,9 @@ export const News = () => {
               </div>
             </Col>
             <Col span={12}>
+              <div className=" ml-10 mt-10">
+                <p>24/2/2024</p>
+              </div>
               <button className="ml-20 mt-10 font-medium hover:text-blue-500 ]">
                 KHÔNG GIAN NỘI THẤT BIỆT THỰ VỚI GỖ TỰ NHIÊN CAO CẤP
               </button>
@@ -129,6 +139,9 @@ export const News = () => {
           </Row>
           <Row>
             <Col span={12}>
+              <div className=" ml-10 mt-10">
+                <p>24/2/2024</p>
+              </div>
               <button className="ml-20 mt-10 font-medium hover:text-blue-500  ">
                 PHONG CÁCH SCANDINAVIAN - NÉT ĐẸP TỪ SỰ GIẢN ĐƠN
               </button>
