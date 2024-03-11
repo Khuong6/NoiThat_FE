@@ -53,7 +53,13 @@ export const Request = () => {
     </button>
   );
   const [form] = Form.useForm();
+  const today = new Date();
 
+  const day = today.getDate();
+  const month = today.getMonth() + 1;
+  const year = today.getFullYear();
+
+  const formattedDate = `${day}/${month}/${year}`;
   const handleSubmit = async (values) => {
     values.type = "QUOTATION_REQUEST";
     const urls = [];
@@ -71,82 +77,124 @@ export const Request = () => {
     values.resourceDTOS = urls;
     try {
       const response = await api.post("/request", values);
-      // Nếu request thành công, hiển thị toast "Gửi thành công"
+
       toast.success("Gửi yêu cầu thành công");
       console.log(response);
       form.resetFields();
     } catch (error) {
-      // Xử lý lỗi khi gửi request
       console.error("Lỗi khi gửi request:", error);
-      // Hiển thị thông báo lỗi nếu cần
+
       toast.error("Đã xảy ra lỗi khi gửi request");
     }
   };
 
   return (
-    <div style={{ padding: 100, backgroundColor: "white" }}>
-      <div
-        style={{
-          padding: 50,
-          border: "3px solid #ccc",
-          borderRadius: "10px",
-          backgroundColor: "white",
-          borderColor: "#4299e1",
-        }}
-      >
-        <div>
-          <Form form={form} onFinish={handleSubmit}>
-            <Form.Item label="Mức giá mong muốn" name={"budget"}>
-              <Input type="number" />
-            </Form.Item>
-
-            <Form.Item label="Mô tả" name={"description"}>
-              <TextArea />
-            </Form.Item>
-
-            <Form.Item label="Diện tích" name={"dienTich"}>
-              <TextArea />
-            </Form.Item>
-
-            <Form.Item
-              name={"resourceDTOS"}
-              label="Tải lên hình ảnh"
-              className="post-form-item"
-            >
-              <Upload
-                action={() => {
-                  console.log(123);
-                }}
-                beforeUpload={false}
-                listType="picture-card"
-                fileList={fileList}
-                onPreview={handlePreview}
-                onChange={handleChangeImage}
-              >
-                {uploadButton}
-              </Upload>
-            </Form.Item>
-            <Form.Item
-              style={{
-                display: "flex",
-                placeContent: "flex-end",
-              }}
-            >
-              <Button type="primary" htmlType="submit">
-                Gửi
-              </Button>
-            </Form.Item>
-          </Form>
-          <Modal
-            open={previewOpen}
-            title={previewTitle}
-            footer={null}
-            onCancel={() => setPreviewOpen(false)}
+    <>
+      <div className="bg-white">
+        <div class="grid grid-cols-5 gap-4 bg-white">
+          <div></div>
+          <div className="mt-[140px]">
+            <img
+              src="public/F/F1.png"
+              style={{ height: "70%", width: "60%" }}
+            ></img>
+            <div className="text">
+              <div>
+                <span style={{ fontWeight: "bold" }}>Số điện thoại:</span>{" "}
+                <span>0123456789</span>
+              </div>
+              <div>
+                <span style={{ fontWeight: "bold" }}>Email:</span>{" "}
+                <span>efurniture@fpt.vn</span>
+              </div>
+            </div>
+          </div>
+          <div></div>
+          <div>
+            <div className="pt-[280px]">
+              <span style={{ fontWeight: "bold" }}>Ngày soạn báo giá:</span>{" "}
+              <span>{formattedDate}</span>
+            </div>
+          </div>
+          <div></div>
+        </div>
+        <div
+          style={{ padding: 100 }}
+          className="bg-gradient-to-r from-blue-300 to-blue-50 rounded-[15px]"
+        >
+          <div
+            style={{
+              padding: 50,
+              border: "3px solid #ccc",
+              borderRadius: "10px",
+              backgroundColor: "white",
+              borderColor: "#4299e1",
+            }}
           >
-            <img alt="example" style={{ width: "100%" }} src={previewImage} />
-          </Modal>
+            <div>
+              <Form form={form} onFinish={handleSubmit}>
+                <Form.Item label="Mô tả" name={"description"}>
+                  <TextArea />
+                </Form.Item>
+
+                <Form.Item label="Diện tích" name={"dienTich"}>
+                  <TextArea />
+                </Form.Item>
+                <Form.Item label="Mức giá mong muốn" name={"budget"}>
+                  <Input type="number" />
+                </Form.Item>
+                <Form.Item
+                  name={"resourceDTOS"}
+                  label="Tải lên hình ảnh"
+                  className="post-form-item"
+                >
+                  <Upload
+                    action={() => {
+                      console.log(123);
+                    }}
+                    beforeUpload={false}
+                    listType="picture-card"
+                    fileList={fileList}
+                    onPreview={handlePreview}
+                    onChange={handleChangeImage}
+                  >
+                    {uploadButton}
+                  </Upload>
+                </Form.Item>
+                <Form.Item
+                  style={{
+                    display: "flex",
+                    placeContent: "flex-end",
+                  }}
+                >
+                  <Button type="primary" htmlType="submit">
+                    Gửi
+                  </Button>
+                </Form.Item>
+              </Form>
+              <Modal
+                open={previewOpen}
+                title={previewTitle}
+                footer={null}
+                onCancel={() => setPreviewOpen(false)}
+              >
+                <img
+                  alt="example"
+                  style={{ width: "100%" }}
+                  src={previewImage}
+                />
+              </Modal>
+            </div>
+          </div>
         </div>
       </div>
-    </div>
+    </>
   );
 };
+{
+  /* <img
+        className="relative self-stretch w-full h-[357px] object-cover"
+        alt="Footer"
+        src="https://c.animaapp.com/jFT1CjYZ/img/footer.svg"
+      /> */
+}

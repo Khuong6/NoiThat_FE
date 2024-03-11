@@ -45,7 +45,10 @@ function Menu() {
         <Route path="/SignUpPage" element={<SignUpPage />}></Route>
         <Route path="/request" element={<Request />}></Route>
         <Route path="/sanpham" element={<SanPham />}></Route>
-        <Route path="/quotationrequest" element={<QuotationRequest />}></Route>
+        <Route
+          path="/quotationrequest"
+          element={<ManageRequest isCustomer />}
+        ></Route>
         <Route
           path="/ForgotPasswordPage"
           element={<ForgotPasswordPage />}

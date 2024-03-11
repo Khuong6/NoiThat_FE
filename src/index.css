@@ -75,3 +75,8 @@ button:focus-visible {
 .drawer-content{
   z-index: 10000000000000000000;
 }
+
+.ant-table{
+  margin-block: 0 !important;
+  margin-inline: 0 !important;
+}

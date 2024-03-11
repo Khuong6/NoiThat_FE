@@ -1,12 +1,14 @@
 import React, { useEffect, useState } from "react";
-import { Button, Table, Modal, Form, Input, Tag } from "antd";
+import { Button, Table, Modal, Form, Input, Tag, Space, Row } from "antd";
 import api from "../../../config/axios";
 import SanPham from "../../Test";
 import { useDispatch } from "react-redux";
 import { reset } from "../../../redux/feature/cartSlice";
 import { toast } from "react-toastify";
+import { Quotation } from "../../quotation";
+import { formatDistance } from "date-fns";
 
-export const ManageRequest = () => {
+export const ManageRequest = ({ isCustomer }) => {
   const [request, setCategories] = useState([]);
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [currentRequest, setCurrentRequest] = useState(null);
@@ -44,23 +46,6 @@ export const ManageRequest = () => {
       dataIndex: "dienTich",
       width: "20%",
     },
-    {
-      title: "Action",
-      render: (value, record) => {
-        return (
-          <Button
-            type="primary"
-            onClick={() => {
-              setIsModalOpen(true);
-              setCurrentRequest(record);
-            }}
-          >
-            {" "}
-            Quotation{" "}
-          </Button>
-        );
-      },
-    },
     // {
     //   title: "Images",
 
@@ -79,7 +64,9 @@ export const ManageRequest = () => {
 
   const fetchRequest = async () => {
     try {
-      const response = await api.get("/request");
+      const response = await api.get(
+        isCustomer ? "/request-customer" : "/request"
+      );
       setCategories(response.data);
     } catch (error) {
       console.error("Error fetching request:", error);
@@ -128,7 +115,22 @@ export const ManageRequest = () => {
       {/* <Button onClick={showModal} type="primary">
         Add
       </Button> */}
-      <Table columns={columns} dataSource={request} />
+      <Table
+        expandable={{
+          expandedRowRender: (record, index) => {
+            console.log(record);
+            return (
+              <QuotationDetail
+                isCustomer={isCustomer}
+                key={index}
+                requestId={record.id}
+              />
+            );
+          },
+        }}
+        columns={columns}
+        dataSource={request}
+      />
       <Modal
         open={isModalOpen}
         width={1300}
@@ -185,5 +187,114 @@ export const ManageRequest = () => {
         </Form>
       </Modal> */}
     </div>
+  );
+};
+
+const QuotationDetail = ({ requestId, isCustomer }) => {
+  const [quotationId, setQuotationId] = useState(null);
+  const [quotations, setQuotations] = useState([]);
+  const columns = [
+    {
+      title: "Type",
+      dataIndex: "type",
+      key: "type",
+      render: (text) => <a>{text}</a>,
+    },
+    {
+      title: "Created at",
+      dataIndex: "created",
+      key: "created",
+      render: (text) => (
+        <a>{formatDistance(new Date(text), new Date(), { addSuffix: true })}</a>
+      ),
+    },
+    {
+      title: "Action",
+      key: "id",
+      dataIndex: "id",
+      render: (value, record) => (
+        <>
+          <Button
+            type="primary"
+            onClick={() => {
+              setQuotationId(value);
+            }}
+          >
+            Show Detail
+          </Button>
+        </>
+      ),
+    },
+  ];
+  const data = [
+    {
+      key: "1",
+      name: "John Brown",
+      age: 32,
+      address: "New York No. 1 Lake Park",
+      tags: ["nice", "developer"],
+    },
+    {
+      key: "2",
+      name: "Jim Green",
+      age: 42,
+      address: "London No. 1 Lake Park",
+      tags: ["loser"],
+    },
+    {
+      key: "3",
+      name: "Joe Black",
+      age: 32,
+      address: "Sydney No. 1 Lake Park",
+      tags: ["cool", "teacher"],
+    },
+  ];
+
+  const fetchQuatations = async () => {
+    const response = await api.get(`/quotation-request/${requestId}`);
+    setQuotations(response.data);
+    console.log(response.data);
+  };
+
+  useEffect(() => {
+    fetchQuatations();
+  }, [requestId]);
+
+  const handlePostQuatation = () => {
+    setQuotationId(null);
+    fetchQuatations();
+  };
+
+  return (
+    <>
+      {!isCustomer && (
+        <Row
+          justify={"end"}
+          style={{
+            marginBottom: 20,
+          }}
+        >
+          <Button type="primary" onClick={() => setQuotationId(0)}>
+            Add new Quotation
+          </Button>
+        </Row>
+      )}
+      <Table columns={columns} dataSource={quotations} />
+
+      <Modal
+        title="Quotation Detail"
+        open={quotationId !== null}
+        onCancel={() => setQuotationId(null)}
+        width={1000}
+      >
+        <Quotation
+          edit={quotationId === 0}
+          quotationId={quotationId}
+          fetchQuatationsList={handlePostQuatation}
+          requestId={requestId}
+          isCustomer={isCustomer}
+        />
+      </Modal>
+    </>
   );
 };

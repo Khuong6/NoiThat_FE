@@ -1,10 +1,12 @@
 import {
   Button,
+  Col,
   Form,
   Image,
   Input,
   InputNumber,
   Modal,
+  Row,
   Select,
   Table,
   Upload,
@@ -221,8 +223,17 @@ export const ManageProduct = () => {
     const response = await api.post("product", {
       name: values.name,
       categoriesId: values.categoriesId,
-      price: values.price,
-      img: url,
+      pricePerUnit: values.pricePerUnit,
+      unit: values.unit,
+      length: values.length,
+      width: values.width,
+      height: values.height,
+      resourceDTOS: [
+        {
+          url: url,
+          type: "IMG",
+        },
+      ],
     });
     console.log(response);
     toast.success("Successfully create new product!");
@@ -313,30 +324,63 @@ export const ManageProduct = () => {
             />
           </Form.Item>
 
-          <Form.Item
-            label="Price"
-            name={"price"}
-            rules={[
-              {
-                required: true,
-                message: "Please input product's price!",
-              },
-            ]}
-          >
-            <InputNumber
-              addonAfter={"VND"}
-              style={{
-                width: 200,
-              }}
-              defaultValue={1000}
-              p
-              formatter={(value) =>
-                `${value}`.replace(/\B(?=(\d{3})+(?!\d))/g, ",")
-              }
-              parser={(value) => value.replace(/\$\s?|(,*)/g, "")}
-              onChange={onChange}
-            />
-          </Form.Item>
+          <Row>
+            <Col span={12}>
+              <Form.Item
+                label="Price per unit"
+                name={"pricePerUnit"}
+                rules={[
+                  {
+                    required: true,
+                    message: "Please input product's price!",
+                  },
+                ]}
+              >
+                <InputNumber
+                  addonAfter={"VND"}
+                  style={{
+                    width: 200,
+                  }}
+                  defaultValue={1000}
+                  p
+                  formatter={(value) =>
+                    `${value}`.replace(/\B(?=(\d{3})+(?!\d))/g, ",")
+                  }
+                  parser={(value) => value.replace(/\$\s?|(,*)/g, "")}
+                  onChange={onChange}
+                />
+              </Form.Item>
+            </Col>
+            <Col span={12}>
+              <Form.Item label="Unit" name="unit">
+                <Select
+                  options={[
+                    { value: "ITEM", label: "ITEM" },
+                    { value: "METER", label: "METER" },
+                    { value: "SQUARE_METER", label: "SQUARE_METER" },
+                  ]}
+                />
+              </Form.Item>
+            </Col>
+          </Row>
+
+          <Row gutter={12}>
+            <Col span={8}>
+              <Form.Item label="Length" name="length">
+                <Input type="number" />
+              </Form.Item>
+            </Col>
+            <Col span={8}>
+              <Form.Item label="Width" name="width">
+                <Input type="number" />
+              </Form.Item>
+            </Col>
+            <Col span={8}>
+              <Form.Item label="Height" name="height">
+                <Input type="number'" />
+              </Form.Item>
+            </Col>
+          </Row>
 
           <Form.Item
             name="resource"
