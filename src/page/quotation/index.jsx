@@ -60,7 +60,14 @@ export const Quotation = ({
   const fetchQuotation = async () => {
     const response = await api.get(`/quotation/${quotationId}`);
     console.log(response.data);
-    setQuotations(response.data.quotationDetails);
+    setQuotations(
+      response.data.quotationDetails.map((item) => {
+        return {
+          ...item,
+          name: item.product.name,
+        };
+      })
+    );
   };
 
   useEffect(() => {
