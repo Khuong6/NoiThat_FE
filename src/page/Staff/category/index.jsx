@@ -1,80 +1,74 @@
-import {
-  Button,
-  Form,
-  Image,
-  Input,
-  InputNumber,
-  Modal,
-  Select,
-  Table,
-  Upload,
-} from "antd";
-import { useForm } from "antd/es/form/Form";
 import React, { useEffect, useState } from "react";
+import { Button, Table, Modal, Form, Input } from "antd";
 import api from "../../../config/axios";
-import { PlusOutlined } from "@ant-design/icons";
-import uploadFile from "../../../utils/upload";
-import { ToastContainer, toast } from "react-toastify";
 
-export const ManageCategory = () => {
-  const [options, setOptions] = useState([]);
-  const [categories, setCategories] = useState([]);
-  const [form] = useForm();
+export const ManageQuotation = () => {
+  const [request, setCategories] = useState([]);
+  const [isModalOpen, setIsModalOpen] = useState(false);
+  const [form] = Form.useForm();
+
   const columns = [
     {
-      title: "Name",
-      dataIndex: "name",
-      filters: [
-        {
-          text: "Joe",
-          value: "Joe",
-        },
-        {
-          text: "Category 1",
-          value: "Category 1",
-          children: [
-            {
-              text: "Yellow",
-              value: "Yellow",
-            },
-            {
-              text: "Pink",
-              value: "Pink",
-            },
-          ],
-        },
-        {
-          text: "Category 2",
-          value: "Category 2",
-          children: [
-            {
-              text: "Green",
-              value: "Green",
-            },
-            {
-              text: "Black",
-              value: "Black",
-            },
-          ],
-        },
-      ],
-      filterMode: "tree",
-      filterSearch: true,
-      onFilter: (value, record) => record.name.includes(value),
+      title: "Type",
+      dataIndex: "type",
+      width: "20%",
+    },
+    {
+      title: "Description",
+      dataIndex: "description",
       width: "30%",
     },
+    {
+      title: "Budget",
+      dataIndex: "budget",
+      width: "20%",
+    },
+    {
+      title: "Dien Tich",
+      dataIndex: "dienTich",
+      width: "20%",
+    },
+    {
+      title: "Images",
+      dataIndex: "resources",
+      render: (resource) => (
+        <img src={resource[0].url} alt="resources" style={{ width: 100 }} />
+      ),
+    },
+    // {
+    //   title: "Images",
+
+    //   dataIndex: "resourceDTOS",
+    //   render: (value) => {
+    //     return (
+    //       <Image
+    //         width={200}
+    //         src={value[0].url}
+    //         style={{ borderRadius: "10px" }}
+    //       />
+    //     );
+    //   },
+    // },
   ];
-  const onChange = (pagination, filters, sorter, extra) => {
-    console.log("params", pagination, filters, sorter, extra);
+
+  const fetchRequest = async () => {
+    try {
+      const response = await api.get("/request");
+      setCategories(response.data);
+    } catch (error) {
+      console.error("Error fetching request:", error);
+    }
   };
-  const [isModalOpen, setIsModalOpen] = useState(false);
+
+  useEffect(() => {
+    fetchRequest();
+  }, []);
 
   const showModal = () => {
     setIsModalOpen(true);
   };
 
   const handleOk = () => {
-    // setIsModalOpen(false);
     form.submit();
   };
 
@@ -82,89 +76,19 @@ export const ManageCategory = () => {
     setIsModalOpen(false);
   };
 
-  const handleChange = (value) => {
-    console.log(`selected ${value}`);
-  };
-
-  //   const fetchCategories = async () => {
-  //     const response = await api.get("/categories");
-  //     console.log(response.data);
-  //     setOptions(
-  //       response.data.map((item) => {
-  //         return {
-  //           label: item.name,
-  //           value: item.id,
-  //         };
-  //       })
-  //     );
-  //   };
-
-  const fetchCategories = async () => {
-    const response = await api.get("/categories");
-    console.log(response.data);
-    setCategories(response.data);
-  };
-
-  useEffect(() => {
-    fetchCategories();
-  }, []);
-  const getBase64 = (file) =>
-    new Promise((resolve, reject) => {
-      const reader = new FileReader();
-      reader.readAsDataURL(file);
-      reader.onload = () => resolve(reader.result);
-      reader.onerror = (error) => reject(error);
-    });
-
-  const [previewOpen, setPreviewOpen] = useState(false);
-  const [previewImage, setPreviewImage] = useState("");
-  const [previewTitle, setPreviewTitle] = useState("");
-  const [fileList, setFileList] = useState([]);
-  const handleCancelImage = () => setPreviewOpen(false);
-  const handlePreview = async (file) => {
-    if (!file.url && !file.preview) {
-      file.preview = await getBase64(file.originFileObj);
+  const onFinish = async (values) => {
+    try {
+      // Submit form data to API
+      const response = await api.post("/request", values);
+      console.log("Submitted:", response.data);
+      // Reset form fields
+      form.resetFields();
+      // Close modal and update request list
+      setIsModalOpen(false);
+      fetchRequest();
+    } catch (error) {
+      console.error("Error submitting form:", error);
     }
-    setPreviewImage(file.url || file.preview);
-    setPreviewOpen(true);
-    setPreviewTitle(
-      file.name || file.url.substring(file.url.lastIndexOf("/") + 1)
-    );
-  };
-  const handleChangeImage = ({ fileList: newFileList }) => {
-    console.log(newFileList);
-    setFileList(newFileList);
-  };
-  const uploadButton = (
-    <button
-      style={{
-        border: 0,
-        background: "none",
-      }}
-      type="button"
-    >
-      <PlusOutlined />
-      <div
-        style={{
-          marginTop: 8,
-        }}
-      >
-        Upload
-      </div>
-    </button>
-  );
-
-  const onSubmit = async (values) => {
-    console.log(values);
-
-    const response = await api.post("category", {
-      name: values.name,
-    });
-    console.log(response);
-    toast.success("Successfully create new category!");
-    form.resetFields();
-    handleCancel();
-    fetchCategories();
   };
 
   return (
@@ -172,47 +96,50 @@ export const ManageCategory = () => {
       <Button onClick={showModal} type="primary">
         Add
       </Button>
-      <Table columns={columns} dataSource={categories} onChange={onChange} />
+      <Table columns={columns} dataSource={request} />
       <Modal
-        title="Basic Modal"
-        open={isModalOpen}
+        title="Add Request"
+        visible={isModalOpen}
         onOk={handleOk}
         onCancel={handleCancel}
       >
-        <Form
-          onFinish={onSubmit}
-          labelCol={{
-            span: 24,
-          }}
-          form={form}
-        >
+        <Form form={form} onFinish={onFinish}>
           <Form.Item
-            label="Category's Name"
-            name={"name"}
-            rules={[
-              {
-                required: true,
-                message: "Please input category's name!",
-              },
-            ]}
+            name="type"
+            label="Type"
+            rules={[{ required: true, message: "Please enter type" }]}
+          >
+            <Input />
+          </Form.Item>
+          <Form.Item
+            name="description"
+            label="Description"
+            rules={[{ required: true, message: "Please enter description" }]}
+          >
+            <Input.TextArea />
+          </Form.Item>
+          <Form.Item
+            name="budget"
+            label="Budget"
+            rules={[{ required: true, message: "Please enter budget" }]}
+          >
+            <Input />
+          </Form.Item>
+          <Form.Item
+            name="dienTich"
+            label="Dien Tich"
+            rules={[{ required: true, message: "Please enter dienTich" }]}
+          >
+            <Input />
+          </Form.Item>
+          <Form.Item
+            name="resource"
+            label="Image URL"
+            rules={[{ required: true, message: "Please enter image URL" }]}
           >
             <Input />
           </Form.Item>
         </Form>
-      </Modal>
-      <Modal
-        open={previewOpen}
-        title={previewTitle}
-        footer={null}
-        onCancel={handleCancelImage}
-      >
-        <img
-          alt="example"
-          style={{
-            width: "100%",
-          }}
-          src={previewImage}
-        />
       </Modal>
     </div>
   );

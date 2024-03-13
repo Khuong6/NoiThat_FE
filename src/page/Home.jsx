@@ -1,13 +1,13 @@
 import { useState } from "react";
-import reactLogo from "/src/assets/react.svg";
-import viteLogo from "/vite.svg";
+//  import reactLogo from "/src/assets/react.svg";
+// import viteLogo from "/vite.svg";
 import Footer from "../components/Footer";
 import Header from "../components/Header";
 import VideoHoverPlay from "../components/VideoHoverPlay";
 import React from "react";
 import "daisyui/dist/full.css";
-import { FloatButton } from "antd";
-import { Typography } from "antd";
+import { FloatButton, Typography } from "antd";
+
 import ImageHover from "../components/ImageHover";
 import "./CSS/Swiper.css";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
