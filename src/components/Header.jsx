@@ -18,6 +18,13 @@ export const Header = () => {
       ),
     },
     {
+      label: (
+        <div className="text-center bg-green-500 p-1 rounded-3xl">
+          <Link to={"/quotationrequest"}>Quotation</Link>
+        </div>
+      ),
+    },
+    {
       type: "divider",
     },
 
