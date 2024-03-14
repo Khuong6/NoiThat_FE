@@ -136,10 +136,9 @@ export const ManageAccount = () => {
 
   const handleDelete = async (id) => {
     try {
-      await api.delete(`/authentication/register-staff${id}`);
-
+      await api.delete(`/authentication/delete-account/${id}`);
       message.success("account deleted successfully");
-      const response = await api.get(`/authentication/register-staff${id}`);
+      const response = await api.get(`/authentication/account`);
       if (response.data.deleted) {
         // Nếu sản phẩm đã được đánh dấu là đã xóa thì không hiển thị nó trên màn hình
         return;

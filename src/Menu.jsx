@@ -75,6 +75,7 @@ function Menu() {
           <Route path="admin" element={<Dashboard role={"ADMIN"} />}>
             <Route path="account" element={<ManageAccount />}></Route>
             <Route path="product" element={<ManageProduct />}></Route>
+            <Route path="category" element={<ManageCategory />}></Route>
           </Route>
         </Route>
       </Routes>
