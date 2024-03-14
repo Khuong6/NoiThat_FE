@@ -87,18 +87,25 @@ export const DetailedProject = () => {
   return (
     <>
       <Header />
-      <div className="pt-64 pb-5 pl-20 pr-20 bg-gradient-to-r from-white via-blue-200 to-white  ">
+      <div className="pt-10 pb-5 pl-20 pr-20 bg-gradient-to-r from-white via-blue-200 to-white  ">
         <div className="ml-80 mb-5 text-4xl font-bold ">{blog?.blogName}</div>
 
         {blog?.blogSections?.map((item, index) => {
           if (index === 0) {
             return (
               <>
-                <div className="px-10 py-10 " style={{ height: "100vh", overflow: "hidden" }}>
+                <div
+                  className="px-10 py-10 "
+                  style={{ height: "100vh", overflow: "hidden" }}
+                >
                   <video
                     controls
                     className="mt-5 mb-30 rounded-[15px]"
-                    style={{ Width: "100%", height: "100%", objectFit: "cover" }}
+                    style={{
+                      Width: "100%",
+                      height: "100%",
+                      objectFit: "cover",
+                    }}
                     autoPlay
                     muted
                   >
@@ -119,12 +126,18 @@ export const DetailedProject = () => {
                   marginBottom: "2rem",
                 }}
               >
-                <div className="text-3xl font-semibold" style={{ fontFamily: "Arial", fontStyle: "italic" }}>
+                <div
+                  className="text-3xl font-semibold"
+                  style={{ fontFamily: "Arial", fontStyle: "italic" }}
+                >
                   {item.name}
                 </div>
               </div>
               <Row className="mb-20">
-                <Col span={6} className="overflow-x-auto border border-gray-300 rounded p-15">
+                <Col
+                  span={6}
+                  className="overflow-x-auto border border-gray-300 rounded p-15"
+                >
                   <div style={{ maxHeight: "300px" }}>
                     <ul style={{ listStyle: "none", padding: 0 }}>
                       {item?.resources.map((resource, index) => (
@@ -141,7 +154,10 @@ export const DetailedProject = () => {
                               height: "auto",
                               maxWidth: "400px",
                               borderRadius: "8px",
-                              border: selectedImage2 === resource.url ? "2px solid blue" : "none",
+                              border:
+                                selectedImage2 === resource.url
+                                  ? "2px solid blue"
+                                  : "none",
                             }}
                           />
                         </li>
@@ -176,8 +192,13 @@ export const DetailedProject = () => {
           alt="Where ideas turn into stunning designs"
         />
         <div className="absolute text-center w-full">
-          <p className="text-3xl font-bold text-white p-4">Những dự án đã được thực hiện đẹp nhất thời đại</p>
-          <button className="bg-blue-500 text-white py-2 px-4 rounded-md mt-4" style={{ backgroundColor: buttonColor }}>
+          <p className="text-3xl font-bold text-white p-4">
+            Những dự án đã được thực hiện đẹp nhất thời đại
+          </p>
+          <button
+            className="bg-blue-500 text-white py-2 px-4 rounded-md mt-4"
+            style={{ backgroundColor: buttonColor }}
+          >
             Biết thêm chi tiết
           </button>
         </div>

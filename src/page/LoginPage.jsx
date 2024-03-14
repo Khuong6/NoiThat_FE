@@ -48,6 +48,26 @@ function LoginPage() {
     const provider = new GoogleAuthProvider();
     const response = await signInWithPopup(auth, provider);
     console.log(response);
+    const token = await response.user.getIdToken();
+
+    const res = await api.post(`/authentication/login-gg`, {
+      token: token,
+    });
+
+    dispatch(login(res.data));
+
+    localStorage.setItem("account", JSON.stringify(res.data));
+    navigate("/trangchu");
+    // setSuccessMessage("Đăng ký thành công!");
+    toast.success("Đăng Nhập thành công!");
+    localStorage.setItem("token", JSON.stringify(res.data.token));
+    if (res.data.role === "ADMIN") {
+      navigate("/dashboard/admin");
+    } else if (res.data.role === "STAFF") {
+      navigate("/dashboard/staff");
+    } else {
+      navigate("/");
+    }
   };
 
   return (
