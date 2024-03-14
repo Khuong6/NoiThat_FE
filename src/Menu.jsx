@@ -25,6 +25,7 @@ import SanPham from "./page/SanPham";
 import { ManageQuotation } from "./page/Staff/quotation";
 import { QuotationRequest } from "./page/Customer/QuotationRequest";
 import { Quotation } from "./page/quotation";
+import { AccountManagerment } from "./page/Admin/account";
 
 function Menu() {
   return (
@@ -61,7 +62,9 @@ function Menu() {
             <Route path="request" element={<ManageRequest />}></Route>
             <Route path="quotation" element={<ManageQuotation />}></Route>
           </Route>
-          <Route path="admin" element={<Dashboard role={"ADMIN"} />}></Route>
+          <Route path="admin" element={<Dashboard role={"ADMIN"} />}>
+            <Route path="account" element={<AccountManagerment />}></Route>
+          </Route>
         </Route>
       </Routes>
     </BrowserRouter>
