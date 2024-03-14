@@ -11,6 +11,7 @@ import { Layout, Menu, Button, theme } from "antd";
 import { Link, Outlet } from "react-router-dom";
 import { FloatButton } from "antd";
 import { CommentOutlined, CustomerServiceOutlined } from "@ant-design/icons";
+import { toast } from "react-toastify";
 
 const { Header, Sider, Content } = Layout;
 const Dashboard = ({ role }) => {
@@ -40,7 +41,17 @@ const Dashboard = ({ role }) => {
         {
           key: "4",
           icon: <ProfileOutlined />,
-          label: <Link to={"request"}>Manage request</Link>,
+          label: <Link to={"request"}>Manage Request</Link>,
+        },
+        {
+          key: "5",
+          icon: <ProfileOutlined />,
+          label: <Link to={"blog"}>Manage Blog</Link>,
+        },
+        {
+          key: "6",
+          icon: <ProfileOutlined />,
+          label: <Link to={"/login"}>Logout</Link>,
         },
       ];
     } else {

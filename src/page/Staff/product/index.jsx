@@ -84,7 +84,7 @@ export const ManageProduct = () => {
     },
     {
       title: "Price",
-      dataIndex: "price",
+      dataIndex: "pricePerUnit",
       filters: [
         {
           text: "London",
