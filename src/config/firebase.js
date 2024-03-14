@@ -17,7 +17,7 @@ const firebaseConfig = {
   storageBucket: "efuniture-776a3.appspot.com",
   messagingSenderId: "1074604385912",
   appId: "1:1074604385912:web:1b6b8f983066763a802f8d",
-  measurementId: "G-BZRSKNSSWZ"
+  measurementId: "G-BZRSKNSSWZ",
 };
 
 // Initialize Firebase
@@ -25,4 +25,4 @@ const app = initializeApp(firebaseConfig);
 const analytics = getAnalytics(app);
 const storage = getStorage(app);
 const auth = getAuth();
-export {storage, auth}
+export { storage, auth };

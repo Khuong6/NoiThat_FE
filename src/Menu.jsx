@@ -1,9 +1,8 @@
 import React from "react";
-// import ReactDOM from "react-dom/client";
+import ReactDOM from "react-dom/client";
 import { BrowserRouter, Routes, Route, useNavigate } from "react-router-dom";
 import "./index.scss";
 import ThietKe from "./page/ThietKe";
-import App from "./page/App";
 import KichThuoc from "./page/KichThuoc";
 import Test from "./page/Test";
 import LoginPage from "./page/LoginPage";
@@ -32,6 +31,7 @@ import { Quotation } from "./page/quotation";
 import { ManageCategory } from "./page/Staff/category";
 import { ManageBlog } from "./page/Staff/blog";
 
+
 function Menu() {
   return (
     <BrowserRouter>
@@ -52,7 +52,6 @@ function Menu() {
         <Route path="/request" element={<Request />}></Route>
         <Route path="/sanpham" element={<SanPham />}></Route>
         <Route path="/quotationrequest" element={<ManageRequest isCustomer />}></Route>
-
         <Route path="/xemtintuc" element={<DetailedNews />}></Route>
         <Route path="/duan" element={<Project />}></Route>
         <Route path="/duan/:id" element={<DetailedProject />}></Route>
