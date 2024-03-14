@@ -163,7 +163,7 @@ function LoginPage() {
               <div className="my-4 flex items-center before:mt-0.5 ">
                 <p className="mx-4 mb-0 text-center font-semibold dark:text-neutral-200"></p>
               </div>
-
+              {/* dang ky */}
               <a
                 className="flex items-center justify-center gap-3 bg-green-500 bg-opacity-20 backdrop-blur-md w-full py-3 rounded-xl hover:bg-green-700 cursor-pointer border border-gray-800 transition duration-150 ease-in-out hover:bg-primary-600 hover:shadow-[0 8px 9px -4px rgba(59,113,202,0.3), 0 4px 18px 0 rgba(59,113,202,0.2)] focus:bg-primary-600 focus:shadow-[0 8px 9px -4px rgba(59,113,202,0.3), 0 4px 18px 0 rgba(59,113,202,0.2)] focus:outline-none focus:ring-0 active:bg-primary-700 active:shadow-[0 8px 9px -4px rgba(59,113,202,0.3), 0 4px 18px 0 rgba(59,113,202,0.2)] dark:shadow-[0 4px 9px -4px rgba(59,113,202,0.5)] dark:hover:shadow-[0 8px 9px -4px rgba(59,113,202,0.2), 0 4px 18px 0 rgba(59,113,202,0.1)] dark:focus:shadow-[0 8px 9px -4px rgba(59,113,202,0.2), 0 4px 18px 0 rgba(59,113,202,0.1)] dark:active:shadow-[0 8px 9px -4px rgba(59,113,202,0.2), 0 4px 18px 0 rgba(59,113,202,0.1)] leading-normal text-white shadow-[0 4px 9px -4px #3b71ca] ext-sm font-medium uppercase"
                 style={{ backgroundColor: "green" }}
