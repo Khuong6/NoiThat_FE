@@ -20,7 +20,7 @@ import { ToastContainer, toast } from "react-toastify";
 import { Checkbox, Divider } from "antd";
 import { message } from "antd";
 
-export const AccountManagerment = () => {
+export const ManageAccount = () => {
   const [accounts, setAccounts] = useState([]);
   const [form] = useForm();
 
@@ -136,10 +136,10 @@ export const AccountManagerment = () => {
 
   const handleDelete = async (id) => {
     try {
-      await api.delete(`/product/${id}`);
+      await api.delete(`/authentication/register-staff${id}`);
 
       message.success("account deleted successfully");
-      const response = await api.get(`/product/${id}`);
+      const response = await api.get(`/authentication/register-staff${id}`);
       if (response.data.deleted) {
         // Nếu sản phẩm đã được đánh dấu là đã xóa thì không hiển thị nó trên màn hình
         return;

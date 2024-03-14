@@ -59,7 +59,13 @@ const Dashboard = ({ role }) => {
         {
           key: "1",
           icon: <UserOutlined />,
-          label: "Manage Account",
+          label: <Link to={"account"}>Manage Account</Link>,
+        },
+
+        {
+          key: "2",
+          icon: <UserOutlined />,
+          label: <Link to={"product"}>Manage Product</Link>,
         },
       ];
     }
