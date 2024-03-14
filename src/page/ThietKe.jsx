@@ -21,8 +21,8 @@ const ThietKe = () => {
   useEffect(() => {
     fetchCategory();
   }, []);
-  const changeTotalPrice = (price) => {
-    setTotal(total + price);
+  const changeTotalPrice = (pricepricePerUnit) => {
+    setTotal(total + pricepricePerUnit);
   };
 
   return (
@@ -169,7 +169,7 @@ const Modal = ({ categoryID, changeTotalPrice }) => {
   };
 
   const handleSave = () => {
-    changeTotalPrice(selected?.price);
+    changeTotalPrice(selected?.pricePerUnit);
 
     const modal = document.getElementById(`my_modal_${categoryID}`);
     modal.close();
@@ -231,7 +231,7 @@ const Modal = ({ categoryID, changeTotalPrice }) => {
                             {item.name}
                           </h3>
                           <p className="mt-1 text-gray-900">
-                            {convertToCurrency(item.price)}
+                            {convertToCurrency(item.pricePerUnit)}
                           </p>
                         </div>
                       </div>

@@ -90,7 +90,7 @@ export const Header = () => {
                   <li>
                     <a
                       className="px-3 py-11 text-070120 capitalize text-sm font-medium transition duration-500 text-black"
-                      href="/sanPhamDon"
+                      href="/sanpham"
                     >
                       <span>Sản Phẩm</span>
                     </a>
