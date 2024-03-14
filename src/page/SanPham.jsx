@@ -94,17 +94,7 @@
 // export default SanPham;
 
 import React, { useState, useEffect } from "react";
-import {
-  Radio,
-  Tabs,
-  List,
-  Row,
-  Col,
-  Badge,
-  Table,
-  Button,
-  Descriptions,
-} from "antd";
+import { Radio, Tabs, List, Row, Col, Badge, Table, Button, Descriptions } from "antd";
 import api from "../config/axios";
 import { useDispatch, useSelector } from "react-redux";
 import { add, remove } from "../redux/feature/cartSlice";
@@ -171,8 +161,7 @@ const SanPham = ({ info, handleCheckout }) => {
       }));
 
       // Gửi dữ liệu xuống API "/quotation"
-      const response = await api.post("/quotation", {
-        requestId: info.id, // requestId có thể là một giá trị cố định hoặc được tạo động
+      const response = await api.post("/buy-available", {
         type: "PENDING",
         quotationDetailDTOS: quotationDetailDTOS,
       });
@@ -216,18 +205,10 @@ const SanPham = ({ info, handleCheckout }) => {
 
         {info && (
           <Descriptions>
-            <Descriptions.Item label="dienTich">
-              {info?.dienTich}
-            </Descriptions.Item>
-            <Descriptions.Item label="budget">
-              {convertToVND(info?.budget)}
-            </Descriptions.Item>
-            <Descriptions.Item label="description">
-              {info?.description}
-            </Descriptions.Item>
-            <Descriptions.Item label="Total">
-              {convertToVND(calculateTotalPrice())}
-            </Descriptions.Item>
+            <Descriptions.Item label="dienTich">{info?.dienTich}</Descriptions.Item>
+            <Descriptions.Item label="budget">{convertToVND(info?.budget)}</Descriptions.Item>
+            <Descriptions.Item label="description">{info?.description}</Descriptions.Item>
+            <Descriptions.Item label="Total">{convertToVND(calculateTotalPrice())}</Descriptions.Item>
           </Descriptions>
         )}
 
@@ -283,11 +264,7 @@ const SanPham = ({ info, handleCheckout }) => {
                                 height: "200px",
                                 objectFit: "cover",
                               }}
-                              src={
-                                product.resources.length > 0
-                                  ? product.resources[0].url
-                                  : ""
-                              }
+                              src={product.resources.length > 0 ? product.resources[0].url : ""}
                               alt={product.name}
                             />
                           </figure>
@@ -327,15 +304,8 @@ const SanPham = ({ info, handleCheckout }) => {
           <input id="my-drawer-4" type="checkbox" className="drawer-toggle" />
           <div className="drawer-content"></div>
           <div className="drawer-side absolute">
-            <label
-              htmlFor="my-drawer-4"
-              aria-label="close sidebar"
-              className="drawer-overlay"
-            ></label>
-            <ul
-              className="menu p-4 w-80 min-h-full bg-base-200 text-base-content"
-              style={{ height: "100%" }}
-            >
+            <label htmlFor="my-drawer-4" aria-label="close sidebar" className="drawer-overlay"></label>
+            <ul className="menu p-4 w-80 min-h-full bg-base-200 text-base-content" style={{ height: "100%" }}>
               {cart.map((product) => {
                 return (
                   <>

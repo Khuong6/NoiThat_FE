@@ -1,30 +1,14 @@
 import React, { useEffect, useState } from "react";
 import "./index.css";
-import {
-  Button,
-  Col,
-  Form,
-  Input,
-  InputNumber,
-  Modal,
-  Row,
-  Select,
-} from "antd";
+import { Button, Col, Form, Input, InputNumber, Modal, Row, Select } from "antd";
 import { useForm } from "antd/es/form/Form";
 import api from "../../config/axios";
 import { convertToCurrency } from "../../utils/currency";
-export const Quotation = ({
-  edit,
-  quotationId,
-  fetchQuatationsList,
-  requestId,
-  isCustomer,
-}) => {
+export const Quotation = ({ edit, quotationId, fetchQuatationsList, requestId, isCustomer }) => {
   const [quotationDetailId, setQuotationDetailId] = useState();
   const [products, setProducts] = useState([]);
   const [showModal, setShowModal] = useState(false);
-  const filterOption = (input, option) =>
-    (option?.label ?? "").toLowerCase().includes(input.toLowerCase());
+  const filterOption = (input, option) => (option?.label ?? "").toLowerCase().includes(input.toLowerCase());
   const [form] = useForm();
   const [total, setTotal] = useState(0);
   const [disable, setDisable] = useState(false);
@@ -64,7 +48,7 @@ export const Quotation = ({
       response.data.quotationDetails.map((item) => {
         return {
           ...item,
-          name: item.product.name,
+          name: item.productDetail ? item.productDetail.name : item.product?.name,
         };
       })
     );
@@ -173,7 +157,7 @@ export const Quotation = ({
                 <td>{item.width}</td>
                 <td>{item.height}</td>
                 <td>{item.unit}</td>
-                <td>{item.weight}</td>
+                <td>{item.length * item.width}</td>
                 <td>{item.quantity}</td>
                 <td>{item.pricePerUnit}</td>
                 <td>{convertToCurrency(item.total)}</td>
@@ -245,9 +229,7 @@ export const Quotation = ({
               optionFilterProp="children"
               onChange={(value) => {
                 console.log(value);
-                const product = products.filter(
-                  (item) => item.productId === value
-                )[0];
+                const product = products.filter((item) => item.productId === value)[0];
                 console.log(product);
                 form.setFieldValue("unit", product.unit);
                 form.setFieldValue("pricePerUnit", product.pricePerUnit);
@@ -319,9 +301,7 @@ export const Quotation = ({
                   }}
                   defaultValue={1000}
                   p
-                  formatter={(value) =>
-                    `${value}`.replace(/\B(?=(\d{3})+(?!\d))/g, ",")
-                  }
+                  formatter={(value) => `${value}`.replace(/\B(?=(\d{3})+(?!\d))/g, ",")}
                   parser={(value) => value.replace(/\$\s?|(,*)/g, "")}
                 />
               </Form.Item>
@@ -342,9 +322,7 @@ export const Quotation = ({
                   }}
                   defaultValue={1000}
                   p
-                  formatter={(value) =>
-                    `${value}`.replace(/\B(?=(\d{3})+(?!\d))/g, ",")
-                  }
+                  formatter={(value) => `${value}`.replace(/\B(?=(\d{3})+(?!\d))/g, ",")}
                   parser={(value) => value.replace(/\$\s?|(,*)/g, "")}
                 />
               </Form.Item>

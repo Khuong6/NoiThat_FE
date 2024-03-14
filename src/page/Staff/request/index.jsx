@@ -1,12 +1,14 @@
 import React, { useEffect, useState } from "react";
 import { Button, Table, Modal, Form, Input, Tag, Space, Row } from "antd";
-import api from "../../../config/axios";
+import api, { baseUrl } from "../../../config/axios";
 import SanPham from "../../Test";
 import { useDispatch } from "react-redux";
 import { reset } from "../../../redux/feature/cartSlice";
 import { toast } from "react-toastify";
 import { Quotation } from "../../quotation";
 import { formatDistance } from "date-fns";
+import TextArea from "antd/es/input/TextArea";
+import { useForm } from "antd/es/form/Form";
 
 export const ManageRequest = ({ isCustomer }) => {
   const [request, setCategories] = useState([]);
@@ -19,9 +21,7 @@ export const ManageRequest = ({ isCustomer }) => {
     {
       title: "Images",
       dataIndex: "resources",
-      render: (resource) => (
-        <img src={resource[0].url} alt="resources" style={{ width: 100 }} />
-      ),
+      render: (resource) => <img src={resource[0]?.url} alt="resources" style={{ width: 100 }} />,
     },
     {
       title: "Type",
@@ -64,10 +64,15 @@ export const ManageRequest = ({ isCustomer }) => {
 
   const fetchRequest = async () => {
     try {
-      const response = await api.get(
-        isCustomer ? "/request-customer" : "/request"
+      const response = await api.get(isCustomer ? "/request-customer" : "/request");
+      setCategories(
+        response.data.map((item) => {
+          return {
+            ...item,
+            key: item.id,
+          };
+        })
       );
-      setCategories(response.data);
     } catch (error) {
       console.error("Error fetching request:", error);
     }
@@ -119,13 +124,7 @@ export const ManageRequest = ({ isCustomer }) => {
         expandable={{
           expandedRowRender: (record, index) => {
             console.log(record);
-            return (
-              <QuotationDetail
-                isCustomer={isCustomer}
-                key={index}
-                requestId={record.id}
-              />
-            );
+            return <QuotationDetail isCustomer={isCustomer} key={index} requestId={record.id} />;
           },
         }}
         columns={columns}
@@ -193,27 +192,84 @@ export const ManageRequest = ({ isCustomer }) => {
 const QuotationDetail = ({ requestId, isCustomer }) => {
   const [quotationId, setQuotationId] = useState(null);
   const [quotations, setQuotations] = useState([]);
+  const [rejectQuotationId, setRejectQuotationId] = useState();
+  const [form] = useForm();
   const columns = [
     {
       title: "Type",
       dataIndex: "type",
       key: "type",
-      render: (text) => <a>{text}</a>,
+      render: (text) => {
+        if (text === "PENDING") return <Tag color="warning">PENDING</Tag>;
+        if (text === "ACCEPTED") return <Tag color="#87d068">ACCEPTED</Tag>;
+        if (text === "REJECTED") return <Tag color="#cd201f">REJECTED</Tag>;
+      },
     },
     {
       title: "Created at",
       dataIndex: "created",
       key: "created",
-      render: (text) => (
-        <a>{formatDistance(new Date(text), new Date(), { addSuffix: true })}</a>
-      ),
+      render: (text) => <a>{formatDistance(new Date(text), new Date(), { addSuffix: true })}</a>,
     },
     {
       title: "Action",
       key: "id",
       dataIndex: "id",
       render: (value, record) => (
-        <>
+        <div
+          style={{
+            display: "flex",
+            gap: 20,
+          }}
+        >
+          {record.type === "PENDING" && (
+            <>
+              <Button
+                type="primary"
+                onClick={async () => {
+                  await api.patch(`/accept-quotation`, {
+                    quotationId: value,
+                  });
+                  fetchQuatations();
+                }}
+              >
+                Accept
+              </Button>
+
+              <Button
+                type="primary"
+                onClick={async () => {
+                  // await api.patch(`/accept-quotation`, {
+                  //   quotationId: value,
+                  // });
+                  // fetchQuatations();
+                  setRejectQuotationId(value);
+                }}
+              >
+                Reject
+              </Button>
+            </>
+          )}
+
+          {record.type === "ACCEPTED" && (
+            <Button
+              type="primary"
+              onClick={async () => {
+                // const blob = await api.get(`/export-quotation/${value}`);
+                // const url = window.URL.createObjectURL(blob);
+                // const a = document.createElement("a");
+                // a.style.display = "none";
+                // a.href = url;
+                // a.download = "data.xlsx"; // Filename of the downloaded file
+                // document.body.appendChild(a);
+                // a.click();
+                // window.URL.revokeObjectURL(url);
+                window.open(`${baseUrl}/export-quotation/${value}`, "_blank");
+              }}
+            >
+              Export
+            </Button>
+          )}
           <Button
             type="primary"
             onClick={() => {
@@ -222,7 +278,7 @@ const QuotationDetail = ({ requestId, isCustomer }) => {
           >
             Show Detail
           </Button>
-        </>
+        </div>
       ),
     },
   ];
@@ -265,6 +321,16 @@ const QuotationDetail = ({ requestId, isCustomer }) => {
     fetchQuatations();
   };
 
+  const onSubmit = async (values) => {
+    await api.patch(`/reject-quotation`, {
+      quotationId: rejectQuotationId,
+      reason: values.reason,
+    });
+    fetchQuatations();
+    form.resetFields();
+    setRejectQuotationId(null);
+  };
+
   return (
     <>
       {!isCustomer && (
@@ -281,12 +347,7 @@ const QuotationDetail = ({ requestId, isCustomer }) => {
       )}
       <Table columns={columns} dataSource={quotations} />
 
-      <Modal
-        title="Quotation Detail"
-        open={quotationId !== null}
-        onCancel={() => setQuotationId(null)}
-        width={1000}
-      >
+      <Modal title="Quotation Detail" open={quotationId !== null} onCancel={() => setQuotationId(null)} width={1000}>
         <Quotation
           edit={quotationId === 0}
           quotationId={quotationId}
@@ -294,6 +355,36 @@ const QuotationDetail = ({ requestId, isCustomer }) => {
           requestId={requestId}
           isCustomer={isCustomer}
         />
+      </Modal>
+
+      <Modal
+        open={rejectQuotationId}
+        title="Reject quotation"
+        onCancel={() => setRejectQuotationId(null)}
+        onOk={() => {
+          form.submit();
+        }}
+      >
+        <Form
+          onFinish={onSubmit}
+          form={form}
+          labelCol={{
+            span: 24,
+          }}
+        >
+          <Form.Item
+            label="Reject Reason"
+            name="reason"
+            rules={[
+              {
+                required: true,
+                message: "Reject reason",
+              },
+            ]}
+          >
+            <TextArea />
+          </Form.Item>
+        </Form>
       </Modal>
     </>
   );

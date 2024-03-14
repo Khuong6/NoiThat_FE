@@ -67,16 +67,17 @@ button:focus-visible {
   }
 } */
 
-.ant-btn{
+.ant-btn {
   color: #fff !important;
   background-color: #1677ff !important;
 }
 
-.drawer-content{
+.drawer-content {
   z-index: 10000000000000000000;
 }
 
-.ant-table{
+.ant-table {
   margin-block: 0 !important;
   margin-inline: 0 !important;
 }
+
