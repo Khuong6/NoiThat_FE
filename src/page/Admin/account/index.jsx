@@ -87,7 +87,7 @@ export const AccountManagerment = () => {
     },
   ];
 
-  const onChange = (pagination, filters, sorter, extra) => {};
+  const onChange = () => {};
   const [isModalOpen, setIsModalOpen] = useState(false);
 
   const showModal = () => {
