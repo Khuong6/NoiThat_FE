@@ -21,14 +21,13 @@ import { Checkbox, Divider } from "antd";
 import { message } from "antd";
 
 export const AccountManagerment = () => {
-  const [options, setOptions] = useState([]);
-  const [products, setProducts] = useState([]);
+  const [accounts, setAccounts] = useState([]);
   const [form] = useForm();
 
   const columns = [
     {
       title: "Name",
-      dataIndex: "name",
+      dataIndex: "username",
       filterMode: "tree",
       filterSearch: true,
       onFilter: (value, record) => record.name.includes(value),
@@ -36,9 +35,9 @@ export const AccountManagerment = () => {
     },
     {
       title: "Mail",
-      dataIndex: "mail",
+      dataIndex: "email",
 
-      onFilter: (value, record) => record.address.startsWith(value),
+      onFilter: (value, record) => record.mail.startsWith(value),
       filterSearch: true,
       width: "20%",
     },
@@ -47,14 +46,14 @@ export const AccountManagerment = () => {
       title: "Phone",
       dataIndex: "phone",
 
-      onFilter: (value, record) => record.address.startsWith(value),
+      onFilter: (value, record) => record.phone.startsWith(value),
       filterSearch: true,
       width: "20%",
     },
 
     {
       title: "Adress",
-      dataIndex: "adress",
+      dataIndex: "address",
 
       onFilter: (value, record) => record.address.startsWith(value),
       filterSearch: true,
@@ -68,6 +67,15 @@ export const AccountManagerment = () => {
       onFilter: (value, record) => record.address.startsWith(value),
       filterSearch: true,
       width: "10%",
+    },
+
+    {
+      title: "Status",
+      dataIndex: "status",
+
+      onFilter: (value, record) => record.status.startsWith(value),
+      filterSearch: true,
+      width: "20%",
     },
     {
       title: "Actions",
@@ -99,76 +107,47 @@ export const AccountManagerment = () => {
     console.log(`selected ${value}`);
   };
 
-  const fetchCategories = async () => {
-    const response = await api.get("/categories");
-    console.log(response.data);
-    setOptions(
-      response.data.map((item) => {
-        return {
-          label: item.name,
-          value: item.id,
-        };
-      })
-    );
-  };
-
-  // const fetchProducts = async () => {
-  //   const response = await api.get("/product");
-  //   console.log(response.data);
-  //   setProducts(response.data);
-  // };
-
-  const fetchProducts = async () => {
+  const fetchAccounts = async () => {
     try {
-      const response = await api.get("/product");
-      const filteredProducts = response.data.filter(
+      const response = await api.get("/authentication/account");
+      const filteredAccounts = response.data.filter(
         (product) => !product.deleted
       );
-      setProducts(filteredProducts);
+      setAccounts(filteredAccounts);
     } catch (error) {
-      console.error("Error fetching products:", error);
-      message.error("Failed to fetch products");
+      console.error("Error fetching account:", error);
+      message.error("Failed to fetch account");
     }
   };
 
   useEffect(() => {
-    fetchCategories();
-    fetchProducts();
+    fetchAccounts();
   }, []);
 
   const onSubmit = async (values) => {
     console.log(values);
-    const file = values.resource.fileList[0].originFileObj;
-
-    const url = await uploadFile(file);
-
-    const response = await api.post("product", {
-      name: values.name,
-      mail: values.mail,
-      phone: values.phone,
-      adress: values.address,
-    });
+    const response = await api.post("/authentication/register-staff", values);
     console.log(response);
-    toast.success("Successfully create new product!");
+    toast.success("Successfully create new Account!");
     form.resetFields();
     handleCancel();
-    fetchProducts();
+    fetchAccounts();
   };
 
   const handleDelete = async (id) => {
     try {
       await api.delete(`/product/${id}`);
 
-      message.success("Product deleted successfully");
+      message.success("account deleted successfully");
       const response = await api.get(`/product/${id}`);
       if (response.data.deleted) {
         // Nếu sản phẩm đã được đánh dấu là đã xóa thì không hiển thị nó trên màn hình
         return;
       }
-      fetchProducts();
+      fetchAccounts();
     } catch (error) {
-      console.error("Error deleting product:", error);
-      message.error("Failed to delete product");
+      console.error("Error deleting account:", error);
+      message.error("Failed to delete acount");
     }
   };
 
@@ -182,7 +161,7 @@ export const AccountManagerment = () => {
       <Table
         className="p-2"
         columns={columns}
-        dataSource={products}
+        dataSource={accounts}
         onChange={onChange}
       />
       <Modal
@@ -200,11 +179,11 @@ export const AccountManagerment = () => {
         >
           <Form.Item
             label="Name"
-            name={"name"}
+            name={"username"}
             rules={[
               {
                 required: true,
-                message: "Please input product's name!",
+                message: "Please input your name!",
               },
             ]}
           >
@@ -212,12 +191,25 @@ export const AccountManagerment = () => {
           </Form.Item>
 
           <Form.Item
-            label="Mail"
-            name={"Mail"}
+            label="Password"
+            name={"password"}
             rules={[
               {
                 required: true,
-                message: "Please input mail!",
+                message: "Please input password!",
+              },
+            ]}
+          >
+            <Input />
+          </Form.Item>
+
+          <Form.Item
+            label="Email"
+            name={"email"}
+            rules={[
+              {
+                required: true,
+                message: "Please input email!",
               },
             ]}
           >
@@ -226,7 +218,7 @@ export const AccountManagerment = () => {
 
           <Form.Item
             label="Phone"
-            name={"Phone"}
+            name={"phone"}
             rules={[
               {
                 required: true,
@@ -239,7 +231,7 @@ export const AccountManagerment = () => {
 
           <Form.Item
             label="Adress"
-            name={"Adress"}
+            name={"address"}
             rules={[
               {
                 required: true,
