@@ -30,7 +30,7 @@ import { QuotationRequest } from "./page/Customer/QuotationRequest";
 import { Quotation } from "./page/quotation";
 import { ManageCategory } from "./page/Staff/category";
 import { ManageBlog } from "./page/Staff/blog";
-
+import { ManageAccount } from "./page/Admin/account";
 
 function Menu() {
   return (
@@ -51,12 +51,18 @@ function Menu() {
         <Route path="/SignUpPage" element={<SignUpPage />}></Route>
         <Route path="/request" element={<Request />}></Route>
         <Route path="/sanpham" element={<SanPham />}></Route>
-        <Route path="/quotationrequest" element={<ManageRequest isCustomer />}></Route>
+        <Route
+          path="/quotationrequest"
+          element={<ManageRequest isCustomer />}
+        ></Route>
         <Route path="/xemtintuc" element={<DetailedNews />}></Route>
         <Route path="/duan" element={<Project />}></Route>
         <Route path="/duan/:id" element={<DetailedProject />}></Route>
         <Route path="/tintuc" element={<News />}></Route>
-        <Route path="/ForgotPasswordPage" element={<ForgotPasswordPage />}></Route>
+        <Route
+          path="/ForgotPasswordPage"
+          element={<ForgotPasswordPage />}
+        ></Route>
 
         <Route path="/dashboard">
           <Route path="staff" element={<Dashboard role={"STAFF"} />}>
@@ -66,7 +72,10 @@ function Menu() {
             <Route path="quotation" element={<ManageQuotation />}></Route>
             <Route path="blog" element={<ManageBlog />}></Route>
           </Route>
-          <Route path="admin" element={<Dashboard role={"ADMIN"} />}></Route>
+          <Route path="admin" element={<Dashboard role={"ADMIN"} />}>
+            <Route path="account" element={<ManageAccount />}></Route>
+            <Route path="product" element={<ManageProduct />}></Route>
+          </Route>
         </Route>
       </Routes>
     </BrowserRouter>
