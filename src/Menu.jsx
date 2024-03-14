@@ -30,7 +30,7 @@ import { QuotationRequest } from "./page/Customer/QuotationRequest";
 import { Quotation } from "./page/quotation";
 import { ManageCategory } from "./page/Staff/category";
 import { ManageBlog } from "./page/Staff/blog";
-import { AccountManagerment } from "./page/Admin/account";
+import { ManageAccount } from "./page/Admin/account";
 
 function Menu() {
   return (
@@ -73,7 +73,8 @@ function Menu() {
             <Route path="blog" element={<ManageBlog />}></Route>
           </Route>
           <Route path="admin" element={<Dashboard role={"ADMIN"} />}>
-            <Route path="account" element={<AccountManagerment />}></Route>
+            <Route path="account" element={<ManageAccount />}></Route>
+            <Route path="product" element={<ManageProduct />}></Route>
           </Route>
         </Route>
       </Routes>
