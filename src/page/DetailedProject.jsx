@@ -19,22 +19,13 @@ export const DetailedProject = () => {
   const [selectedImage3, setSelectedImage3] = useState("");
   const [imageUrls1] = useState([
     "https://www.lanha.vn/wp-content/uploads/2024/01/dsc03281-hdr.jpg.webp",
-    "https://www.lanha.vn/wp-content/uploads/2024/01/dsc03291-hdr.jpg.webp",
-    "https://www.lanha.vn/wp-content/uploads/2023/12/dsc02889-hdr-2-1153x800.jpg.webp",
-    "https://www.lanha.vn/wp-content/uploads/2024/01/dsc03259-hdr.jpg.webp",
   ]);
 
   const [imageUrls2] = useState([
     "https://qhrenderpicoss.kujiale.com/r/2022/10/08/L3D336S62B15ENDPZP3O7YUWIPDCLUF3P3XE888_7680x4320.jpg?x-oss-process=image/resize,m_fill,w_1049,h_675/format,webp",
-    "https://www.lanha.vn/wp-content/uploads/2024/01/dsc03291-hdr.jpg.webp",
-    "https://www.lanha.vn/wp-content/uploads/2023/12/dsc02889-hdr-2-1153x800.jpg.webp",
-    "https://www.lanha.vn/wp-content/uploads/2024/01/dsc03259-hdr.jpg.webp",
   ]);
   const [imageUrls3] = useState([
     "https://qhrenderpicoss.kujiale.com/r/2022/10/08/L3D336S62B15ENDPZP3O7YUWIPDCLUF3P3XE888_7680x4320.jpg?x-oss-process=image/resize,m_fill,w_1049,h_675/format,webp",
-    "https://www.lanha.vn/wp-content/uploads/2024/01/dsc03291-hdr.jpg.webp",
-    "https://www.lanha.vn/wp-content/uploads/2023/12/dsc02889-hdr-2-1153x800.jpg.webp",
-    "https://www.lanha.vn/wp-content/uploads/2024/01/dsc03259-hdr.jpg.webp",
   ]);
   useEffect(() => {
     setSelectedImage1(imageUrls1[0]);
@@ -88,7 +79,9 @@ export const DetailedProject = () => {
     <>
       <Header />
       <div className="pt-10 pb-5 pl-20 pr-20 bg-gradient-to-r from-white via-blue-200 to-white  ">
-        <div className="ml-80 mb-5 text-4xl font-bold ">{blog?.blogName}</div>
+        <div className="text text-center mb-5 text-4xl font-bold ">
+          {blog?.blogName}
+        </div>
 
         {blog?.blogSections?.map((item, index) => {
           if (index === 0) {

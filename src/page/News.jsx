@@ -14,7 +14,7 @@ export const News = () => {
   const [isHovered4, setIsHovered4] = useState(false);
   return (
     <>
-      <div className="pt-64 pb-62 pl-20 pr-20">
+      <div className=" pb-62 pl-20 pr-20">
         <Header></Header>
 
         <h1 className="px-5 py-5 text-7xl font-normal  border-black  rounded-[15px] shadow-xl">

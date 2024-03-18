@@ -452,8 +452,8 @@ export const Home = () => {
           </a>
         </div>
       </div>
-
       <FloatButton.BackTop />
+
       <Footer />
     </>
   );

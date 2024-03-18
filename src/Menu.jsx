@@ -31,6 +31,8 @@ import { Quotation } from "./page/quotation";
 import { ManageCategory } from "./page/Staff/category";
 import { ManageBlog } from "./page/Staff/blog";
 import { ManageAccount } from "./page/Admin/account";
+import { App } from "./page/App";
+import ECatalogue from "./page/ECatalogue";
 
 function Menu() {
   return (
@@ -51,6 +53,8 @@ function Menu() {
         <Route path="/SignUpPage" element={<SignUpPage />}></Route>
         <Route path="/request" element={<Request />}></Route>
         <Route path="/sanpham" element={<SanPham />}></Route>
+        <Route path="/app" element={<App />}></Route>
+        <Route path="/ecatalogue" element={<ECatalogue />}></Route>
         <Route
           path="/quotationrequest"
           element={<ManageRequest isCustomer />}

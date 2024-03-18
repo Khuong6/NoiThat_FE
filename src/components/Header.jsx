@@ -110,7 +110,7 @@ export const Header = () => {
                   <li>
                     <a
                       className="px-3 py-11 text-070120 capitalize text-sm font-medium transition duration-500 text-black"
-                      href="#"
+                      href="/duan"
                     >
                       <span>Mẫu Thiết Kế</span>
                     </a>
@@ -118,7 +118,7 @@ export const Header = () => {
                   <li>
                     <a
                       className="px-3 py-11 text-070120 capitalize text-sm font-medium transition duration-500 text-black"
-                      href="/duan"
+                      href="/tintuc"
                     >
                       <span>Blogs</span>
                     </a>
@@ -126,19 +126,27 @@ export const Header = () => {
                   <li>
                     <a
                       className="px-3 py-11 text-070120 capitalize text-sm font-medium transition duration-500 text-black"
+                      href="/ecatalogue"
+                    >
+                      <span>E-Catalogue</span>
+                    </a>
+                  </li>
+                  {/* <li>
+                    <a
+                      className="px-3 py-11 text-070120 capitalize text-sm font-medium transition duration-500 text-black"
                       href=""
                     >
                       <span>Tin Tức</span>
                     </a>
-                  </li>
-                  <li>
+                  </li> */}
+                  {/* <li>
                     <a
                       className="px-3 py-11 text-070120 capitalize text-sm font-medium transition duration-500 text-black"
                       href=""
                     >
                       <span>Công Trình</span>
                     </a>
-                  </li>
+                  </li> */}
                 </ul>
 
                 {user ? (
