@@ -14,7 +14,7 @@ import {
 import { useForm } from "antd/es/form/Form";
 import React, { useEffect, useState } from "react";
 import api from "../../../config/axios";
-import { PlusOutlined } from "@ant-design/icons";
+import { PlusOutlined, PlusSquareOutlined } from "@ant-design/icons";
 import uploadFile from "../../../utils/upload";
 import { ToastContainer, toast } from "react-toastify";
 import { Checkbox, Divider } from "antd";
@@ -26,7 +26,6 @@ export const ManageProduct = () => {
   const [options, setOptions] = useState([]);
   const [products, setProducts] = useState([]);
   const [form] = useForm();
-
   const columns = [
     {
       title: "Images",
@@ -446,6 +445,10 @@ const ProductDetail = ({ data }) => {
   const [colors, setColors] = useState([]);
   const [materials, setMaterials] = useState([]);
   const [form] = useForm();
+  const [showModalColor, setShowModalColor] = useState(false);
+  const [showModalMaterial, setShowModalMaterial] = useState(false);
+  const [formColor] = useForm();
+  const [formMaterial] = useForm();
 
   const fetchProductDetails = async (id) => {
     const response = await api.get(`/productDetail-productId/${id}`);
@@ -637,40 +640,70 @@ const ProductDetail = ({ data }) => {
               </Form.Item>
             </Col>
             <Col span={8}>
-              <Form.Item
-                label="Color"
-                name="colorId"
-                rules={[
-                  { required: true, message: "Please input product color!" },
-                ]}
-              >
-                <Select>
-                  {colors.map((item) => {
-                    return (
-                      <Select.Option value={item.id}>
-                        {item.color}
-                      </Select.Option>
-                    );
-                  })}
-                </Select>
-              </Form.Item>
+              <Row gutter={12} align={"middle"}>
+                <Col span={18}>
+                  <Form.Item
+                    label="Color"
+                    name="colorId"
+                    rules={[
+                      {
+                        required: true,
+                        message: "Please input product color!",
+                      },
+                    ]}
+                  >
+                    <Select>
+                      {colors.map((item) => {
+                        return (
+                          <Select.Option value={item.id}>
+                            {item.color}
+                          </Select.Option>
+                        );
+                      })}
+                    </Select>
+                  </Form.Item>
+                </Col>
+                <Col span={6}>
+                  <Button
+                    onClick={() => setShowModalColor(true)}
+                    type="primary"
+                    icon={<PlusSquareOutlined />}
+                  ></Button>
+                </Col>
+              </Row>
             </Col>
             <Col span={24}>
-              <Form.Item
-                label="Material"
-                name="materialId"
-                rules={[
-                  { required: true, message: "Please input product material!" },
-                ]}
-              >
-                <Select>
-                  {materials.map((item) => {
-                    return (
-                      <Select.Option value={item.id}>{item.size}</Select.Option>
-                    );
-                  })}
-                </Select>
-              </Form.Item>
+              <Row gutter={12} align={"middle"}>
+                <Col span={22}>
+                  <Form.Item
+                    label="Material"
+                    name="materialId"
+                    rules={[
+                      {
+                        required: true,
+                        message: "Please input product material!",
+                      },
+                    ]}
+                  >
+                    <Select>
+                      {materials.map((item) => {
+                        return (
+                          <Select.Option value={item.id}>
+                            {item.size}
+                          </Select.Option>
+                        );
+                      })}
+                    </Select>
+                  </Form.Item>
+                </Col>
+                <Col span={2}>
+                  <Button
+                    onClick={() => setShowModalMaterial(true)}
+                    type="primary"
+                    icon={<PlusSquareOutlined />}
+                  ></Button>
+                </Col>
+              </Row>
             </Col>
           </Row>
 
@@ -684,6 +717,56 @@ const ProductDetail = ({ data }) => {
             <Button type="primary" htmlType="submit">
               Submit
             </Button>
+          </Form.Item>
+        </Form>
+      </Modal>
+
+      <Modal
+        open={showModalColor}
+        onCancel={() => {
+          setShowModalColor(false);
+        }}
+        onOk={() => {
+          formColor.submit();
+        }}
+      >
+        <Form
+          form={formColor}
+          onFinish={async (values) => {
+            console.log(data.id);
+            await api.post(`/productColor/${data.id}`, values);
+            fetchProductColor(data.id);
+            formColor.resetFields();
+            setShowModalColor(false);
+          }}
+        >
+          <Form.Item label="Color" name="color">
+            <Input />
+          </Form.Item>
+        </Form>
+      </Modal>
+
+      <Modal
+        open={showModalMaterial}
+        onCancel={() => {
+          setShowModalMaterial(false);
+        }}
+        onOk={() => {
+          formMaterial.submit();
+        }}
+      >
+        <Form
+          form={formMaterial}
+          onFinish={async (values) => {
+            console.log(data.id);
+            await api.post(`/productMaterial/${data.id}`, values);
+            fetchProductMaterial(data.id);
+            formMaterial.resetFields();
+            setShowModalMaterial(false);
+          }}
+        >
+          <Form.Item label="Material" name="size">
+            <Input />
           </Form.Item>
         </Form>
       </Modal>
