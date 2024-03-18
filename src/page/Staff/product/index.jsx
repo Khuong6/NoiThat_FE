@@ -672,6 +672,23 @@ const ProductDetail = ({ data }) => {
                 </Select>
               </Form.Item>
             </Col>
+            <Col span={24}>
+              <Form.Item
+                label="Unit"
+                name="unit"
+                rules={[
+                  { required: true, message: "Please input product material!" },
+                ]}
+              >
+                <Select>
+                  {materials.map((item) => {
+                    return (
+                      <Select.Option value={item.id}>{item.size}</Select.Option>
+                    );
+                  })}
+                </Select>
+              </Form.Item>
+            </Col>
           </Row>
 
           <Form.Item label="Image" name={["resourceDTOS", 0, "url"]}>
