@@ -1,6 +1,3 @@
-import { useState } from "react";
-import reactLogo from "/src/assets/react.svg";
-import viteLogo from "/vite.svg";
 import Footer from "../components/Footer";
 import Header from "../components/Header";
 
@@ -8,7 +5,7 @@ export const PhongNgu = () => {
   return (
     <>
       <Header />
-      <div className="pt-64 pl-20 pr-20">
+      <div className="pt-10 pl-20 pr-20">
         <div
           className="hero min-h-screen rounded-[15px] "
           style={{
