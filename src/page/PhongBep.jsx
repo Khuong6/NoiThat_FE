@@ -8,7 +8,7 @@ export const PhongBep = () => {
   return (
     <>
       <Header />
-      <div className="pt-64 pl-20 pr-20">
+      <div className="pt-10 pl-20 pr-20">
         <div
           className="hero min-h-screen rounded-[15px] "
           style={{

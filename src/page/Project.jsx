@@ -7,14 +7,14 @@ import { Link } from "react-router-dom";
 
 export const Project = () => {
   const [isHovered1, setIsHovered1] = useState(false);
-  const [isHovered2, setIsHovered2] = useState(false);
-  const [isHovered3, setIsHovered3] = useState(false);
-  const [isHovered4, setIsHovered4] = useState(false);
-  const [isHovered5, setIsHovered5] = useState(false);
-  const [isHovered6, setIsHovered6] = useState(false);
-  const [isHovered7, setIsHovered7] = useState(false);
-  const [isHovered8, setIsHovered8] = useState(false);
-  const [isHovered9, setIsHovered9] = useState(false);
+  // const [isHovered2, setIsHovered2] = useState(false);
+  // const [isHovered3, setIsHovered3] = useState(false);
+  // const [isHovered4, setIsHovered4] = useState(false);
+  // const [isHovered5, setIsHovered5] = useState(false);
+  // const [isHovered6, setIsHovered6] = useState(false);
+  // const [isHovered7, setIsHovered7] = useState(false);
+  // const [isHovered8, setIsHovered8] = useState(false);
+  // const [isHovered9, setIsHovered9] = useState(false);
 
   const [blog, setBlog] = useState([]);
 
@@ -48,7 +48,9 @@ export const Project = () => {
                           height: "300px",
                           transform: isHovered1 ? "scale(1.2)" : "scale(1)",
                           transition: "transform 0.5s, filter 0.5s ease-out", // Chỉnh sửa transition để cả hiệu ứng mờ
-                          filter: isHovered1 ? "brightness(40%)" : "brightness(100%)", // Thêm filter để làm mờ ảnh
+                          filter: isHovered1
+                            ? "brightness(40%)"
+                            : "brightness(100%)", // Thêm filter để làm mờ ảnh
                         }}
                         onMouseEnter={() => setIsHovered1(true)}
                         onMouseLeave={() => setIsHovered1(false)}
@@ -56,7 +58,9 @@ export const Project = () => {
                     </Link>
                   </div>
                   <a href="/duanchitiet">
-                    <p className="text-sm font-bold ml-20 mt-5">{item.blogName}</p>
+                    <p className="text-sm font-bold ml-20 mt-5">
+                      {item.blogName}
+                    </p>
                   </a>
                 </Col>
               </>
