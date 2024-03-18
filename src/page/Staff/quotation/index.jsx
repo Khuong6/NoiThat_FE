@@ -32,7 +32,7 @@ export const ManageQuotation = () => {
       title: "Images",
       dataIndex: "resources",
       render: (resource) => (
-        <img src={resource[0].url} alt="resources" style={{ width: 100 }} />
+        <img src={resource[0]?.url} alt="resources" style={{ width: 100 }} />
       ),
     },
     // {

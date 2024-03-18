@@ -60,9 +60,21 @@ export const Header = () => {
   ];
   return (
     <>
-      <header className=" top-0 sticky z-50  ">
-        <div className="  bg-gradient-to-r from-gray-200 via-blue-200 to-white ">
-          <div class=" pt-10  pr-20 pb-10 py-4 ">
+      <header
+        className=" top-0 sticky z-50  "
+        style={{
+          borderBottomLeftRadius: "25px",
+          borderBottomRightRadius: "25px",
+        }}
+      >
+        <div
+          className="  bg-gradient-to-r from-gray-200 via-blue-200 to-white  "
+          style={{
+            borderBottomLeftRadius: "25px",
+            borderBottomRightRadius: "25px",
+          }}
+        >
+          <div class=" pt-5  pr-20 pb-5 ">
             <div className=" flex flex-row justify-end w-full  ">
               <nav className="flex items-center ">
                 <ul className="flex mr-8 ">

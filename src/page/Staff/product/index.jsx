@@ -19,6 +19,8 @@ import uploadFile from "../../../utils/upload";
 import { ToastContainer, toast } from "react-toastify";
 import { Checkbox, Divider } from "antd";
 import { message } from "antd";
+import { convertToCurrency } from "../../../utils/currency";
+import { UploadOutlined } from "@ant-design/icons";
 
 export const ManageProduct = () => {
   const [options, setOptions] = useState([]);
@@ -34,7 +36,7 @@ export const ManageProduct = () => {
         return (
           <Image
             width={200}
-            src={value[0].url}
+            src={value[0]?.url}
             style={{ borderRadius: "10px" }}
           />
         );
@@ -157,7 +159,14 @@ export const ManageProduct = () => {
       const filteredProducts = response.data.filter(
         (product) => !product.deleted
       );
-      setProducts(filteredProducts);
+      setProducts(
+        filteredProducts.map((item) => {
+          return {
+            ...item,
+            key: item.id,
+          };
+        })
+      );
     } catch (error) {
       console.error("Error fetching products:", error);
       message.error("Failed to fetch products");
@@ -278,7 +287,16 @@ export const ManageProduct = () => {
         Add
       </Button>
       {/* <button onClick={handleDeleteClick}>Delete</button> */}
-      <Table columns={columns} dataSource={products} onChange={onChange} />
+      <Table
+        columns={columns}
+        dataSource={products}
+        onChange={onChange}
+        expandable={{
+          expandedRowRender: (record) => {
+            return <ProductDetail data={record} />;
+          },
+        }}
+      />
       <Modal
         title="Basic Modal"
         open={isModalOpen}
@@ -419,5 +437,256 @@ export const ManageProduct = () => {
 
       <Button></Button>
     </div>
+  );
+};
+
+const ProductDetail = ({ data }) => {
+  const [productDetails, setProductDetails] = useState([]);
+  const [showModal, setShowModal] = useState(false);
+  const [colors, setColors] = useState([]);
+  const [materials, setMaterials] = useState([]);
+  const [form] = useForm();
+
+  const fetchProductDetails = async (id) => {
+    const response = await api.get(`/productDetail-productId/${id}`);
+    setProductDetails(response.data);
+  };
+
+  const fetchProductColor = async (id) => {
+    const response = await api.get(`/productColors-productId/${id}`);
+    setColors(response.data);
+  };
+
+  const fetchProductMaterial = async (id) => {
+    const response = await api.get(`/productMaterial-productId/${id}`);
+    setMaterials(response.data);
+  };
+
+  useEffect(() => {
+    fetchProductDetails(data.id);
+    fetchProductColor(data.id);
+    fetchProductMaterial(data.id);
+  }, [data]);
+
+  const columns = [
+    {
+      title: "Name",
+      dataIndex: "name",
+      key: "name",
+    },
+    {
+      title: "Image",
+      dataIndex: "resources",
+      key: "resources",
+      render: (value) => {
+        return (
+          <Image
+            width={100}
+            src={
+              value[0]
+                ? value[0].url
+                : "https://clipground.com/images/no-image-png-5.jpg"
+            }
+          />
+        );
+      },
+    },
+    {
+      title: "Price",
+      dataIndex: "price",
+      key: "price",
+      render: (value) => {
+        return convertToCurrency(value);
+      },
+    },
+  ];
+
+  const onFinish = async (values) => {
+    if (values.resourceDTOS && values.resourceDTOS[0]) {
+      const file = values.resourceDTOS[0].url.file.originFileObj;
+      const url = await uploadFile(file);
+      values.resourceDTOS[0].url = url;
+      values.resourceDTOS[0].type = "IMG";
+    }
+
+    console.log(values);
+    await api.post("/product-detail", {
+      ...values,
+      productId: data.id,
+    });
+    fetchProductDetails(data.id);
+    form.resetFields();
+    setShowModal(false);
+  };
+
+  return (
+    <>
+      <Row
+        justify={"end"}
+        style={{
+          marginBottom: 20,
+        }}
+      >
+        <Button
+          type="primary"
+          onClick={() => {
+            setShowModal(true);
+          }}
+        >
+          Add new product Detail
+        </Button>
+      </Row>
+      <Table dataSource={productDetails} columns={columns} />
+      <Modal
+        open={showModal}
+        onCancel={() => {
+          setShowModal(false);
+        }}
+        onOk={() => {
+          form.submit();
+        }}
+      >
+        <Form
+          form={form}
+          onFinish={onFinish}
+          labelCol={{
+            span: 24,
+          }}
+        >
+          <Form.Item
+            label="Name"
+            name="name"
+            rules={[{ required: true, message: "Please input product name!" }]}
+          >
+            <Input />
+          </Form.Item>
+          <Row gutter={12}>
+            <Col span={8}>
+              <Form.Item
+                label="Price"
+                name="price"
+                rules={[
+                  { required: true, message: "Please input product price!" },
+                ]}
+              >
+                <InputNumber
+                  style={{
+                    width: "100%",
+                  }}
+                />
+              </Form.Item>
+            </Col>
+            <Col span={8}>
+              <Form.Item
+                label="Length"
+                name="length"
+                rules={[
+                  { required: true, message: "Please input product length!" },
+                ]}
+              >
+                <InputNumber
+                  style={{
+                    width: "100%",
+                  }}
+                />
+              </Form.Item>
+            </Col>
+            <Col span={8}>
+              <Form.Item
+                label="Width"
+                name="width"
+                rules={[
+                  { required: true, message: "Please input product width!" },
+                ]}
+              >
+                <InputNumber
+                  style={{
+                    width: "100%",
+                  }}
+                />
+              </Form.Item>
+            </Col>
+            <Col span={8}>
+              <Form.Item
+                label="Weight"
+                name="weight"
+                rules={[
+                  { required: true, message: "Please input product weight!" },
+                ]}
+              >
+                <InputNumber
+                  style={{
+                    width: "100%",
+                  }}
+                />
+              </Form.Item>
+            </Col>
+            <Col span={8}>
+              <Form.Item
+                label="Height"
+                name="height"
+                rules={[
+                  { required: true, message: "Please input product height!" },
+                ]}
+              >
+                <InputNumber
+                  style={{
+                    width: "100%",
+                  }}
+                />
+              </Form.Item>
+            </Col>
+            <Col span={8}>
+              <Form.Item
+                label="Color"
+                name="colorId"
+                rules={[
+                  { required: true, message: "Please input product color!" },
+                ]}
+              >
+                <Select>
+                  {colors.map((item) => {
+                    return (
+                      <Select.Option value={item.id}>
+                        {item.color}
+                      </Select.Option>
+                    );
+                  })}
+                </Select>
+              </Form.Item>
+            </Col>
+            <Col span={24}>
+              <Form.Item
+                label="Material"
+                name="materialId"
+                rules={[
+                  { required: true, message: "Please input product material!" },
+                ]}
+              >
+                <Select>
+                  {materials.map((item) => {
+                    return (
+                      <Select.Option value={item.id}>{item.size}</Select.Option>
+                    );
+                  })}
+                </Select>
+              </Form.Item>
+            </Col>
+          </Row>
+
+          <Form.Item label="Image" name={["resourceDTOS", 0, "url"]}>
+            <Upload>
+              <Button icon={<UploadOutlined />}>Upload</Button>
+            </Upload>
+          </Form.Item>
+
+          <Form.Item>
+            <Button type="primary" htmlType="submit">
+              Submit
+            </Button>
+          </Form.Item>
+        </Form>
+      </Modal>
+    </>
   );
 };

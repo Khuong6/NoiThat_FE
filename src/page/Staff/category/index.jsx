@@ -63,6 +63,14 @@ export const ManageCategory = () => {
       onFilter: (value, record) => record.name.includes(value),
       width: "30%",
     },
+    {
+      title: "Actions",
+      render: (value, record) => (
+        <Button type="dashed" onClick={() => handleDelete(record.id)}>
+          Delete
+        </Button>
+      ),
+    },
   ];
   const onChange = (pagination, filters, sorter, extra) => {
     console.log("params", pagination, filters, sorter, extra);
@@ -86,23 +94,66 @@ export const ManageCategory = () => {
     console.log(`selected ${value}`);
   };
 
-  //   const fetchCategories = async () => {
-  //     const response = await api.get("/categories");
-  //     console.log(response.data);
-  //     setOptions(
-  //       response.data.map((item) => {
-  //         return {
-  //           label: item.name,
-  //           value: item.id,
-  //         };
-  //       })
-  //     );
-  //   };
-
   const fetchCategories = async () => {
     const response = await api.get("/categories");
     console.log(response.data);
     setCategories(response.data);
+  };
+
+  // const fetchCategories = async () => {
+  //   try {
+  //     const response = await api.get("/categories");
+  //     const filteredCategories = response.data.filter(
+  //       (categories) => !categories.deleted
+  //     );
+  //     setCategories(filteredCategories);
+  //   } catch (error) {
+  //     console.error("Error fetching products:", error);
+  //     message.error("Failed to fetch products");
+  //   }
+  // };
+
+  // const handleDelete = async (id) => {
+  //   try {
+  //     await api.delete(`/category/${id}`);
+
+  //     message.success("Category deleted successfully");
+  //     const response = await api.get(`/categories`);
+  //     if (response.data.deleted) {
+  //       // Nếu sản phẩm đã được đánh dấu là đã xóa thì không hiển thị nó trên màn hình
+  //       return;
+  //     }
+  //     fetchCategories();
+  //   } catch (error) {
+  //     console.error("Error deleting category:", error);
+  //     message.error("Failed to category product");
+  //   }
+  // };
+
+  const handleDelete = async (id) => {
+    try {
+      await api.delete(`/category/${id}`);
+
+      message.success("Category deleted successfully");
+
+      // Gọi lại API để lấy thông tin về các categories sau khi xóa
+      const response = await api.get(`/categories`);
+
+      // Kiểm tra nếu category đã được đánh dấu là đã xóa thì không hiển thị nó trên màn hình
+      // const updatedCategories = response.data.filter(
+      //   (category) => !category.deleted
+      // );
+      if (response.data.deleted) {
+        // Nếu sản phẩm đã được đánh dấu là đã xóa thì không hiển thị nó trên màn hình
+        return;
+      }
+
+      // setCategories(updatedCategories);
+      fetchCategories();
+    } catch (error) {
+      console.error("Error deleting category:", error);
+      message.error("Failed to delete category");
+    }
   };
 
   useEffect(() => {

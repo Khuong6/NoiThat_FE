@@ -9,6 +9,7 @@ import { Quotation } from "../../quotation";
 import { formatDistance } from "date-fns";
 import TextArea from "antd/es/input/TextArea";
 import { useForm } from "antd/es/form/Form";
+import Header from "../../../components/Header";
 
 export const ManageRequest = ({ isCustomer }) => {
   const [request, setCategories] = useState([]);
@@ -21,7 +22,9 @@ export const ManageRequest = ({ isCustomer }) => {
     {
       title: "Images",
       dataIndex: "resources",
-      render: (resource) => <img src={resource[0]?.url} alt="resources" style={{ width: 100 }} />,
+      render: (resource) => (
+        <img src={resource[0]?.url} alt="resources" style={{ width: 100 }} />
+      ),
     },
     {
       title: "Type",
@@ -30,6 +33,12 @@ export const ManageRequest = ({ isCustomer }) => {
       render: (value) => {
         return <Tag color="green">{value}</Tag>;
       },
+    },
+    {
+      title: "Name",
+      dataIndex: "account",
+      width: "20%",
+      render: (value) => value.username,
     },
     {
       title: "Description",
@@ -41,11 +50,11 @@ export const ManageRequest = ({ isCustomer }) => {
       dataIndex: "budget",
       width: "20%",
     },
-    {
-      title: "Dien Tich",
-      dataIndex: "dienTich",
-      width: "20%",
-    },
+    // {
+    //   title: "Dien Tich",
+    //   dataIndex: "dienTich",
+    //   width: "20%",
+    // },
     // {
     //   title: "Images",
 
@@ -64,7 +73,9 @@ export const ManageRequest = ({ isCustomer }) => {
 
   const fetchRequest = async () => {
     try {
-      const response = await api.get(isCustomer ? "/request-customer" : "/request");
+      const response = await api.get(
+        isCustomer ? "/request-customer" : "/request"
+      );
       setCategories(
         response.data.map((item) => {
           return {
@@ -116,7 +127,7 @@ export const ManageRequest = ({ isCustomer }) => {
   };
 
   return (
-    <div>
+    <>
       {/* <Button onClick={showModal} type="primary">
         Add
       </Button> */}
@@ -124,7 +135,13 @@ export const ManageRequest = ({ isCustomer }) => {
         expandable={{
           expandedRowRender: (record, index) => {
             console.log(record);
-            return <QuotationDetail isCustomer={isCustomer} key={index} requestId={record.id} />;
+            return (
+              <QuotationDetail
+                isCustomer={isCustomer}
+                key={index}
+                requestId={record.id}
+              />
+            );
           },
         }}
         columns={columns}
@@ -141,51 +158,7 @@ export const ManageRequest = ({ isCustomer }) => {
       >
         <SanPham info={currentRequest} handleCheckout={handleCheckout} />
       </Modal>
-      {/* <Modal
-        title="Add Request"
-        visible={isModalOpen}
-        onOk={handleOk}
-        onCancel={handleCancel}
-      >
-        <Form form={form} onFinish={onFinish}>
-          <Form.Item
-            name="type"
-            label="Type"
-            rules={[{ required: true, message: "Please enter type" }]}
-          >
-            <Input />
-          </Form.Item>
-          <Form.Item
-            name="description"
-            label="Description"
-            rules={[{ required: true, message: "Please enter description" }]}
-          >
-            <Input.TextArea />
-          </Form.Item>
-          <Form.Item
-            name="budget"
-            label="Budget"
-            rules={[{ required: true, message: "Please enter budget" }]}
-          >
-            <Input />
-          </Form.Item>
-          <Form.Item
-            name="dienTich"
-            label="Dien Tich"
-            rules={[{ required: true, message: "Please enter dienTich" }]}
-          >
-            <Input />
-          </Form.Item>
-          <Form.Item
-            name="resource"
-            label="Image URL"
-            rules={[{ required: true, message: "Please enter image URL" }]}
-          >
-            <Input />
-          </Form.Item>
-        </Form>
-      </Modal> */}
-    </div>
+    </>
   );
 };
 
@@ -209,7 +182,14 @@ const QuotationDetail = ({ requestId, isCustomer }) => {
       title: "Created at",
       dataIndex: "created",
       key: "created",
-      render: (text) => <a>{formatDistance(new Date(text), new Date(), { addSuffix: true })}</a>,
+      render: (text) => (
+        <a>{formatDistance(new Date(text), new Date(), { addSuffix: true })}</a>
+      ),
+    },
+    {
+      title: "Reject reason",
+      dataIndex: "reasonReject",
+      key: "reasonReject",
     },
     {
       title: "Action",
@@ -324,7 +304,7 @@ const QuotationDetail = ({ requestId, isCustomer }) => {
   const onSubmit = async (values) => {
     await api.patch(`/reject-quotation`, {
       quotationId: rejectQuotationId,
-      reason: values.reason,
+      reasonReject: values.reason,
     });
     fetchQuatations();
     form.resetFields();
@@ -347,7 +327,14 @@ const QuotationDetail = ({ requestId, isCustomer }) => {
       )}
       <Table columns={columns} dataSource={quotations} />
 
-      <Modal title="Quotation Detail" open={quotationId !== null} onCancel={() => setQuotationId(null)} width={1000}>
+      <Modal
+        title="Quotation Detail"
+        open={quotationId !== null}
+        onCancel={() => {
+          setQuotationId(null);
+        }}
+        width={1000}
+      >
         <Quotation
           edit={quotationId === 0}
           quotationId={quotationId}

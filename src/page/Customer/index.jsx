@@ -6,6 +6,8 @@ import uploadFile from "../../utils/upload";
 import api from "../../config/axios";
 
 import { toast } from "react-toastify";
+import Header from "../../components/Header";
+import Footer from "../../components/Footer";
 
 export const Request = () => {
   const getBase64 = (file) =>
@@ -90,14 +92,17 @@ export const Request = () => {
 
   return (
     <>
+      <Header />
       <div className="bg-white">
         <div class="grid grid-cols-5 gap-4 bg-white">
           <div></div>
-          <div className="mt-[140px]">
-            <img
-              src="public/F/F1.png"
-              style={{ height: "70%", width: "60%" }}
-            ></img>
+          <div className="mt-[50px]">
+            <a href="/q">
+              <img
+                src="public/F/F1.png"
+                style={{ height: "70%", width: "60%" }}
+              />
+            </a>
             <div className="text">
               <div>
                 <span style={{ fontWeight: "bold" }}>Số điện thoại:</span>{" "}
@@ -111,7 +116,7 @@ export const Request = () => {
           </div>
           <div></div>
           <div>
-            <div className="pt-[280px]">
+            <div className="pt-[50px]">
               <span style={{ fontWeight: "bold" }}>Ngày soạn báo giá:</span>{" "}
               <span>{formattedDate}</span>
             </div>
@@ -188,6 +193,7 @@ export const Request = () => {
           </div>
         </div>
       </div>
+      <Footer />
     </>
   );
 };

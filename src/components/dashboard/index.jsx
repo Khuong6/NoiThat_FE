@@ -6,6 +6,10 @@ import {
   UserOutlined,
   VideoCameraOutlined,
   ProfileOutlined,
+  LogoutOutlined,
+  ProductOutlined,
+  FileTextOutlined,
+  ReadOutlined,
 } from "@ant-design/icons";
 import { Layout, Menu, Button, theme } from "antd";
 import { Link, Outlet } from "react-router-dom";
@@ -25,32 +29,32 @@ const Dashboard = ({ role }) => {
       return [
         {
           key: "1",
-          icon: <UserOutlined />,
+          icon: <ProductOutlined />,
           label: <Link to={"product"}>Manage Product</Link>,
         },
         {
           key: "2",
-          icon: <VideoCameraOutlined />,
+          icon: <ProductOutlined />,
           label: <Link to={"category"}>Manage Category</Link>,
         },
         {
           key: "3",
-          icon: <ProfileOutlined />,
+          icon: <FileTextOutlined />,
           label: <Link to={"quotation"}>Manage Quotation</Link>,
         },
         {
           key: "4",
-          icon: <ProfileOutlined />,
+          icon: <FileTextOutlined />,
           label: <Link to={"request"}>Manage Request</Link>,
         },
         {
           key: "5",
-          icon: <ProfileOutlined />,
+          icon: <ReadOutlined />,
           label: <Link to={"blog"}>Manage Blog</Link>,
         },
         {
           key: "6",
-          icon: <ProfileOutlined />,
+          icon: <LogoutOutlined />,
           label: <Link to={"/login"}>Logout</Link>,
         },
       ];

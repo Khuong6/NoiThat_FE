@@ -180,108 +180,109 @@ const Modal = ({ categoryID, changeTotalPrice }) => {
   }, [categoryID]);
 
   return (
-    <div>
-      <dialog id={`my_modal_${categoryID}`} className="modal">
-        <div className="modal-box">
-          <form method="dialog">
-            <button className="btn btn-sm btn-circle btn-ghost absolute right-2 top-2">
-              ✕
-            </button>
-          </form>
-          <h3 className="font-bold text-lg">Chọn vật liệu</h3>
+    <></>
+    // <div>
+    //   <dialog id={`my_modal_${categoryID}`} className="modal">
+    //     <div className="modal-box">
+    //       <form method="dialog">
+    //         <button className="btn btn-sm btn-circle btn-ghost absolute right-2 top-2">
+    //           ✕
+    //         </button>
+    //       </form>
+    //       <h3 className="font-bold text-lg">Chọn vật liệu</h3>
 
-          {/* Nội dung trong modal */}
-          <div className="grid grid-cols-2 gap-6">
-            {products.map((item) => {
-              return (
-                <>
-                  {/* Khung 1 */}
-                  <label
-                    onClick={() => {
-                      setSelected(item);
-                    }}
-                  >
-                    <input
-                      type="radio"
-                      defaultValue={1}
-                      className="peer hidden"
-                      name="framework"
-                    />
-                    <div className="hover:bg-gray-50 flex flex-col items-center justify-between px-4 py-2 border-2 rounded-lg cursor-pointer text-sm border-gray-200 group peer-checked:border-blue-500">
-                      <div className="group relative">
-                        <div
-                          className="w-full overflow-hidden rounded-md bg-gray-200"
-                          style={{
-                            height: 150,
-                          }}
-                        >
-                          <div className=" overflow-hidden">
-                            <img
-                              src={item.resources[0].url}
-                              alt="Black machined steel pen with hexagonal grip and small white logo at the top."
-                              className="h-full w-full object-cover object-center group-hover:opacity-75"
-                            />
-                          </div>
-                        </div>
-                        <div className="mt-6">
-                          <p className="text-sm text-gray-500">
-                            {item.productName}
-                          </p>
-                          <h3 className="mt-1 font-semibold text-gray-900">
-                            {item.name}
-                          </h3>
-                          <p className="mt-1 text-gray-900">
-                            {convertToCurrency(item.pricePerUnit)}
-                          </p>
-                        </div>
-                      </div>
-                      <h4 className="sr-only">Available colors</h4>
-                      <ul
-                        role="list"
-                        className="mt-auto flex items-center justify-center space-x-3 pt-6"
-                      >
-                        <li
-                          className="h-4 w-4 rounded-full border border-black border-opacity-10"
-                          style={{
-                            backgroundColor: "#111827",
-                          }}
-                        >
-                          <span className="sr-only">Black</span>
-                        </li>
-                        <li
-                          className="h-4 w-4 rounded-full border border-black border-opacity-10"
-                          style={{
-                            backgroundColor: "#fde68a",
-                          }}
-                        >
-                          <span className="sr-only">Brass</span>
-                        </li>
-                        <li
-                          className="h-4 w-4 rounded-full border border-black border-opacity-10"
-                          style={{
-                            backgroundColor: "#e5e7eb",
-                          }}
-                        >
-                          <span className="sr-only">Chrome</span>
-                        </li>
-                      </ul>
-                    </div>
-                  </label>
-                </>
-              );
-            })}
-          </div>
+    //       {/* Nội dung trong modal */}
+    //       <div className="grid grid-cols-2 gap-6">
+    //         {products.map((item) => {
+    //           return (
+    //             <>
+    //               {/* Khung 1 */}
+    //               <label
+    //                 onClick={() => {
+    //                   setSelected(item);
+    //                 }}
+    //               >
+    //                 <input
+    //                   type="radio"
+    //                   defaultValue={1}
+    //                   className="peer hidden"
+    //                   name="framework"
+    //                 />
+    //                 <div className="hover:bg-gray-50 flex flex-col items-center justify-between px-4 py-2 border-2 rounded-lg cursor-pointer text-sm border-gray-200 group peer-checked:border-blue-500">
+    //                   <div className="group relative">
+    //                     <div
+    //                       className="w-full overflow-hidden rounded-md bg-gray-200"
+    //                       style={{
+    //                         height: 150,
+    //                       }}
+    //                     >
+    //                       <div className=" overflow-hidden">
+    //                         <img
+    //                           src={item.resources[0].url}
+    //                           alt="Black machined steel pen with hexagonal grip and small white logo at the top."
+    //                           className="h-full w-full object-cover object-center group-hover:opacity-75"
+    //                         />
+    //                       </div>
+    //                     </div>
+    //                     <div className="mt-6">
+    //                       <p className="text-sm text-gray-500">
+    //                         {item.productName}
+    //                       </p>
+    //                       <h3 className="mt-1 font-semibold text-gray-900">
+    //                         {item.name}
+    //                       </h3>
+    //                       <p className="mt-1 text-gray-900">
+    //                         {convertToCurrency(item.pricePerUnit)}
+    //                       </p>
+    //                     </div>
+    //                   </div>
+    //                   <h4 className="sr-only">Available colors</h4>
+    //                   <ul
+    //                     role="list"
+    //                     className="mt-auto flex items-center justify-center space-x-3 pt-6"
+    //                   >
+    //                     <li
+    //                       className="h-4 w-4 rounded-full border border-black border-opacity-10"
+    //                       style={{
+    //                         backgroundColor: "#111827",
+    //                       }}
+    //                     >
+    //                       <span className="sr-only">Black</span>
+    //                     </li>
+    //                     <li
+    //                       className="h-4 w-4 rounded-full border border-black border-opacity-10"
+    //                       style={{
+    //                         backgroundColor: "#fde68a",
+    //                       }}
+    //                     >
+    //                       <span className="sr-only">Brass</span>
+    //                     </li>
+    //                     <li
+    //                       className="h-4 w-4 rounded-full border border-black border-opacity-10"
+    //                       style={{
+    //                         backgroundColor: "#e5e7eb",
+    //                       }}
+    //                     >
+    //                       <span className="sr-only">Chrome</span>
+    //                     </li>
+    //                   </ul>
+    //                 </div>
+    //               </label>
+    //             </>
+    //           );
+    //         })}
+    //       </div>
 
-          {/* Save button */}
-          <button
-            type="button"
-            className="btn static mt-5 ml-[370px] bot-2 "
-            onClick={handleSave}
-          >
-            Save
-          </button>
-        </div>
-      </dialog>
-    </div>
+    //       {/* Save button */}
+    //       <button
+    //         type="button"
+    //         className="btn static mt-5 ml-[370px] bot-2 "
+    //         onClick={handleSave}
+    //       >
+    //         Save
+    //       </button>
+    //     </div>
+    //   </dialog>
+    // </div>
   );
 };

@@ -1,9 +1,25 @@
-import { Button, Col, Form, Input, Modal, Row, Space, Table, Upload } from "antd";
+import {
+  Button,
+  Col,
+  Form,
+  Image,
+  Input,
+  Modal,
+  Row,
+  Space,
+  Table,
+  Upload,
+} from "antd";
 import { useForm } from "antd/es/form/Form";
-import React, { useState } from "react";
-import { MinusCircleOutlined, PlusOutlined, UploadOutlined } from "@ant-design/icons";
+import React, { useEffect, useState } from "react";
+import {
+  MinusCircleOutlined,
+  PlusOutlined,
+  UploadOutlined,
+} from "@ant-design/icons";
 import uploadFile from "../../../utils/upload";
 import api from "../../../config/axios";
+import { formatDistance } from "date-fns";
 
 export const ManageBlog = () => {
   const [showModal, setShowModal] = useState(false);
@@ -14,6 +30,17 @@ export const ManageBlog = () => {
   const [previewImage, setPreviewImage] = useState("");
   const [previewTitle, setPreviewTitle] = useState("");
   const [fileList, setFileList] = useState([]);
+  const [blogs, setBlogs] = useState([]);
+
+  useEffect(() => {
+    fetchBlog();
+  }, []);
+
+  const fetchBlog = async () => {
+    const response = await api.get("/blog");
+    setBlogs(response.data);
+  };
+
   const getBase64 = (file) =>
     new Promise((resolve, reject) => {
       const reader = new FileReader();
@@ -28,7 +55,9 @@ export const ManageBlog = () => {
     }
     setPreviewImage(file.url || file.preview);
     setPreviewOpen(true);
-    setPreviewTitle(file.name || file.url.substring(file.url.lastIndexOf("/") + 1));
+    setPreviewTitle(
+      file.name || file.url.substring(file.url.lastIndexOf("/") + 1)
+    );
   };
   const handleChange = ({ fileList: newFileList }) => setFileList(newFileList);
   const uploadButton = (
@@ -60,6 +89,7 @@ export const ManageBlog = () => {
     setSections(initValue);
     form.resetFields();
     setShowModal(false);
+    fetchBlog();
   };
 
   const handleSectionNameChange = (index, value) => {
@@ -68,7 +98,12 @@ export const ManageBlog = () => {
     setSections(newSections);
   };
 
-  const handleResourceUrlChange = (sectionIndex, resourceIndex, value, type) => {
+  const handleResourceUrlChange = (
+    sectionIndex,
+    resourceIndex,
+    value,
+    type
+  ) => {
     const newSections = [...sections];
     console.log(value);
     console.log(newSections);
@@ -81,7 +116,10 @@ export const ManageBlog = () => {
   };
 
   const addSection = () => {
-    setSections([...sections, { name: "", resourceDTO: [{ url: "", type: "IMG" }] }]);
+    setSections([
+      ...sections,
+      { name: "", resourceDTO: [{ url: "", type: "IMG" }] },
+    ]);
   };
 
   const removeSection = (index) => {
@@ -90,38 +128,27 @@ export const ManageBlog = () => {
     setSections(newSections);
   };
 
-  const dataSource = [
+  const columns = [
     {
-      key: "1",
-      name: "Mike",
-      age: 32,
-      address: "10 Downing Street",
+      title: "Blog name",
+      dataIndex: "blogName",
+      key: "blogName",
     },
     {
-      key: "2",
-      name: "John",
-      age: 42,
-      address: "10 Downing Street",
+      title: "Thumbnail",
+      dataIndex: "thumbnail",
+      key: "thumbnail",
+      render: (value) => <Image src={value} width={100} />,
+    },
+    {
+      title: "Create At",
+      dataIndex: "datePost",
+      key: "datePost",
+      render: (value) =>
+        formatDistance(new Date(value), new Date(), { addSuffix: true }),
     },
   ];
 
-  const columns = [
-    {
-      title: "Name",
-      dataIndex: "name",
-      key: "name",
-    },
-    {
-      title: "Age",
-      dataIndex: "age",
-      key: "age",
-    },
-    {
-      title: "Address",
-      dataIndex: "address",
-      key: "address",
-    },
-  ];
   return (
     <div>
       <Button
@@ -133,7 +160,7 @@ export const ManageBlog = () => {
       >
         Add new blog
       </Button>
-      <Table dataSource={dataSource} columns={columns} />
+      <Table dataSource={blogs} columns={columns} />
       <Modal
         width={1000}
         title="Add new blog"
@@ -185,19 +212,30 @@ export const ManageBlog = () => {
                 <Form.Item
                   name={["blogSectionRequestDTOS", index, "name"]}
                   label={`Section Name ${index + 1}`}
-                  rules={[{ required: true, message: "Please enter section name" }]}
+                  rules={[
+                    { required: true, message: "Please enter section name" },
+                  ]}
                 >
                   <Row align={"middle"} gutter={12}>
                     <Col span={22}>
-                      <Input value={section.name} onChange={(e) => handleSectionNameChange(index, e.target.value)} />
+                      <Input
+                        value={section.name}
+                        onChange={(e) =>
+                          handleSectionNameChange(index, e.target.value)
+                        }
+                      />
                     </Col>
                     <Col span={2}>
-                      <MinusCircleOutlined onClick={() => removeSection(index)} />
+                      <MinusCircleOutlined
+                        onClick={() => removeSection(index)}
+                      />
                     </Col>
                   </Row>
                 </Form.Item>
 
-                <Form.List name={["blogSectionRequestDTOS", index, "resourceDTO"]}>
+                <Form.List
+                  name={["blogSectionRequestDTOS", index, "resourceDTO"]}
+                >
                   {(fields, { add, remove }) => (
                     <>
                       {fields.map((field, resourceIndex) => (
@@ -206,7 +244,12 @@ export const ManageBlog = () => {
                             {...field}
                             name={[field.name, "url"]}
                             fieldKey={[field.fieldKey, "url"]}
-                            rules={[{ required: true, message: "Please enter resource URL" }]}
+                            rules={[
+                              {
+                                required: true,
+                                message: "Please enter resource URL",
+                              },
+                            ]}
                           >
                             <Row align={"middle"} gutter={12}>
                               <Col>
@@ -220,25 +263,39 @@ export const ManageBlog = () => {
                                   onChange={async (info) => {
                                     console.log(info);
                                     let type = "VIDEO";
-                                    if (info.file.type.includes("image")) type = "IMG";
+                                    if (info.file.type.includes("image"))
+                                      type = "IMG";
                                     const url = await uploadFile(info.file);
                                     console.log(url);
-                                    handleResourceUrlChange(index, resourceIndex, url, type);
+                                    handleResourceUrlChange(
+                                      index,
+                                      resourceIndex,
+                                      url,
+                                      type
+                                    );
                                   }}
                                 >
-                                  <Button icon={<UploadOutlined />}>Upload Image</Button>
+                                  <Button icon={<UploadOutlined />}>
+                                    Upload Image
+                                  </Button>
                                 </Upload>
                               </Col>
 
                               <Col>
-                                <MinusCircleOutlined onClick={() => remove(field.name)} />
+                                <MinusCircleOutlined
+                                  onClick={() => remove(field.name)}
+                                />
                               </Col>
                             </Row>
                           </Form.Item>
                         </>
                       ))}
                       <Form.Item>
-                        <Button type="dashed" onClick={() => add()} icon={<PlusOutlined />}>
+                        <Button
+                          type="dashed"
+                          onClick={() => add()}
+                          icon={<PlusOutlined />}
+                        >
                           Add Resource
                         </Button>
                       </Form.Item>
@@ -261,7 +318,12 @@ export const ManageBlog = () => {
         </Form>
       </Modal>
 
-      <Modal open={previewOpen} title={previewTitle} footer={null} onCancel={handleCancel}>
+      <Modal
+        open={previewOpen}
+        title={previewTitle}
+        footer={null}
+        onCancel={handleCancel}
+      >
         <img
           alt="example"
           style={{

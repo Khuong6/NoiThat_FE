@@ -27,7 +27,9 @@ export const Quotation = ({
     (option?.label ?? "").toLowerCase().includes(input.toLowerCase());
   const [form] = useForm();
   const [total, setTotal] = useState(0);
-  const [disable, setDisable] = useState(false);
+  const [disableLength, setDisableLength] = useState(false);
+  const [disableWidth, setDisableWidth] = useState(false);
+  const [disableheight, setDisableheight] = useState(false);
   const [quotations, setQuotations] = useState([
     // {
     //   name: "Giuong",
@@ -97,6 +99,7 @@ export const Quotation = ({
         })),
       });
       fetchQuatationsList();
+      setQuotations([]);
       console.log("Quotation posted successfully:", response.data);
     } catch (error) {
       console.error("Error posting quotation:", error);
@@ -157,7 +160,7 @@ export const Quotation = ({
             <th rowspan="2">Số lượng</th>
             <th rowspan="2">Đơn giá</th>
             <th rowspan="2">Thành tiền</th>
-            <th rowspan="2">Action</th>
+            {/* <th rowspan="2">Action</th> */}
             {/* <th rowspan="2">Hình ảnh</th> */}
           </tr>
           <tr>
@@ -179,7 +182,7 @@ export const Quotation = ({
                 <td>{item.quantity}</td>
                 <td>{item.pricePerUnit}</td>
                 <td>{convertToCurrency(item.total)}</td>
-                <td>
+                {/* <td>
                   <Button
                     type="primary"
                     onClick={() => {
@@ -190,7 +193,7 @@ export const Quotation = ({
                   >
                     Edit
                   </Button>
-                </td>
+                </td> */}
               </tr>
             );
           })}
@@ -261,9 +264,17 @@ export const Quotation = ({
                 form.setFieldValue("total", 0);
 
                 if (product.unit === "ITEM") {
-                  setDisable(true);
+                  setDisableLength(true);
+                  setDisableWidth(true);
+                  setDisableheight(true);
+                } else if (product.unit === "METER") {
+                  setDisableLength(false);
+                  setDisableWidth(true);
+                  setDisableheight(true);
                 } else {
-                  setDisable(false);
+                  setDisableLength(false);
+                  setDisableWidth(false);
+                  setDisableheight(true);
                 }
                 calcTotalDetail();
               }}
@@ -280,17 +291,17 @@ export const Quotation = ({
           <Row gutter={12}>
             <Col span={8}>
               <Form.Item label="Length" name="length">
-                <Input type="number" disabled={disable} />
+                <Input type="number" disabled={disableLength} />
               </Form.Item>
             </Col>
             <Col span={8}>
               <Form.Item label="Width" name="width">
-                <Input type="number" disabled={disable} />
+                <Input type="number" disabled={disableWidth} />
               </Form.Item>
             </Col>
             <Col span={8}>
               <Form.Item label="Height" name="height">
-                <Input type="number" disabled={disable} />
+                <Input type="number" disabled={disableheight} />
               </Form.Item>
             </Col>
           </Row>
