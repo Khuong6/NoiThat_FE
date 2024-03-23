@@ -25,8 +25,9 @@ function Footer() {
   return (
     <>
       <div
-        className="  bg-gradient-to-r from-gray-200  via-blue-200 to-gray-200  p-8 "
-        style={borderTopStyle}
+        // className="  bg-gradient-to-r from-gray-200  via-blue-200 to-gray-200  p-8 "
+        className=" p-8 "
+        style={{ backgroundColor: "#231F1E" }}
       >
         <footer className="footer text-base-content ">
           <aside>
@@ -47,8 +48,8 @@ function Footer() {
             </div>
           </aside>
 
-          <nav className="text-black text-sm font-medium">
-            <h6 className="mb-2 font-bold uppercase border-b-2  border-orange-500">
+          <nav className=" text-sm font-medium" style={{ color: "#ac9984" }}>
+            <h6 className="mb-2 font-bold uppercase border-b-2  border-orange-400">
               Sản Phẩm
             </h6>
             <a
@@ -75,8 +76,8 @@ function Footer() {
           </nav>
           {/* Thông Tin Về Web */}
 
-          <nav className="text-black text-sm font-medium">
-            <h6 className="mb-2 font-bold uppercase border-b-2 border-orange-500">
+          <nav className=" text-sm font-medium" style={{ color: "#ac9984" }}>
+            <h6 className="mb-2 font-bold uppercase border-b-2 border-orange-400">
               Liên Lạc
             </h6>
             <a
@@ -199,8 +200,8 @@ function Footer() {
           </nav>
           {/* thông tin thêm */}
 
-          <nav className="text-black text-sm font-medium">
-            <h6 className=" mb-2 font-bold uppercase border-b-2 border-orange-500 ">
+          <nav className=" text-sm font-medium" style={{ color: "#ac9984" }}>
+            <h6 className=" mb-2 font-bold uppercase border-b-2 border-orange-400 ">
               Thông Tin Thêm
             </h6>
             <a className="link link-hover opacity-80">Tin Tức</a>

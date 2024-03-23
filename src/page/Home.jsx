@@ -57,7 +57,7 @@ export const Home = () => {
           style={{
             // backgroundImage:
             //   "linear-gradient(to right, rgb(135, 206, 250), rgb(224, 255, 255))",
-            backgroundColor: "white",
+            backgroundColor: "#332D29",
             width: "100%",
             height: "100%",
             paddingBottom: "20px",
@@ -65,33 +65,57 @@ export const Home = () => {
         >
           <div class="grid grid-cols-3 gap-4 py-2 px-2 pt-5">
             <div className="pt-10 py-5 px-5  ">
-              <div className="text-3xl font-serif font-bold  ">
+              <div
+                className="text-3xl font-serif font-bold  "
+                style={{ color: "#ac9984" }}
+              >
                 Những sản phẩm nổi bật
               </div>
-              <div className="text-2xl font-serif mt-5 font-bold pl-20">
+              <div
+                className="text-2xl font-serif mt-5 font-bold pl-20 "
+                style={{ color: "#ac9984" }}
+              >
                 Được thực hiện bởi chúng tôi
               </div>
 
-              <div className="stats stats-vertical mt-40 ml-10">
+              <div
+                className="stats stats-vertical mt-40 ml-10"
+                style={{ backgroundColor: "#332D29" }}
+              >
                 <div className="stat">
-                  <div className="stat-title font-semibold text-black">
+                  <div
+                    className="stat-title font-semibold "
+                    style={{ color: "#ac9984" }}
+                  >
                     Mẫu nội thất
                   </div>
-                  <div className="stat-value">1000+</div>
+                  <div className="stat-value" style={{ color: "#ac9984" }}>
+                    1000+
+                  </div>
                 </div>
 
                 <div className="stat">
-                  <div className="stat-title font-semibold text-black">
+                  <div
+                    className="stat-title font-semibold "
+                    style={{ color: "#ac9984" }}
+                  >
                     Khách hàng hài lòng
                   </div>
-                  <div className="stat-value">4,200+</div>
+                  <div className="stat-value" style={{ color: "#ac9984" }}>
+                    4,200+
+                  </div>
                 </div>
 
                 <div className="stat">
-                  <div className="stat-title font-semibold text-black">
+                  <div
+                    className="stat-title font-semibold "
+                    style={{ color: "#ac9984" }}
+                  >
                     Nhân viên giàu kinh nghiệm
                   </div>
-                  <div className="stat-value">120</div>
+                  <div className="stat-value" style={{ color: "#ac9984" }}>
+                    120
+                  </div>
                 </div>
               </div>
             </div>
@@ -141,6 +165,7 @@ export const Home = () => {
               autoPlay
               controls
               loop
+              muted
               style={{
                 width: "100%",
                 height: "100%",
@@ -158,7 +183,7 @@ export const Home = () => {
           {/*dự án đã thực hiện */}
           <div
             className="text-center py-10 text-5xl "
-            style={{ fontFamily: "Playfair Display, serif" }}
+            style={{ fontFamily: "Playfair Display, serif", color: "white" }}
           >
             Dự Án Đã Thực Hiện
           </div>
@@ -239,7 +264,10 @@ export const Home = () => {
           </div>
 
           <a style={{ fontFamily: "Playfair Display, serif" }} href="/request">
-            <div className="text-center py-10 text-5xl">
+            <div
+              className="text-center py-10 text-5xl"
+              style={{ color: "white" }}
+            >
               Một Số Hình Ảnh Được Thực Hiện
             </div>
           </a>
@@ -446,7 +474,10 @@ export const Home = () => {
             href="/request"
             target="_blank"
           >
-            <div className="text-center py-10 text-5xl">
+            <div
+              className="text-center py-10 text-5xl"
+              style={{ color: "white" }}
+            >
               Gửi Yêu Cầu Thiết Kế
             </div>
           </a>
