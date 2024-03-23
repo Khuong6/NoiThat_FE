@@ -68,7 +68,8 @@ export const Header = () => {
         }}
       >
         <div
-          className="  bg-gradient-to-r from-gray-200 via-blue-200 to-white  "
+          // className="  bg-gradient-to-r from-gray-200 via-blue-200 to-white  "
+          className="bg-black"
           style={{
             borderBottomLeftRadius: "25px",
             borderBottomRightRadius: "25px",
@@ -78,6 +79,14 @@ export const Header = () => {
             <div className=" flex flex-row justify-end w-full  ">
               <nav className="flex items-center ">
                 <ul className="flex mr-8 ">
+                  <li>
+                    <a
+                      className="px-3 py-11 text-070120 capitalize text-sm font-medium transition duration-500 "
+                      href="/"
+                    >
+                      <span style={{ color: "#ac9984" }}>Trang Chủ</span>
+                    </a>
+                  </li>
                   <div>
                     <Dropdown
                       menu={{ items: downLine }}
@@ -87,12 +96,12 @@ export const Header = () => {
                       <a onClick={(e) => e.preventDefault()}>
                         <Space>
                           <a
-                            className="px-3 py-11  capitalize text-sm font-medium transition duration-500 text-black"
+                            className="px-3 py-11  capitalize text-sm font-medium transition duration-500 "
                             href="#"
                           >
-                            <span>
+                            <span style={{ color: "#ac9984" }}>
                               Bộ Sưu Tập
-                              <DownOutlined className="text-xs mt-[-3px] align-middle pl-1" />
+                              <DownOutlined className="text-xs mt-[-3px] align-middle pl-1 " />
                             </span>
                           </a>
                         </Space>
@@ -101,31 +110,31 @@ export const Header = () => {
                   </div>
                   <li>
                     <a
-                      className="px-3 py-11 text-070120 capitalize text-sm font-medium transition duration-500 text-black"
+                      className="px-3 py-11 text-070120 capitalize text-sm font-medium transition duration-500 "
                       href="/sanpham"
                     >
-                      <span>Sản Phẩm</span>
+                      <span style={{ color: "#ac9984" }}>Sản Phẩm</span>
                     </a>
                   </li>
                   <li>
                     <a
-                      className="px-3 py-11 text-070120 capitalize text-sm font-medium transition duration-500 text-black"
+                      className="px-3 py-11 text-070120 capitalize text-sm font-medium transition duration-500 "
                       href="/duan"
                     >
-                      <span>Mẫu Thiết Kế</span>
+                      <span style={{ color: "#ac9984" }}>Mẫu Thiết Kế</span>
                     </a>
                   </li>
                   <li>
                     <a
-                      className="px-3 py-11 text-070120 capitalize text-sm font-medium transition duration-500 text-black"
+                      className="px-3 py-11 text-070120 capitalize text-sm font-medium transition duration-500 "
                       href="/tintuc"
                     >
-                      <span>Blogs</span>
+                      <span style={{ color: "#ac9984" }}>Blogs</span>
                     </a>
                   </li>
                   {/* <li>
                     <a
-                      className="px-3 py-11 text-070120 capitalize text-sm font-medium transition duration-500 text-black"
+                      className="px-3 py-11 text-070120 capitalize text-sm font-medium transition duration-500 "
                       href="/ecatalogue"
                     >
                       <span>E-Catalogue</span>
@@ -133,7 +142,7 @@ export const Header = () => {
                   </li> */}
                   {/* <li>
                     <a
-                      className="px-3 py-11 text-070120 capitalize text-sm font-medium transition duration-500 text-black"
+                      className="px-3 py-11 text-070120 capitalize text-sm font-medium transition duration-500 "
                       href=""
                     >
                       <span>Tin Tức</span>
@@ -141,7 +150,7 @@ export const Header = () => {
                   </li> */}
                   {/* <li>
                     <a
-                      className="px-3 py-11 text-070120 capitalize text-sm font-medium transition duration-500 text-black"
+                      className="px-3 py-11 text-070120 capitalize text-sm font-medium transition duration-500 "
                       href=""
                     >
                       <span>Công Trình</span>

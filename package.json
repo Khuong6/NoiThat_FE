@@ -27,15 +27,22 @@
     "pdfjs-dist": "^4.0.379",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
+    "react-flip-page": "^1.6.4",
     "react-icons": "^5.0.1",
+    "react-pageflip": "^2.0.3",
     "react-pdf": "^7.7.1",
     "react-redux": "^9.1.0",
     "react-responsive-carousel": "^3.2.23",
     "react-router-dom": "^6.22.3",
+    "react-slick": "^0.30.2",
+    "react-swipeable": "^7.0.1",
+    "react-swipeable-views-react-18-fix": "^0.14.1",
     "react-toastify": "^10.0.4",
     "redux-persist": "^6.0.0",
+    "slick-carousel": "^1.8.1",
     "styled-components": "^6.1.8",
-    "svelte": "^4.2.9"
+    "svelte": "^4.2.9",
+    "turn.js": "^1.0.5"
   },
   "devDependencies": {
     "@types/react": "^18.2.43",

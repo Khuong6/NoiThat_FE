@@ -30,19 +30,7 @@ export const Quotation = ({
   const [disableLength, setDisableLength] = useState(false);
   const [disableWidth, setDisableWidth] = useState(false);
   const [disableheight, setDisableheight] = useState(false);
-  const [quotations, setQuotations] = useState([
-    // {
-    //   name: "Giuong",
-    //   length: 1000,
-    //   width: 1000,
-    //   height: 300,
-    //   weight: 50,
-    //   unit: "Cai",
-    //   pricePerUnit: 10,
-    //   total: 10000,
-    //   img: "cc",
-    // },
-  ]);
+  const [quotations, setQuotations] = useState([]);
 
   const fetchProduct = async () => {
     const response = await api.get("/product-productResponseDTO");
@@ -123,7 +111,7 @@ export const Quotation = ({
     const width = form.getFieldValue("width");
     const quantity = form.getFieldValue("quantity");
     const pricePerUnit = form.getFieldValue("pricePerUnit");
-    const weight = length * width;
+    const weight = form.getFieldValue("weight");
     console.log(pricePerUnit);
     console.log(Number(weight));
     console.log(Number(quantity));
@@ -224,7 +212,7 @@ export const Quotation = ({
         </Button>
       )}
       <Modal
-        title="Add new product"
+        title="Add New Product"
         open={showModal}
         onCancel={() => {
           form.resetFields();
@@ -259,7 +247,7 @@ export const Quotation = ({
                 form.setFieldValue("length", product.length);
                 form.setFieldValue("width", product.width);
                 form.setFieldValue("height", product.height);
-                form.setFieldValue("weight", 0);
+                form.setFieldValue("weight", product.weight);
                 form.setFieldValue("quantity", 0);
                 form.setFieldValue("total", 0);
 
@@ -329,9 +317,9 @@ export const Quotation = ({
                   disabled
                   addonAfter={"VND"}
                   style={{
-                    width: 200,
+                    width: 150,
                   }}
-                  defaultValue={1000}
+                  defaultValue={0}
                   p
                   formatter={(value) =>
                     `${value}`.replace(/\B(?=(\d{3})+(?!\d))/g, ",")
@@ -354,7 +342,7 @@ export const Quotation = ({
                   style={{
                     width: 200,
                   }}
-                  defaultValue={1000}
+                  defaultValue={0}
                   p
                   formatter={(value) =>
                     `${value}`.replace(/\B(?=(\d{3})+(?!\d))/g, ",")
@@ -370,23 +358,3 @@ export const Quotation = ({
     </div>
   );
 };
-
-// const sendToQuotationAPI = async () => {
-//   try {
-//     const requestData = {
-//       type: "PENDING",
-//       quotationDetailDTOS: quotations.map((item) => ({
-//         productDetailId: item.productId,
-//         productId: item.productId,
-//         quantity: 1,
-//         price: item.pricePerUnit,
-//         length: item.length,
-//         width: item.width,
-//       })),
-//     };
-//     await api.post("/quotation", requestData);
-//     setQuotations([]);
-//   } catch (error) {
-//     console.error("Error sending data to quotation API:", error);
-//   }
-// };

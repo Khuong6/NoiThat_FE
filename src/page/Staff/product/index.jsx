@@ -441,6 +441,7 @@ export const ManageProduct = () => {
 
 const ProductDetail = ({ data }) => {
   const [productDetails, setProductDetails] = useState([]);
+  const [productUnit, setProductUnit] = useState([]);
   const [showModal, setShowModal] = useState(false);
   const [colors, setColors] = useState([]);
   const [materials, setMaterials] = useState([]);
@@ -453,6 +454,10 @@ const ProductDetail = ({ data }) => {
   const fetchProductDetails = async (id) => {
     const response = await api.get(`/productDetail-productId/${id}`);
     setProductDetails(response.data);
+  };
+  const fetchProductUnit = async (id) => {
+    const res = await api.get(`/product/${id}`);
+    setProductUnit(res.data);
   };
 
   const fetchProductColor = async (id) => {
@@ -469,6 +474,7 @@ const ProductDetail = ({ data }) => {
     fetchProductDetails(data.id);
     fetchProductColor(data.id);
     fetchProductMaterial(data.id);
+    fetchProductUnit(data.id);
   }, [data]);
 
   const columns = [
@@ -706,20 +712,15 @@ const ProductDetail = ({ data }) => {
               </Row>
             </Col>
             <Col span={24}>
-              <Form.Item
-                label="Unit"
-                name="unit"
-                rules={[
-                  { required: true, message: "Please input product material!" },
-                ]}
-              >
+              <Form.Item label="Unit" name="unit">
                 <Select>
-                  {materials.map((item) => {
+                  {productUnit.map((item) => {
                     return (
-                      <Select.Option value={item.id}>{item.size}</Select.Option>
+                      <Select.Option value={item.id}>{item.unit}</Select.Option>
                     );
                   })}
                 </Select>
+                <Input />
               </Form.Item>
             </Col>
           </Row>
