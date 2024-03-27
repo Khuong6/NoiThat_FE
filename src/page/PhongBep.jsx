@@ -3,18 +3,29 @@ import Header from "../components/Header";
 import Footer from "../components/Footer";
 import api from "../config/axios";
 import { Col, Row } from "antd";
-import { Link } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 
 const PhongBep = () => {
+  const { id } = useParams();
   const [template, setTemplate] = useState([]);
+  const [projectType, setProjectType] = useState([]);
 
+  const fetchProjectType = async () => {
+    try {
+      const response = await api.get("/projectTypes"); // Sử dụng axios để gọi API
+      console.log(response.data.filter((item) => item.id === Number(id)));
+      setProjectType(response.data.filter((item) => item.id === Number(id))[0]);
+    } catch (error) {
+      console.error("Error fetching data:", error);
+    }
+  };
   useEffect(() => {
+    fetchProjectType();
     fetchTemplate();
-  }, []);
-
+  }, [id]);
   const fetchTemplate = async () => {
     try {
-      const response = await api.get("/template"); // Sử dụng axios để gọi API
+      const response = await api.get(`/template-ProjectType/${id}`); // Sử dụng axios để gọi API
       setTemplate(response.data);
     } catch (error) {
       console.error("Error fetching data:", error);
@@ -35,7 +46,7 @@ const PhongBep = () => {
           <div className="hero-overlay bg-opacity-60 rounded-[15px]"></div>
           <div className="hero-content text-center text-neutral-content">
             <div className="max-w-md">
-              <h1 className="mb-5 text-4xl font-bold">PHÒNG BẾP</h1>
+              <h1 className="mb-5 text-4xl font-bold">{projectType?.type}</h1>
               <p className="mb-5">
                 Sáng tạo, trẻ trung và đa dạng trong từng thiết kế
                 <p>
@@ -54,13 +65,24 @@ const PhongBep = () => {
               <Col span={12} key={index}>
                 <div className="card lg:card-side bg-base-100 shadow-xl">
                   <figure>
-                    <img src={template.thumbnail} alt={template.name} />
+                    <img
+                      src={
+                        template.thumbnail
+                          ? template.thumbnail
+                          : "https://static.vecteezy.com/system/resources/previews/004/141/669/original/no-photo-or-blank-image-icon-loading-images-or-missing-image-mark-image-not-available-or-image-coming-soon-sign-simple-nature-silhouette-in-frame-isolated-illustration-vector.jpg"
+                      }
+                      alt={template.name}
+                      style={{
+                        width: "700px",
+                        height: "300px",
+                      }}
+                    />
                   </figure>
                   <div className="card-body">
                     <h2 className="card-title">{template.name}</h2>
                     {/* <p>{template.templateSectionDTOS[0].name}</p> */}
                     <div className="card-actions justify-end">
-                      <Link to={`/phongbep/${template.id}`}>
+                      <Link to={`/template-detail/${template.id}`}>
                         <button className="btn btn-primary">Listen</button>
                       </Link>
                     </div>

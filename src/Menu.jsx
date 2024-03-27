@@ -61,6 +61,13 @@ function Menu() {
           path="/quotationrequest"
           element={<ManageRequest isCustomer />}
         ></Route>
+
+        <Route path="/template/:id" element={<PhongBep />}></Route>
+        <Route
+          path="/template-detail/:id"
+          element={<DetailedTemplate />}
+        ></Route>
+
         <Route path="/phongbep" element={<PhongBep />}></Route>
         <Route path="/phongbep/:id" element={<DetailedTemplate />}></Route>
         <Route path="/xemtintuc" element={<DetailedNews />}></Route>

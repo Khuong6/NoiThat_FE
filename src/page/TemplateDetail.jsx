@@ -28,7 +28,7 @@ export const DetailedTemplate = () => {
     <>
       <Header />
       <div className="pt-10 pb-5 pl-20 pr-20 bg-gradient-to-r from-white via-blue-200 to-white  ">
-        <div className="text text-center mb-5 text-4xl font-bold ">
+        <div className="text text-center mb-5 text-4xl font-bold  ">
           {template?.name}
         </div>
         <div className="text text-center mb-5 text-4xl font-bold ">
@@ -37,14 +37,20 @@ export const DetailedTemplate = () => {
             src={template?.thumbnail}
             style={{
               width: "100%",
-              height: "auto",
+              height: "100%",
             }}
           />
         </div>
         <div className="text text-center mb-3 text-2xl font-bold">
           <h2>Template Detail</h2>
         </div>
-
+      </div>
+      <div
+        className="grid grid-cols-2 gap-2"
+        style={{
+          width: "100%",
+        }}
+      >
         {template?.templateSections?.map((item, index) => {
           //   if (index === 0) {
           //     return (
@@ -74,18 +80,17 @@ export const DetailedTemplate = () => {
 
           return (
             <>
-              <Row
-                gutter={[20, 20]}
-                style={{
-                  width: "100%",
-                }}
-              >
-                <Col span={12} key={index}>
+              <Row>
+                <Col span={24} key={index}>
                   <div className="card lg:card-side bg-base-100 shadow-xl">
                     <figure>
                       <img
                         src={item.resources[0].url}
                         alt={`Item ${index + 1}`}
+                        style={{
+                          width: "100%",
+                          height: "400px",
+                        }}
                       />
                     </figure>
                     <div className="card-body">

@@ -2,22 +2,23 @@ import { useEffect, useState } from "react";
 import api from "../config/axios";
 import Footer from "../components/Footer";
 import Header from "../components/Header";
+import { Col, Row } from "antd";
 
 function PhongKhach() {
-  const [data, setData] = useState([]);
+  const [template, setTemplate] = useState([]);
 
   useEffect(() => {
-    const fetchData = async () => {
-      try {
-        const response = await api.get("/template");
-        setData(response.data.templateSectionDTOS);
-      } catch (error) {
-        console.error("Lỗi khi lấy dữ liệu:", error);
-      }
-    };
-
-    fetchData();
+    fetchTemplate();
   }, []);
+
+  const fetchTemplate = async (id) => {
+    try {
+      const response = await api.get(`/template/${id}`); // Sử dụng axios để gọi API
+      setTemplate(response.data);
+    } catch (error) {
+      console.error("Error fetching data:", error);
+    }
+  };
 
   return (
     <>
@@ -45,30 +46,35 @@ function PhongKhach() {
             </div>
           </div>
         </div>
-      </div>
-
-      {/* Mapping qua dữ liệu từ API để render các card */}
-      <div className="flex flex-col w-full pt-5 pb-10">
-        {data.map((section, index) => (
-          <div key={index} className="flex w-full">
-            <div className="card lg:card-side bg-base-100 shadow-xl">
-              <figure>
-                <img src={section.img} alt={section.name} />
-              </figure>
-              <div className="card-body">
-                <h2 className="card-title">{section.name}</h2>
-                <p>Click the button to listen on Spotiwhy app.</p>
-                <div className="card-actions justify-end">
-                  <button className="btn btn-primary">Listen</button>
+        <div className="flex flex-col w-full pt-5 pb-10">
+          <Row gutter={[20, 20]}>
+            {template.map((template, index) => (
+              <Col span={12} key={index}>
+                <div className="card lg:card-side bg-base-100 shadow-xl">
+                  <figure>
+                    <img
+                      src={template.thumbnail}
+                      alt={template.name}
+                      style={{
+                        width: "700px",
+                        height: "300px",
+                      }}
+                    />
+                  </figure>
+                  <div className="card-body">
+                    <h2 className="card-title">{template.name}</h2>
+                    {/* <p>{template.templateSectionDTOS[0].name}</p> */}
+                    <div className="card-actions justify-end">
+                      {/* <Link to={`/phogkhach/${template.id}`}> */}
+                      <button className="btn btn-primary">Listen</button>
+                      {/* </Link> */}
+                    </div>
+                  </div>
                 </div>
-              </div>
-            </div>
-            {/* Thêm phần divider giữa các card */}
-            {index < data.length - 1 && (
-              <div className="divider divider-horizontal"></div>
-            )}
-          </div>
-        ))}
+              </Col>
+            ))}
+          </Row>
+        </div>
       </div>
 
       <Footer />
