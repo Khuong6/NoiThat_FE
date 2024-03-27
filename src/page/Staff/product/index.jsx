@@ -25,6 +25,7 @@ import { UploadOutlined } from "@ant-design/icons";
 export const ManageProduct = () => {
   const [options, setOptions] = useState([]);
   const [products, setProducts] = useState([]);
+
   const [form] = useForm();
   const columns = [
     {
@@ -117,6 +118,7 @@ export const ManageProduct = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
 
   const showModal = () => {
+    setFileList([]);
     setIsModalOpen(true);
   };
 
@@ -433,13 +435,75 @@ export const ManageProduct = () => {
           src={previewImage}
         />
       </Modal>
-
-      <Button></Button>
     </div>
   );
 };
 
 const ProductDetail = ({ data }) => {
+  const calcTotalDetail = () => {
+    let total = 0;
+    const length = form.getFieldValue("length");
+    const width = form.getFieldValue("width");
+    const quantity = form.getFieldValue("quantity");
+    const pricePerUnit = form.getFieldValue("pricePerUnit");
+    // const weight = form.getFieldValue("weight");
+    let weight = 0;
+    if (data.unit === "ITEM") {
+      weight = 1;
+    } else if (data.unit === "METER") {
+      weight = length / 1000;
+    } else if (data.unit === "SQUARE_METER") {
+      weight = ((length / 1000) * width) / 1000;
+    }
+    console.log(Number(weight));
+
+    // const length = form.getFieldValue("length")
+    total = pricePerUnit * Number(weight) * Number(quantity);
+    console.log(total);
+    form.setFieldValue("total", total);
+    form.setFieldValue("weight", weight);
+  };
+  const filterOption = (input, option) =>
+    (option?.label ?? "").toLowerCase().includes(input.toLowerCase());
+  const [fileList, setFileList] = useState([]);
+  const handleChangeImage = ({ fileList: newFileList }) => {
+    console.log(newFileList);
+    setFileList(newFileList);
+  };
+  const handleCancelImage = () => setPreviewOpen(false);
+  const handlePreview = async (file) => {
+    if (!file.url && !file.preview) {
+      file.preview = await getBase64(file.originFileObj);
+    }
+    setPreviewImage(file.url || file.preview);
+    setPreviewOpen(true);
+    setPreviewTitle(
+      file.name || file.url.substring(file.url.lastIndexOf("/") + 1)
+    );
+  };
+
+  const uploadButton = (
+    <button
+      style={{
+        border: 0,
+        background: "none",
+      }}
+      type="button"
+    >
+      <PlusOutlined />
+      <div
+        style={{
+          marginTop: 8,
+        }}
+      >
+        Upload
+      </div>
+    </button>
+  );
+  const [disableLength, setDisableLength] = useState(false);
+  const [disableWidth, setDisableWidth] = useState(false);
+  const [disableheight, setDisableheight] = useState(false);
+  const [total, setTotal] = useState(0);
   const [productDetails, setProductDetails] = useState([]);
   const [productUnit, setProductUnit] = useState([]);
   const [showModal, setShowModal] = useState(false);
@@ -455,6 +519,7 @@ const ProductDetail = ({ data }) => {
     const response = await api.get(`/productDetail-productId/${id}`);
     setProductDetails(response.data);
   };
+
   const fetchProductUnit = async (id) => {
     const res = await api.get(`/product/${id}`);
     setProductUnit(res.data);
@@ -509,13 +574,18 @@ const ProductDetail = ({ data }) => {
       },
     },
   ];
-
+  const firstUnit = productUnit.length > 0 ? productUnit[0].unit : "";
   const onFinish = async (values) => {
-    if (values.resourceDTOS && values.resourceDTOS[0]) {
-      const file = values.resourceDTOS[0].url.file.originFileObj;
+    console.log(values);
+    if (values.resource.file) {
+      const file = values.resource.file.originFileObj;
       const url = await uploadFile(file);
-      values.resourceDTOS[0].url = url;
-      values.resourceDTOS[0].type = "IMG";
+      values.resourceDTOS = [
+        {
+          url: url,
+          type: "IMG",
+        },
+      ];
     }
 
     console.log(values);
@@ -539,6 +609,30 @@ const ProductDetail = ({ data }) => {
         <Button
           type="primary"
           onClick={() => {
+            form.setFieldValue("unit", data.unit);
+            form.setFieldValue("unit", data.unit);
+            form.setFieldValue("pricePerUnit", data.pricePerUnit);
+            form.setFieldValue("length", data.length);
+            form.setFieldValue("width", data.width);
+            form.setFieldValue("height", data.height);
+            form.setFieldValue("weight", data.weight);
+            form.setFieldValue("quantity", 0);
+            form.setFieldValue("total", 0);
+
+            if (data.unit === "ITEM") {
+              setDisableLength(true);
+              setDisableWidth(true);
+              setDisableheight(true);
+            } else if (data.unit === "METER") {
+              setDisableLength(false);
+              setDisableWidth(true);
+              setDisableheight(true);
+            } else {
+              setDisableLength(false);
+              setDisableWidth(false);
+              setDisableheight(true);
+            }
+            calcTotalDetail();
             setShowModal(true);
           }}
         >
@@ -546,7 +640,282 @@ const ProductDetail = ({ data }) => {
         </Button>
       </Row>
       <Table dataSource={productDetails} columns={columns} />
+
       <Modal
+        title="Add New Product"
+        open={showModal}
+        onCancel={() => {
+          form.resetFields();
+          setShowModal(false);
+        }}
+        onOk={() => form.submit()}
+      >
+        <Form
+          onChange={() => {
+            calcTotalDetail();
+          }}
+          form={form}
+          labelCol={{
+            span: 24,
+          }}
+          onFinish={onFinish}
+        >
+          <Form.Item label="Name" name="name">
+            <Input
+              showSearch
+              placeholder="Select a item"
+              optionFilterProp="children"
+              onChange={(value) => {
+                console.log(value);
+                const product = products.filter(
+                  (item) => item.productId === value
+                )[0];
+                console.log(product);
+                form.setFieldValue("unit", product.unit);
+                form.setFieldValue("pricePerUnit", product.pricePerUnit);
+                form.setFieldValue("length", product.length);
+                form.setFieldValue("width", product.width);
+                form.setFieldValue("height", product.height);
+                form.setFieldValue("weight", product.weight);
+                form.setFieldValue("quantity", 0);
+                form.setFieldValue("total", 0);
+
+                if (product.unit === "ITEM") {
+                  setDisableLength(true);
+                  setDisableWidth(true);
+                  setDisableheight(true);
+                } else if (product.unit === "METER") {
+                  setDisableLength(false);
+                  setDisableWidth(true);
+                  setDisableheight(true);
+                } else {
+                  setDisableLength(false);
+                  setDisableWidth(false);
+                  setDisableheight(true);
+                }
+                calcTotalDetail();
+              }}
+              // onSearch={onSearch}
+              filterOption={filterOption}
+              options={productUnit.map((item, index) => {
+                return {
+                  label: item.name,
+                  value: item.productId,
+                };
+              })}
+            />
+          </Form.Item>
+          <Row gutter={12}>
+            <Col span={8}>
+              <Form.Item label="Length" name="length">
+                <Input type="number" disabled={disableLength} />
+              </Form.Item>
+            </Col>
+            <Col span={8}>
+              <Form.Item label="Width" name="width">
+                <Input type="number" disabled={disableWidth} />
+              </Form.Item>
+            </Col>
+            <Col span={8}>
+              <Form.Item label="Height" name="height">
+                <Input type="number" disabled={disableheight} />
+              </Form.Item>
+            </Col>
+          </Row>
+          <Row gutter={12}>
+            <Col span={8}>
+              <Form.Item label="Unit" name="unit">
+                <Input disabled />
+              </Form.Item>
+            </Col>
+            <Col span={8}>
+              <Form.Item label="Weight" name="weight">
+                <Input disabled />
+              </Form.Item>
+            </Col>
+            <Col span={8}>
+              <Form.Item label="Price per unit" name="pricePerUnit">
+                <InputNumber
+                  disabled
+                  addonAfter={"VND"}
+                  style={{
+                    width: 150,
+                  }}
+                  defaultValue={0}
+                  p
+                  formatter={(value) =>
+                    `${value}`.replace(/\B(?=(\d{3})+(?!\d))/g, ",")
+                  }
+                  parser={(value) => value.replace(/\$\s?|(,*)/g, "")}
+                />
+              </Form.Item>
+            </Col>
+            <Col span={8}>
+              <Form.Item label="Quantity" name="quantity">
+                <Input type="number" />
+              </Form.Item>
+            </Col>
+            <Col span={8}>
+              <Form.Item label="Total" name="total">
+                <InputNumber
+                  value={total}
+                  disabled
+                  addonAfter={"VND"}
+                  style={{
+                    width: 200,
+                  }}
+                  defaultValue={0}
+                  p
+                  formatter={(value) =>
+                    `${value}`.replace(/\B(?=(\d{3})+(?!\d))/g, ",")
+                  }
+                  parser={(value) => value.replace(/\$\s?|(,*)/g, "")}
+                />
+              </Form.Item>
+            </Col>
+            <Col span={8}>
+              <Row gutter={12} align={"middle"}>
+                <Col span={18}>
+                  <Form.Item
+                    label="Color"
+                    name="colorId"
+                    rules={[
+                      {
+                        required: true,
+                        message: "Please input product color!",
+                      },
+                    ]}
+                  >
+                    <Select>
+                      {colors.map((item) => {
+                        return (
+                          <Select.Option value={item.id}>
+                            {item.color}
+                          </Select.Option>
+                        );
+                      })}
+                    </Select>
+                  </Form.Item>
+                </Col>
+                <Col span={6}>
+                  <Button
+                    onClick={() => setShowModalColor(true)}
+                    type="primary"
+                    icon={<PlusSquareOutlined />}
+                  ></Button>
+                </Col>
+              </Row>
+            </Col>
+            <Col span={24}>
+              <Row gutter={12} align={"middle"}>
+                <Col span={22}>
+                  <Form.Item
+                    label="Material"
+                    name="materialId"
+                    rules={[
+                      {
+                        required: true,
+                        message: "Please input product material!",
+                      },
+                    ]}
+                  >
+                    <Select>
+                      {materials.map((item) => {
+                        return (
+                          <Select.Option value={item.id}>
+                            {item.size}
+                          </Select.Option>
+                        );
+                      })}
+                    </Select>
+                  </Form.Item>
+                </Col>
+                <Col span={2}>
+                  <Button
+                    onClick={() => setShowModalMaterial(true)}
+                    type="primary"
+                    icon={<PlusSquareOutlined />}
+                  ></Button>
+                </Col>
+              </Row>
+            </Col>
+          </Row>
+          <Form.Item
+            name="resource"
+            label="Hình ảnh"
+            className="post-form-item"
+          >
+            <Upload
+              action={() => {
+                console.log(123);
+              }}
+              beforeUpload={false}
+              listType="picture-card"
+              fileList={fileList}
+              onPreview={handlePreview}
+              onChange={handleChangeImage}
+            >
+              {uploadButton}
+            </Upload>
+          </Form.Item>
+        </Form>
+      </Modal>
+
+      <Modal
+        open={showModalColor}
+        onCancel={() => {
+          setShowModalColor(false);
+        }}
+        onOk={() => {
+          formColor.submit();
+        }}
+      >
+        <Form
+          form={formColor}
+          onFinish={async (values) => {
+            console.log(data.id);
+            await api.post(`/productColor/${data.id}`, values);
+            fetchProductColor(data.id);
+            formColor.resetFields();
+            setShowModalColor(false);
+          }}
+        >
+          <Form.Item label="Color" name="color">
+            <Input />
+          </Form.Item>
+        </Form>
+      </Modal>
+
+      <Modal
+        open={showModalMaterial}
+        onCancel={() => {
+          setShowModalMaterial(false);
+        }}
+        onOk={() => {
+          formMaterial.submit();
+        }}
+      >
+        <Form
+          form={formMaterial}
+          onFinish={async (values) => {
+            console.log(data.id);
+            await api.post(`/productMaterial/${data.id}`, values);
+            fetchProductMaterial(data.id);
+            formMaterial.resetFields();
+            setShowModalMaterial(false);
+          }}
+        >
+          <Form.Item label="Material" name="size">
+            <Input />
+          </Form.Item>
+        </Form>
+      </Modal>
+    </>
+  );
+};
+
+{
+  /* <Modal
         open={showModal}
         onCancel={() => {
           setShowModal(false);
@@ -787,7 +1156,5 @@ const ProductDetail = ({ data }) => {
             <Input />
           </Form.Item>
         </Form>
-      </Modal>
-    </>
-  );
-};
+      </Modal>  */
+}

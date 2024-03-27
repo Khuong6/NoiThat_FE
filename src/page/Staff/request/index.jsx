@@ -10,6 +10,7 @@ import { formatDistance } from "date-fns";
 import TextArea from "antd/es/input/TextArea";
 import { useForm } from "antd/es/form/Form";
 import Header from "../../../components/Header";
+import Footer from "../../../components/Footer";
 
 export const ManageRequest = ({ isCustomer }) => {
   const [request, setCategories] = useState([]);
@@ -128,36 +129,48 @@ export const ManageRequest = ({ isCustomer }) => {
 
   return (
     <>
-      {/* <Button onClick={showModal} type="primary">
-        Add
-      </Button> */}
-      <Table
-        expandable={{
-          expandedRowRender: (record, index) => {
-            console.log(record);
-            return (
-              <QuotationDetail
-                isCustomer={isCustomer}
-                key={index}
-                requestId={record.id}
-              />
-            );
-          },
-        }}
-        columns={columns}
-        dataSource={request}
-      />
-      <Modal
-        open={isModalOpen}
-        width={1300}
-        onCancel={() => {
-          dispatch(reset());
-          setIsModalOpen(false);
-          setCurrentRequest(null);
+      <Header />
+
+      <div
+        className="pt-40"
+        style={{
+          position: "fixed",
+          top: 0,
+          left: 0,
+          width: "100%",
+          height: "100%",
+
+          zIndex: 999,
         }}
       >
-        <SanPham info={currentRequest} handleCheckout={handleCheckout} />
-      </Modal>
+        <Table
+          expandable={{
+            expandedRowRender: (record, index) => {
+              console.log(record);
+              return (
+                <QuotationDetail
+                  isCustomer={isCustomer}
+                  key={index}
+                  requestId={record.id}
+                />
+              );
+            },
+          }}
+          columns={columns}
+          dataSource={request}
+        />
+        <Modal
+          open={isModalOpen}
+          width={1300}
+          onCancel={() => {
+            dispatch(reset());
+            setIsModalOpen(false);
+            setCurrentRequest(null);
+          }}
+        >
+          <SanPham info={currentRequest} handleCheckout={handleCheckout} />
+        </Modal>
+      </div>
     </>
   );
 };

@@ -65,6 +65,7 @@ export const Header = () => {
         style={{
           borderBottomLeftRadius: "25px",
           borderBottomRightRadius: "25px",
+          zIndex: 10000,
         }}
       >
         <div
