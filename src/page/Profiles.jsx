@@ -97,7 +97,7 @@ function Profiles() {
         <div className="grid grid-cols-2 gap-x-4">
           <div>
             <div className="block mb-2 text-sm font-bold text-gray-600">
-              Họ và tên
+              Username{" "}
             </div>
             <label className="input input-bordered flex items-center gap-2">
               <svg
@@ -126,7 +126,7 @@ function Profiles() {
           </div>
           <div>
             <div className="block mb-2 text-sm font-bold text-gray-600">
-              Số điện thoại
+              Numberphone
             </div>
             <label className="input input-bordered flex items-center gap-2">
               <svg
@@ -182,7 +182,7 @@ function Profiles() {
           </div>
           <div>
             <div className="block mb-2 text-sm font-bold text-gray-600">
-              Địa chỉ
+              Adrees
             </div>
             <label className="input input-bordered flex items-center gap-2">
               <svg

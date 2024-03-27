@@ -1,10 +1,26 @@
-import { useState } from "react";
-import reactLogo from "/src/assets/react.svg";
-import viteLogo from "/vite.svg";
-import Footer from "../components/Footer";
+import { useEffect, useState } from "react";
 import Header from "../components/Header";
+import Footer from "../components/Footer";
+import api from "../config/axios";
+import { Col, Row } from "antd";
+import { Link } from "react-router-dom";
 
-export const PhongBep = () => {
+const PhongBep = () => {
+  const [template, setTemplate] = useState([]);
+
+  useEffect(() => {
+    fetchTemplate();
+  }, []);
+
+  const fetchTemplate = async () => {
+    try {
+      const response = await api.get("/template"); // Sử dụng axios để gọi API
+      setTemplate(response.data);
+    } catch (error) {
+      console.error("Error fetching data:", error);
+    }
+  };
+
   return (
     <>
       <Header />
@@ -28,53 +44,33 @@ export const PhongBep = () => {
                   trí phòng bếp có bàn đảo, các mẫu tủ bếp đẹp thông minh
                 </p>
               </p>
-              {/* <button className="btn btn-primary">Get Started</button> */}
             </div>
           </div>
         </div>
 
         <div className="flex flex-col w-full pt-5 pb-10">
-          {/* Content 1 & 2*/}
-          <div className="flex w-full pt">
-            <div className="card lg:card-side bg-base-100 shadow-xl">
-              <figure>
-                <img
-                  src="https://daisyui.com/images/stock/photo-1494232410401-ad00d5433cfa.jpg"
-                  alt="Album"
-                />
-              </figure>
-              <div className="card-body">
-                <h2 className="card-title">New album is released!</h2>
-                <p>Click the button to listen on Spotiwhy app.</p>
-                <div className="card-actions justify-end">
-                  <button className="btn btn-primary">Listen</button>
+          <Row gutter={[20, 20]}>
+            {template.map((template, index) => (
+              <Col span={12} key={index}>
+                <div className="card lg:card-side bg-base-100 shadow-xl">
+                  <figure>
+                    <img src={template.thumbnail} alt={template.name} />
+                  </figure>
+                  <div className="card-body">
+                    <h2 className="card-title">{template.name}</h2>
+                    {/* <p>{template.templateSectionDTOS[0].name}</p> */}
+                    <div className="card-actions justify-end">
+                      <Link to={`/phongbep/${template.id}`}>
+                        <button className="btn btn-primary">Listen</button>
+                      </Link>
+                    </div>
+                  </div>
                 </div>
-              </div>
-            </div>
-            {/*  */}
-            <div className="divider divider-horizontal"></div>
-            {/*  */}
-            <div className="card lg:card-side bg-base-100 shadow-xl ">
-              <figure>
-                <img
-                  src="https://daisyui.com/images/stock/photo-1494232410401-ad00d5433cfa.jpg"
-                  alt="Album"
-                />
-              </figure>
-              <div className="card-body">
-                <h2 className="card-title">New album is released!</h2>
-                <p>Click the button to listen on Spotiwhy app.</p>
-                <div className="card-actions justify-end">
-                  <button className="btn btn-primary">Listen</button>
-                </div>
-              </div>
-            </div>
-          </div>
+              </Col>
+            ))}
+          </Row>
 
-          <div className="divider"></div>
-          {/* Content 3 & 4 */}
-          <div className="flex w-full">
-            <div className="card lg:card-side bg-base-100 shadow-xl">
+          {/* <div className="card lg:card-side bg-base-100 shadow-xl ">
               <figure>
                 <img
                   src="https://daisyui.com/images/stock/photo-1494232410401-ad00d5433cfa.jpg"
@@ -88,66 +84,10 @@ export const PhongBep = () => {
                   <button className="btn btn-primary">Listen</button>
                 </div>
               </div>
-            </div>
-            {/*  */}
-            <div className="divider divider-horizontal"></div>
-            {/*  */}
-            <div className="card lg:card-side bg-base-100 shadow-xl ">
-              <figure>
-                <img
-                  src="https://daisyui.com/images/stock/photo-1494232410401-ad00d5433cfa.jpg"
-                  alt="Album"
-                />
-              </figure>
-              <div className="card-body">
-                <h2 className="card-title">New album is released!</h2>
-                <p>Click the button to listen on Spotiwhy app.</p>
-                <div className="card-actions justify-end">
-                  <button className="btn btn-primary">Listen</button>
-                </div>
-              </div>
-            </div>
-          </div>
-
-          <div className="divider"></div>
-          {/* Content 5 & 6 */}
-          <div className="flex w-full">
-            <div className="card lg:card-side bg-base-100 shadow-xl">
-              <figure>
-                <img
-                  src="https://daisyui.com/images/stock/photo-1494232410401-ad00d5433cfa.jpg"
-                  alt="Album"
-                />
-              </figure>
-              <div className="card-body">
-                <h2 className="card-title">New album is released!</h2>
-                <p>Click the button to listen on Spotiwhy app.</p>
-                <div className="card-actions justify-end">
-                  <button className="btn btn-primary">Listen</button>
-                </div>
-              </div>
-            </div>
-            {/*  */}
-            <div className="divider divider-horizontal"></div>
-            {/*  */}
-            <div className="card lg:card-side bg-base-100 shadow-xl ">
-              <figure>
-                <img
-                  src="https://daisyui.com/images/stock/photo-1494232410401-ad00d5433cfa.jpg"
-                  alt="Album"
-                />
-              </figure>
-              <div className="card-body">
-                <h2 className="card-title">New album is released!</h2>
-                <p>Click the button to listen on Spotiwhy app.</p>
-                <div className="card-actions justify-end">
-                  <button className="btn btn-primary">Listen</button>
-                </div>
-              </div>
-            </div>
-          </div>
+            </div> */}
         </div>
       </div>
+
       <Footer />
     </>
   );

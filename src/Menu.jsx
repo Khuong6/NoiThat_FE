@@ -33,6 +33,7 @@ import { ManageBlog } from "./page/Staff/blog";
 import { ManageAccount } from "./page/Admin/account";
 import { App } from "./page/App";
 import ECatalogue from "./page/ECatalogue";
+import { DetailedTemplate } from "./page/TemplateDetail";
 
 function Menu() {
   return (
@@ -48,17 +49,20 @@ function Menu() {
         <Route path="/phongngu" element={<PhongNgu />}></Route>
         <Route path="/trangchu" element={<Home />}></Route>
         <Route path="/phongkhach" element={<PhongKhach />}></Route>
-        <Route path="/phongbep" element={<PhongBep />}></Route>
+
         <Route path="/profile" element={<Profiles />}></Route>
         <Route path="/SignUpPage" element={<SignUpPage />}></Route>
         <Route path="/request" element={<Request />}></Route>
         <Route path="/sanpham" element={<SanPham />}></Route>
-        <Route path="/app" element={<App />}></Route>
+        <Route path="/app/" element={<App />}></Route>
+
         <Route path="/ecatalogue" element={<ECatalogue />}></Route>
         <Route
           path="/quotationrequest"
           element={<ManageRequest isCustomer />}
         ></Route>
+        <Route path="/phongbep" element={<PhongBep />}></Route>
+        <Route path="/phongbep/:id" element={<DetailedTemplate />}></Route>
         <Route path="/xemtintuc" element={<DetailedNews />}></Route>
         <Route path="/duan" element={<Project />}></Route>
         <Route path="/duan/:id" element={<DetailedProject />}></Route>

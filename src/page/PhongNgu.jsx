@@ -1,7 +1,16 @@
+import { useEffect, useState } from "react";
 import Footer from "../components/Footer";
 import Header from "../components/Header";
 
 export const PhongNgu = () => {
+  const [templateSections, setTemplateSections] = useState([]);
+  useEffect(() => {
+    // Fetch data from API
+    fetch("API_ENDPOINT_HERE")
+      .then((response) => response.json())
+      .then((data) => setTemplateSections(data.templateSections))
+      .catch((error) => console.error("Lỗi khi lấy dữ liệu:", error));
+  }, []);
   return (
     <>
       <Header />
@@ -32,119 +41,120 @@ export const PhongNgu = () => {
 
         <div className="flex flex-col w-full pt-5 pb-10">
           {/* Content 1 & 2*/}
-          <div className="flex w-full pt">
-            <div
-              className="card lg:card-side bg-base-100 shadow-xl"
-              style={{
-                width: "700px", // Điều chỉnh kích thước của thẻ card theo nhu cầu
-                marginRight: "20px", // Khoảng cách giữa các thẻ card
-              }}
-            >
-              <figure>
-                <img
-                  src="https://noithatsanvuon.com/images/2020/12/22/Mang-den-ve-dep-vuot-thoi-gian-1.jpg"
-                  alt="Album"
-                  style={{ height: 270, width: 450 }}
-                />
-              </figure>
-              <div className="card-body">
-                <h2 className="card-title">Phòng Ngủ Châu Âu</h2>
-                <p>Nội thất Châu Âu hiện đại, sang trọng</p>
-                <div className="card-actions justify-end">
-                  <button className="btn btn-primary">Chi Tiết</button>
+          {templateSections.map((section) => (
+            <div className="flex w-full pt" key={section.id}>
+              <div
+                className="card lg:card-side bg-base-100 shadow-xl"
+                style={{
+                  width: "700px",
+                  marginRight: "20px",
+                }}
+              >
+                <figure>
+                  <img
+                    src={section.resources[0].url}
+                    alt={section.name}
+                    style={{ height: 270, width: 450 }}
+                  />
+                </figure>
+                <div className="card-body">
+                  <h2 className="card-title">{section.name}</h2>
+                  {/* Bạn có thể thêm chi tiết hơn ở đây dựa trên phản hồi API của bạn */}
+                  <div className="card-actions justify-end">
+                    <button className="btn btn-primary">Chi Tiết</button>
+                  </div>
                 </div>
               </div>
+              <div className="divider divider-horizontal"></div>
             </div>
-            {/*  */}
-            <div className="divider divider-horizontal"></div>
-            {/*  */}
-            <div
-              className="card lg:card-side bg-base-100 shadow-xl "
-              style={{
-                width: "700px", // Điều chỉnh kích thước của thẻ card theo nhu cầu
-                marginRight: "20px", // Khoảng cách giữa các thẻ card
-              }}
-            >
-              <figure>
-                <img
-                  src="https://furaka.vn/wp-content/uploads/2022/05/Decor-phong-ngu.png"
-                  alt="Album"
-                  style={{ height: 270, width: 450 }}
-                />
-              </figure>
-              <div className="card-body">
-                <h2 className="card-title">Phòng Ngủ Vintage</h2>
-                <p>
-                  Phòng ngủ Vintage với nội thất vintage
-                  <p> nhẹ nhàng, ấm áp.</p>
-                </p>
-                <div className="card-actions justify-end">
-                  <button className="btn btn-primary">Chi Tiết</button>
-                </div>
+          ))}
+
+          <div
+            className="card lg:card-side bg-base-100 shadow-xl "
+            style={{
+              width: "700px", // Điều chỉnh kích thước của thẻ card theo nhu cầu
+              marginRight: "20px", // Khoảng cách giữa các thẻ card
+            }}
+          >
+            <figure>
+              <img
+                src="https://furaka.vn/wp-content/uploads/2022/05/Decor-phong-ngu.png"
+                alt="Album"
+                style={{ height: 270, width: 450 }}
+              />
+            </figure>
+            <div className="card-body">
+              <h2 className="card-title">Phòng Ngủ Vintage</h2>
+              <p>
+                Phòng ngủ Vintage với nội thất vintage
+                <p> nhẹ nhàng, ấm áp.</p>
+              </p>
+              <div className="card-actions justify-end">
+                <button className="btn btn-primary">Chi Tiết</button>
               </div>
             </div>
           </div>
-
-          <div className="divider"></div>
-          {/* Content 3 & 4 */}
-          <div className="flex w-full">
-            <div
-              className="card lg:card-side bg-base-100 shadow-xl"
-              style={{
-                width: "700px", // Điều chỉnh kích thước của thẻ card theo nhu cầu
-                marginRight: "20px", // Khoảng cách giữa các thẻ card
-              }}
-            >
-              <figure>
-                <img
-                  src="https://storage.googleapis.com/digital-platform/hinh_anh_10_y_tuong_trang_tri_phong_ngu_kieu_han_quoc_dep_hien_dai_so_1_83e992d9b5/hinh_anh_10_y_tuong_trang_tri_phong_ngu_kieu_han_quoc_dep_hien_dai_so_1_83e992d9b5.jpg"
-                  alt="Album"
-                  style={{ height: 270, width: 450 }}
-                />
-              </figure>
-              <div className="card-body">
-                <h2 className="card-title">Phòng Ngủ Hàn Quốc</h2>
-                <p>
-                  Phòng ngủ Hàn Quốc,{" "}
-                  <p>nội thất cơ bản đến từ xứ sở Kim Chi.</p>
-                </p>
-                <div className="card-actions justify-end">
-                  <button className="btn btn-primary">Chi Tiết</button>
-                </div>
-              </div>
-            </div>
-            {/*  */}
-            <div className="divider divider-horizontal"></div>
-            {/*  */}
-            <div
-              className="card lg:card-side bg-base-100 shadow-xl "
-              style={{
-                width: "700px", // Điều chỉnh kích thước của thẻ card theo nhu cầu
-                marginRight: "20px", // Khoảng cách giữa các thẻ card
-              }}
-            >
-              <figure style={{ height: 270, width: 450 }}>
-                <img
-                  src="https://storage.googleapis.com/digital-platform/hinh_anh_goi_y_cach_trang_tri_phong_ngu_kieu_nhat_toi_gian_sang_trong_so_11_b16adb523d/hinh_anh_goi_y_cach_trang_tri_phong_ngu_kieu_nhat_toi_gian_sang_trong_so_11_b16adb523d.jpg"
-                  alt="Album"
-                />
-              </figure>
-              <div className="card-body">
-                <h2 className="card-title">Phòng ngủ Nhật Bản</h2>
-                <p>
-                  Mẫu phòng đến từ <p>xứ sở Hoa Anh Đào</p>
-                </p>
-                <div className="card-actions justify-end">
-                  <button className="btn btn-primary">Chi Tiết</button>
-                </div>
-              </div>
-            </div>
-          </div>
-
-          <div className="divider"></div>
-          {/* Content 5 & 6 */}
         </div>
+
+        <div className="divider"></div>
+        {/* Content 3 & 4 */}
+        <div className="flex w-full">
+          <div
+            className="card lg:card-side bg-base-100 shadow-xl"
+            style={{
+              width: "700px", // Điều chỉnh kích thước của thẻ card theo nhu cầu
+              marginRight: "20px", // Khoảng cách giữa các thẻ card
+            }}
+          >
+            <figure>
+              <img
+                src="https://storage.googleapis.com/digital-platform/hinh_anh_10_y_tuong_trang_tri_phong_ngu_kieu_han_quoc_dep_hien_dai_so_1_83e992d9b5/hinh_anh_10_y_tuong_trang_tri_phong_ngu_kieu_han_quoc_dep_hien_dai_so_1_83e992d9b5.jpg"
+                alt="Album"
+                style={{ height: 270, width: 450 }}
+              />
+            </figure>
+            <div className="card-body">
+              <h2 className="card-title">Phòng Ngủ Hàn Quốc</h2>
+              <p>
+                Phòng ngủ Hàn Quốc, <p>nội thất cơ bản đến từ xứ sở Kim Chi.</p>
+              </p>
+              <div className="card-actions justify-end">
+                <button className="btn btn-primary">Chi Tiết</button>
+              </div>
+            </div>
+          </div>
+          {/*  */}
+          <div className="divider divider-horizontal"></div>
+          {/*  */}
+          <div
+            className="card lg:card-side bg-base-100 shadow-xl "
+            style={{
+              width: "700px", // Điều chỉnh kích thước của thẻ card theo nhu cầu
+              marginRight: "20px", // Khoảng cách giữa các thẻ card
+            }}
+          >
+            <figure style={{ height: 270, width: 450 }}>
+              <img
+                src="https://storage.googleapis.com/digital-platform/hinh_anh_goi_y_cach_trang_tri_phong_ngu_kieu_nhat_toi_gian_sang_trong_so_11_b16adb523d/hinh_anh_goi_y_cach_trang_tri_phong_ngu_kieu_nhat_toi_gian_sang_trong_so_11_b16adb523d.jpg"
+                alt="Album"
+              />
+            </figure>
+            <div className="card-body">
+              <h2 className="card-title">Phòng ngủ Nhật Bản</h2>
+              <p>
+                Mẫu phòng đến từ <p>xứ sở Hoa Anh Đào</p>
+              </p>
+              <div className="card-actions justify-end">
+                <button className="btn btn-primary">Chi Tiết</button>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div className="divider"></div>
+        {/* Content 5 & 6 */}
       </div>
+
       <Footer />
     </>
   );
