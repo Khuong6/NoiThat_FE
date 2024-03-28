@@ -83,10 +83,11 @@ export const Header = () => {
       >
         <div
           // className="  bg-gradient-to-r from-gray-200 via-blue-200 to-white  "
-          className="bg-black"
+          className=""
           style={{
-            borderBottomLeftRadius: "25px",
-            borderBottomRightRadius: "25px",
+            // borderBottomLeftRadius: "25px",
+            // borderBottomRightRadius: "25px",
+            backgroundColor: "#24201e",
           }}
         >
           <div class=" pt-5  pr-20 pb-5 ">
@@ -148,14 +149,14 @@ export const Header = () => {
                       <span style={{ color: "#ac9984" }}>Mẫu Thiết Kế</span>
                     </a>
                   </li>
-                  <li>
+                  {/* <li>
                     <a
                       className="px-3 py-11 text-070120 capitalize text-sm font-medium transition duration-500 "
                       href="/tintuc"
                     >
                       <span style={{ color: "#ac9984" }}>Blogs</span>
                     </a>
-                  </li>
+                  </li> */}
                   {/* <li>
                     <a
                       className="px-3 py-11 text-070120 capitalize text-sm font-medium transition duration-500 "

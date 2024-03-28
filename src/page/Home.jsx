@@ -57,7 +57,7 @@ export const Home = () => {
           style={{
             // backgroundImage:
             //   "linear-gradient(to right, rgb(135, 206, 250), rgb(224, 255, 255))",
-            backgroundColor: "#332D29",
+            backgroundColor: "#352f2b",
             width: "100%",
             height: "100%",
             paddingBottom: "20px",
@@ -181,7 +181,7 @@ export const Home = () => {
           </div>
 
           {/*dự án đã thực hiện */}
-          <div
+          {/* <div
             className="text-center py-10 text-5xl "
             style={{ fontFamily: "Playfair Display, serif", color: "white" }}
           >
@@ -189,7 +189,7 @@ export const Home = () => {
           </div>
 
           <div class="grid grid-cols-4 gap-4 justify-center items-center ml-10">
-            {/* Artboard 1 */}
+            
             <div>
               <div>
                 <ImageHover
@@ -198,7 +198,7 @@ export const Home = () => {
                 />
               </div>
             </div>
-            {/* Artboard 2 */}
+            
             <div>
               <div>
                 <ImageHover
@@ -207,7 +207,7 @@ export const Home = () => {
                 />
               </div>
             </div>
-            {/* Artboard 3 */}
+            
             <div>
               <div>
                 <ImageHover
@@ -216,7 +216,7 @@ export const Home = () => {
                 />
               </div>
             </div>
-            {/* Artboard 4 */}
+            
             <div>
               <div>
                 <ImageHover
@@ -225,7 +225,7 @@ export const Home = () => {
                 />
               </div>
             </div>
-            {/* Artboard 5 */}
+           
             <div>
               <div>
                 <ImageHover
@@ -234,7 +234,7 @@ export const Home = () => {
                 />
               </div>
             </div>
-            {/* Artboard 6 */}
+            
             <div>
               <div>
                 <ImageHover
@@ -243,7 +243,7 @@ export const Home = () => {
                 />
               </div>
             </div>
-            {/* Artboard 7 */}
+           
             <div>
               <div>
                 <ImageHover
@@ -252,7 +252,7 @@ export const Home = () => {
                 />
               </div>
             </div>
-            {/* Artboard 8 */}
+            
             <div>
               <div>
                 <ImageHover
@@ -261,9 +261,9 @@ export const Home = () => {
                 />
               </div>
             </div>
-          </div>
+          </div> */}
 
-          <a style={{ fontFamily: "Playfair Display, serif" }} href="/request">
+          <a style={{ fontFamily: "Playfair Display, serif" }}>
             <div
               className="text-center py-10 text-5xl"
               style={{ color: "white" }}
@@ -303,7 +303,7 @@ export const Home = () => {
                     Phòng khách Châu Âu với thiết kế hiện đại nhưng đơn giản,
                     hài hòa
                   </div>
-                  <button>See More</button>
+                  {/* <button>See More</button> */}
                 </div>
               </div>
               <div
@@ -333,7 +333,7 @@ export const Home = () => {
                     Phòng khách mang phong cách Vintage nhẹ nhàng tình cảm
                   </div>
 
-                  <button>See More</button>
+                  {/* <button>See More</button> */}
                 </div>
               </div>
               <div
@@ -362,7 +362,7 @@ export const Home = () => {
                   >
                     Phòng khách mang phong cách Vintage với tông màu trắng sáng
                   </div>
-                  <button>See More</button>
+                  {/* <button>See More</button> */}
                 </div>
               </div>
               <div
@@ -392,7 +392,7 @@ export const Home = () => {
                     Phòng ngủ tươi sáng tạo cảm giác sạch sẽ, thoáng mát cho gia
                     chủ
                   </div>
-                  <button>See More</button>
+                  {/* <button>See More</button> */}
                 </div>
               </div>
               <div
@@ -421,7 +421,7 @@ export const Home = () => {
                   >
                     Phòng ngủ với màu trầm tạo cảm giác ấm áp, gần gũi
                   </div>
-                  <button>See More</button>
+                  {/* <button>See More</button> */}
                 </div>
               </div>
               <div
@@ -451,7 +451,7 @@ export const Home = () => {
                     Phòng Bếp, nơi dành cho gia đình quây quần trong những bữa
                     tối cùng nhau
                   </div>
-                  <button>See More</button>
+                  {/* <button>See More</button> */}
                 </div>
               </div>
             </div>

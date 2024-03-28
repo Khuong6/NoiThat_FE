@@ -27,7 +27,7 @@ function Footer() {
       <div
         // className="  bg-gradient-to-r from-gray-200  via-blue-200 to-gray-200  p-8 "
         className=" p-8 "
-        style={{ backgroundColor: "#231F1E" }}
+        style={{ backgroundColor: "#24201e" }}
       >
         <footer className="footer text-base-content ">
           <aside>
@@ -53,21 +53,21 @@ function Footer() {
               Sản Phẩm
             </h6>
             <a
-              href="/phongngu"
+              href="/template/2"
               target="_blank"
               className="link link-hover opacity-80 "
             >
               Phòng Ngủ
             </a>
             <a
-              href="/phongbep"
+              href="/template/4"
               target="_blank"
               className="link link-hover opacity-80"
             >
               Phòng Bếp
             </a>
             <a
-              href="/phongkhach"
+              href="/template/4"
               target="_blank"
               className="link link-hover opacity-80"
             >
@@ -114,7 +114,7 @@ function Footer() {
                   Trang Web được phát triển bởi :
                 </p>
                 <div className="text-center pt-2 link link-hover opacity-80 text-blue-500">
-                  <div>
+                  {/* <div>
                     <a
                       href="https://www.facebook.com/hoang.thanh.que"
                       target="_blank"
@@ -123,7 +123,7 @@ function Footer() {
                     >
                       Vũ Đậu Thành Hoàng
                     </a>
-                  </div>
+                  </div> */}
                   <div>
                     <a
                       href="https://www.facebook.com/bi.vinh.505"
@@ -204,14 +204,19 @@ function Footer() {
             <h6 className=" mb-2 font-bold uppercase border-b-2 border-orange-400 ">
               Thông Tin Thêm
             </h6>
-            <a className="link link-hover opacity-80">Tin Tức</a>
-            <a className="link link-hover opacity-80">Mẫu Thiết Kế Sẵn</a>
             <a
-              href="/sanPhamDon"
-              target="_blank"
               className="link link-hover opacity-80"
+              target="_blank"
+              href="/sanpham"
             >
-              Sản Phẩm Đơn
+              Sản Phẩm
+            </a>
+            <a
+              className="link link-hover opacity-80"
+              target="_blank"
+              href="/duan"
+            >
+              Mẫu Thiết Kế
             </a>
           </nav>
         </footer>

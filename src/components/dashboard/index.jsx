@@ -77,6 +77,11 @@ const Dashboard = ({ role }) => {
           icon: <UserOutlined />,
           label: <Link to={"category"}>Manage Category</Link>,
         },
+        {
+          key: "4",
+          icon: <LogoutOutlined />,
+          label: <Link to={"/login"}>Logout</Link>,
+        },
       ];
     }
   };

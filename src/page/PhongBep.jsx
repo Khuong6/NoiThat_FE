@@ -37,10 +37,10 @@ const PhongBep = () => {
       <Header />
       <div className="pt-10 pl-20 pr-20">
         <div
-          className="hero min-h-screen rounded-[15px] "
+          className="hero min-h-screen rounded-[15px]"
           style={{
             backgroundImage:
-              "url(https://spacet-release.s3.ap-southeast-1.amazonaws.com/img/blog/2023-07-25/6-bo-cuc-phong-bep-pho-bien-nhat-kem-ban-ve-minh-hoa-64bfaea78f7873324f1de014.webp)",
+              "url(https://anhdoan.vn/images/img-banner-detail.png)",
           }}
         >
           <div className="hero-overlay bg-opacity-60 rounded-[15px]"></div>
@@ -50,7 +50,7 @@ const PhongBep = () => {
               <p className="mb-5">
                 Sáng tạo, trẻ trung và đa dạng trong từng thiết kế
                 <p>
-                  Xu hướng thiết kế nội thất phòng bếp hiện nay rất đa dạng Gia
+                  Xu hướng thiết kế nội thất phòng bếp hiện nay rất đa dạng. Gia
                   chủ có thể chọn kiểu bếp không gian mở liền phòng khách, bố
                   trí phòng bếp có bàn đảo, các mẫu tủ bếp đẹp thông minh
                 </p>
@@ -82,9 +82,9 @@ const PhongBep = () => {
                     <h2 className="card-title">{template.name}</h2>
                     {/* <p>{template.templateSectionDTOS[0].name}</p> */}
                     <div className="card-actions justify-end">
-                      <Link to={`/template-detail/${template.id}`}>
+                      {/* <Link to={`/template-detail/${template.id}`}>
                         <button className="btn btn-primary">Listen</button>
-                      </Link>
+                      </Link> */}
                     </div>
                   </div>
                 </div>

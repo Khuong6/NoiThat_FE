@@ -232,7 +232,7 @@ export const Quotation = ({
         </Button>
       )}
       <Modal
-        title="Add New Product"
+        title="Add New Product Detail"
         open={showModal}
         onCancel={() => {
           form.resetFields();

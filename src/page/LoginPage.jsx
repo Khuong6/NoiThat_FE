@@ -27,7 +27,6 @@ function LoginPage() {
 
       localStorage.setItem("account", JSON.stringify(response.data));
       navigate("/trangchu");
-      // setSuccessMessage("Đăng ký thành công!");
       toast.success("Đăng Nhập thành công!");
       localStorage.setItem("token", JSON.stringify(response.data.token));
       if (response.data.role === "ADMIN") {
@@ -41,41 +40,6 @@ function LoginPage() {
       toast.error("Đăng Nhập Thất Bại");
     }
   };
-
-  // const handleLogin = async (e) => {
-  //   e.preventDefault();
-
-  //   try {
-  //     const response = await api.post("/authentication/login", {
-  //       username: username,
-  //       password: password,
-  //     });
-
-  //     const userData = response.data.user;
-  //     const token = response.data.token;
-
-  //     if (userData.status === "NULL") {
-  //       dispatch(login(userData));
-  //       localStorage.setItem("account", JSON.stringify(userData));
-  //       navigate("/trangchu");
-  //       toast.success("Đăng Nhập thành công!");
-  //       localStorage.setItem("token", JSON.stringify(token));
-  //       if (userData.role === "ADMIN") {
-  //         navigate("/dashboard/admin");
-  //       } else if (userData.role === "STAFF") {
-  //         navigate("/dashboard/staff");
-  //       } else {
-  //         navigate("/");
-  //       }
-  //     } else {
-  //       toast.error(
-  //         "Tài khoản của bạn đã bị khóa. Vui lòng liên hệ quản trị viên."
-  //       );
-  //     }
-  //   } catch (e) {
-  //     toast.error("Đăng Nhập Thất Bại");
-  //   }
-  // };
 
   const handleLoginGoogle = async () => {
     const provider = new GoogleAuthProvider();
@@ -267,3 +231,38 @@ function LoginPage() {
   );
 }
 export default LoginPage;
+
+// const handleLogin = async (e) => {
+//   e.preventDefault();
+
+//   try {
+//     const response = await api.post("/authentication/login", {
+//       username: username,
+//       password: password,
+//     });
+
+//     const userData = response.data.user;
+//     const token = response.data.token;
+
+//     if (userData.status === "UNBLOCK") {
+//       dispatch(login(userData));
+//       localStorage.setItem("account", JSON.stringify(userData));
+//       navigate("/trangchu");
+//       toast.success("Đăng Nhập thành công!");
+//       localStorage.setItem("token", JSON.stringify(token));
+//       if (userData.role === "ADMIN") {
+//         navigate("/dashboard/admin");
+//       } else if (userData.role === "STAFF") {
+//         navigate("/dashboard/staff");
+//       } else {
+//         navigate("/");
+//       }
+//     } else {
+//       toast.error(
+//         "Tài khoản của bạn đã bị khóa. Vui lòng liên hệ quản trị viên."
+//       );
+//     }
+//   } catch (e) {
+//     toast.error("Đăng Nhập Thất Bại");
+//   }
+// };

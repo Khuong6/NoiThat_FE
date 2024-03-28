@@ -47,7 +47,7 @@ export const Project = () => {
         <div className="mr-10">
           <Row>
             {blog.map((item, index) => (
-              <Col key={item.id} span={8}>
+              <Col key={item.id} span={8} style={{ paddingBottom: 20 }}>
                 <div className="border ml-5 border-gray-300 overflow-hidden rounded-[15px]">
                   <Link to={`/duan/${item.id}`}>
                     <img
@@ -78,13 +78,13 @@ export const Project = () => {
             ))}
           </Row>
         </div>
-        <div className="mt-10 mb-20">
+        {/* <div className="mt-10 mb-20">
           <ul className="flex justify-center">
             <button className="block border border-gray-300 rounded-md py-2 px-4 bg-white text-gray-700 hover:bg-gray-50">
               Xem Thêm
             </button>
           </ul>
-        </div>
+        </div> */}
       </div>
 
       <Footer />

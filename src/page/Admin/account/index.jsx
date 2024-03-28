@@ -109,7 +109,7 @@ export const ManageAccount = () => {
 
   const fetchAccounts = async () => {
     try {
-      const response = await api.get("/authentication/account");
+      const response = await api.get("/authentication/accounts");
       const filteredAccounts = response.data.filter(
         (product) => !product.deleted
       );
