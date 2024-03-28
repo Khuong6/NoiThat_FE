@@ -158,6 +158,12 @@ const SanPham = ({ info, handleCheckout }) => {
 
     return formattedAmount;
   }
+  const handleDelete = (productId) => {
+    // Gửi action để xóa sản phẩm khỏi giỏ hàng
+    dispatch(remove(productId));
+    // Hiển thị thông báo thành công
+    toast.success("Product removed from cart successfully!");
+  };
 
   return (
     <>
@@ -361,6 +367,9 @@ const SanPham = ({ info, handleCheckout }) => {
                                               }}
                                               onClick={() => {
                                                 dispatch(add(item));
+                                                toast.success(
+                                                  "Add To Cart Success"
+                                                );
                                               }}
                                             >
                                               Add to cart
@@ -393,9 +402,17 @@ const SanPham = ({ info, handleCheckout }) => {
             aria-label="close sidebar"
             className="drawer-overlay"
           ></label>
+          {/* <div
+            className="w-80 min-h-full"
+            style={{ height: "100%", backgroundColor: "#ac9984" }}
+          > */}
           <ul
-            className="menu p-4 w-80 min-h-full bg-base-200 text-base-content"
-            style={{ height: "100%" }}
+            className="menu w-80 min-h-full text-base-content"
+            style={{
+              height: "100%",
+              backgroundColor: "#ac9984",
+              paddingRight: "20px",
+            }}
           >
             {cart.length > 0 ? (
               <>
@@ -407,6 +424,10 @@ const SanPham = ({ info, handleCheckout }) => {
                           <Image
                             style={{
                               width: "100%",
+                              height: "100%",
+                              borderRadius: "15px",
+
+                              zIndex: 99999999,
                             }}
                             src={
                               product.resources && product.resources[0]
@@ -416,64 +437,60 @@ const SanPham = ({ info, handleCheckout }) => {
                           />
                         </Col>
 
-                        <Col span={12}>
-                          <h1
-                            style={{
-                              fontWeight: 600,
-                            }}
-                          >
-                            {product.name}
-                          </h1>
-                          <h1>Quantity: {product.quantity}</h1>
-                          <h1>{convertToCurrency(product.price)}</h1>
-                        </Col>
-                        {/* <ul
-                        style={{
-                          border: "3px solid #ccc",
-                          borderRadius: "10px",
-                          marginBottom: "5px",
-                          padding: 10,
-                        }}
-                      >
-                        <li>So luong: {product.quantity}</li>
-                        <li>{product.name}</li>
-                        <li>{product.price}</li>
-
-                        <li
-                          style={{
-                            justifyContent: "space-between",
-                            alignContent: "flex-end",
-                          }}
+                        <Col
+                          span={12}
+                          style={{ display: "flex", flexDirection: "column" }}
                         >
-                          <Button
-                            type="dashed"
-                            onClick={() => {
-                              dispatch(remove(product));
-                            }}
+                          <div style={{ flex: 1 }}>
+                            <h1
+                              style={{
+                                fontWeight: 600,
+                              }}
+                            >
+                              {product.name}
+                            </h1>
+                            <h1>Quantity: {product.quantity}</h1>
+                            <h1>{convertToCurrency(product.price)}</h1>
+                          </div>
+                          <div
+                            style={{ marginTop: "auto", marginBottom: "3px" }}
                           >
-                            Delete
-                          </Button>
-                        </li>
-                      </ul> */}
+                            <Button
+                              type="dashed"
+                              danger
+                              onClick={() => {
+                                dispatch(remove(product));
+                              }}
+                            >
+                              Delete
+                            </Button>
+                          </div>
+                        </Col>
                       </>
                     );
                   })}
                 </Row>
                 <div
                   style={{
-                    margin: "20px 0",
+                    margin: "20px",
                   }}
                 >
                   Tổng chi phí:{" "}
                   <strong>{convertToVND(calculateTotalPrice())}</strong>
                 </div>
-                <Button onClick={handleSubmit}>Checkout</Button>
+                <Button
+                  onClick={handleSubmit}
+                  style={{ color: "black", borderColor: "black" }}
+                >
+                  Checkout
+                </Button>
               </>
             ) : (
-              <p>No product</p>
+              <p>There are no products in the cart yet.</p>
             )}
           </ul>
         </div>
+        {/* </div> */}
       </div>
     </>
   );

@@ -13,7 +13,7 @@ export const Header = () => {
     {
       label: (
         <div className="text-center bg-green-500 p-1 rounded-3xl">
-          <Link to={"/profile"}>Setting</Link>
+          <Link to={"/profile"}>Profile</Link>
         </div>
       ),
     },
@@ -65,7 +65,6 @@ export const Header = () => {
         style={{
           borderBottomLeftRadius: "25px",
           borderBottomRightRadius: "25px",
-          zIndex: 10000,
         }}
       >
         <div

@@ -5,6 +5,7 @@ import { toast } from "react-toastify";
 
 function SignUpPage() {
   const [username, setUsername] = useState("");
+  const [name, setName] = useState("");
   const [password, setPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
 
@@ -27,7 +28,9 @@ function SignUpPage() {
     try {
       const response = await api.post("/authentication/register", {
         username,
+        name,
         password,
+
         email,
         phone,
         address,
@@ -75,7 +78,7 @@ function SignUpPage() {
             <form onSubmit={handleSignUp}>
               {/* Username input */}
               <div className="relative mb-6" data-te-input-wrapper-init="">
-                Tên đăng nhập
+                UserName
                 <input
                   onInput={(e) => {
                     setUsername(e.target.value);
@@ -87,6 +90,18 @@ function SignUpPage() {
                 />
               </div>
               {/* Password input */}
+              <div className="relative mb-6" data-te-input-wrapper-init="">
+                Full Name
+                <input
+                  onInput={(e) => {
+                    setName(e.target.value);
+                  }}
+                  type="text"
+                  className="peer block min-h-[auto] w-full border bg-transparent px-3 py-[0.32rem] leading-[2.15] outline-none transition-all duration-200 ease-linear focus:placeholder:opacity-100 data-[te-input-state-active]:placeholder:opacity-100 motion-reduce:transition-none dark:text-neutral-200 dark:placeholder:text-neutral-200 [&:not([data-te-input-placeholder-active])]:placeholder:opacity-0 border-gray-800 rounded-xl focus:border-blue-6"
+                  id="signupName"
+                  placeholder="Full Name"
+                />
+              </div>
               <div className="relative mb-6" data-te-input-wrapper-init="">
                 Mật khẩu
                 <input
