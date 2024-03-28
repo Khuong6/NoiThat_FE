@@ -19,6 +19,7 @@ export const Quotation = ({
   fetchQuatationsList,
   requestId,
   isCustomer,
+  open,
 }) => {
   const [quotationDetailId, setQuotationDetailId] = useState();
   const [products, setProducts] = useState([]);
@@ -37,11 +38,15 @@ export const Quotation = ({
     setProducts(response.data);
   };
   useEffect(() => {
+    console.log("load");
+    setQuotations([]);
     fetchProduct();
   }, []);
 
   const onFinish = (values) => {
     console.log(values);
+    const data = [...quotations, values];
+    console.log(data);
     setQuotations([...quotations, values]);
     form.resetFields();
     setShowModal(false);
@@ -50,19 +55,24 @@ export const Quotation = ({
   const fetchQuotation = async () => {
     const response = await api.get(`/quotation/${quotationId}`);
     console.log(response.data);
+    console.log("sadas");
     setQuotations(
       response.data.quotationDetails.map((item) => {
+        console.log("first");
+        console.log(item);
+
         return {
           ...item,
           name: item.productDetail
             ? item.productDetail.name
-            : item.product?.name,
+            : item.product.name,
         };
       })
     );
   };
 
   useEffect(() => {
+    setQuotations([]);
     if (quotationId) {
       fetchQuotation();
     }
@@ -73,18 +83,29 @@ export const Quotation = ({
       const response = await api.post("/quotation", {
         requestId: requestId,
         type: "PENDING",
-        quotationDetailDTOS: quotations.map((item) => ({
-          productDetailId: 0,
-          productId: item.name,
-          quantity: 1,
-          price: item.price,
-          length: item.length,
-          weight: item.weight,
-          width: item.width,
-          pricePerUnit: item.pricePerUnit,
-          total: item.total,
-          unit: item.unit,
-        })),
+        quotationDetailDTOS: quotations.map((item) => {
+          console.log(products);
+          console.log(item);
+          const name = products.filter((product) => {
+            console.log(product.name);
+            console.log(item.name);
+            return product.name === item.name;
+          })[0].productId;
+          console.log(name);
+          return {
+            productDetailId: 0,
+            productId: name,
+            quantity: Number(item.quantity),
+            price: item.price,
+            length: item.length,
+            height: item.height,
+            weight: item.weight,
+            width: item.width,
+            pricePerUnit: item.pricePerUnit,
+            total: item.total,
+            unit: item.unit,
+          };
+        }),
       });
       fetchQuatationsList();
       setQuotations([]);
@@ -113,8 +134,7 @@ export const Quotation = ({
     const pricePerUnit = form.getFieldValue("pricePerUnit");
     const weight = form.getFieldValue("weight");
     console.log(pricePerUnit);
-    console.log(Number(weight));
-    console.log(Number(quantity));
+
     // const length = form.getFieldValue("length")
     total = pricePerUnit * Number(weight) * Number(quantity);
     console.log(total);
@@ -166,7 +186,7 @@ export const Quotation = ({
                 <td>{item.width}</td>
                 <td>{item.height}</td>
                 <td>{item.unit}</td>
-                <td>{item.length * item.width}</td>
+                <td>{item.weight}</td>
                 <td>{item.quantity}</td>
                 <td>{item.pricePerUnit}</td>
                 <td>{convertToCurrency(item.total)}</td>
@@ -239,8 +259,9 @@ export const Quotation = ({
               onChange={(value) => {
                 console.log(value);
                 const product = products.filter(
-                  (item) => item.productId === value
+                  (item) => item.name === value
                 )[0];
+                console.log("1244");
                 console.log(product);
                 form.setFieldValue("unit", product.unit);
                 form.setFieldValue("pricePerUnit", product.pricePerUnit);
@@ -271,7 +292,7 @@ export const Quotation = ({
               options={products.map((item, index) => {
                 return {
                   label: item.name,
-                  value: item.productId,
+                  value: item.name,
                 };
               })}
             />

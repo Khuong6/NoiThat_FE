@@ -343,6 +343,7 @@ const QuotationDetail = ({ requestId, isCustomer }) => {
         width={1000}
       >
         <Quotation
+          open={quotationId !== null}
           edit={quotationId === 0}
           quotationId={quotationId}
           fetchQuatationsList={handlePostQuatation}
