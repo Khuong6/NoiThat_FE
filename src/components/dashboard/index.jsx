@@ -37,11 +37,11 @@ const Dashboard = ({ role }) => {
           icon: <ProductOutlined />,
           label: <Link to={"category"}>Manage Category</Link>,
         },
-        {
-          key: "3",
-          icon: <FileTextOutlined />,
-          label: <Link to={"quotation"}>Manage Quotation</Link>,
-        },
+        // {
+        //   key: "3",
+        //   icon: <FileTextOutlined />,
+        //   label: <Link to={"quotation"}>Manage Quotation</Link>,
+        // },
         {
           key: "4",
           icon: <FileTextOutlined />,

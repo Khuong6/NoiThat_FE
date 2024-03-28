@@ -128,48 +128,44 @@ export const ManageRequest = ({ isCustomer }) => {
   };
 
   return (
-    <>
-      <Header />
-
-      <div
-        className="pt-40"
-        style={{
-          position: "fixed",
-          top: 0,
-          left: 0,
-          width: "100%",
-          height: "100%",
+    <div
+      className=""
+      style={{
+        // position: "fixed",
+        top: 0,
+        left: 0,
+        width: "100%",
+        height: "100%",
+      }}
+    >
+      <Table
+        expandable={{
+          expandedRowRender: (record, index) => {
+            console.log(record);
+            return (
+              <QuotationDetail
+                isCustomer={isCustomer}
+                key={index}
+                requestId={record.id}
+              />
+            );
+          },
+        }}
+        columns={columns}
+        dataSource={request}
+      />
+      <Modal
+        open={isModalOpen}
+        width={1300}
+        onCancel={() => {
+          dispatch(reset());
+          setIsModalOpen(false);
+          setCurrentRequest(null);
         }}
       >
-        <Table
-          expandable={{
-            expandedRowRender: (record, index) => {
-              console.log(record);
-              return (
-                <QuotationDetail
-                  isCustomer={isCustomer}
-                  key={index}
-                  requestId={record.id}
-                />
-              );
-            },
-          }}
-          columns={columns}
-          dataSource={request}
-        />
-        <Modal
-          open={isModalOpen}
-          width={1300}
-          onCancel={() => {
-            dispatch(reset());
-            setIsModalOpen(false);
-            setCurrentRequest(null);
-          }}
-        >
-          <SanPham info={currentRequest} handleCheckout={handleCheckout} />
-        </Modal>
-      </div>
-    </>
+        <SanPham info={currentRequest} handleCheckout={handleCheckout} />
+      </Modal>
+    </div>
   );
 };
 

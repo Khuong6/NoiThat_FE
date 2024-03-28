@@ -592,10 +592,12 @@ const ProductDetail = ({ data }) => {
     await api.post("/product-detail", {
       ...values,
       productId: data.id,
+      price: values.total,
     });
     fetchProductDetails(data.id);
     form.resetFields();
     setShowModal(false);
+    setFileList([]);
   };
 
   return (
@@ -642,7 +644,7 @@ const ProductDetail = ({ data }) => {
       <Table dataSource={productDetails} columns={columns} />
 
       <Modal
-        title="Add New Product"
+        title="Add New Product Detail"
         open={showModal}
         onCancel={() => {
           form.resetFields();
@@ -678,7 +680,7 @@ const ProductDetail = ({ data }) => {
                 form.setFieldValue("height", product.height);
                 form.setFieldValue("weight", product.weight);
                 form.setFieldValue("quantity", 0);
-                form.setFieldValue("total", 0);
+                form.setFieldValue("total", product.pricePerUnit);
 
                 if (product.unit === "ITEM") {
                   setDisableLength(true);
