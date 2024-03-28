@@ -8,30 +8,6 @@ import api from "../config/axios";
 export const DetailedProject = () => {
   const params = useParams();
   const [blog, setBlog] = useState();
-  const [isHovered1, setIsHovered1] = useState(false);
-  const [isHovered2, setIsHovered2] = useState(false);
-  const [isHovered3, setIsHovered3] = useState(false);
-  const [isHovered4, setIsHovered4] = useState(false);
-  const [isHovered5, setIsHovered5] = useState(false);
-  const [isHovered6, setIsHovered6] = useState(false);
-  const [selectedImage1, setSelectedImage1] = useState("");
-  const [selectedImage2, setSelectedImage2] = useState("");
-  const [selectedImage3, setSelectedImage3] = useState("");
-  const [imageUrls1] = useState([
-    "https://www.lanha.vn/wp-content/uploads/2024/01/dsc03281-hdr.jpg.webp",
-  ]);
-
-  const [imageUrls2] = useState([
-    "https://qhrenderpicoss.kujiale.com/r/2022/10/08/L3D336S62B15ENDPZP3O7YUWIPDCLUF3P3XE888_7680x4320.jpg?x-oss-process=image/resize,m_fill,w_1049,h_675/format,webp",
-  ]);
-  const [imageUrls3] = useState([
-    "https://qhrenderpicoss.kujiale.com/r/2022/10/08/L3D336S62B15ENDPZP3O7YUWIPDCLUF3P3XE888_7680x4320.jpg?x-oss-process=image/resize,m_fill,w_1049,h_675/format,webp",
-  ]);
-  useEffect(() => {
-    setSelectedImage1(imageUrls1[0]);
-    setSelectedImage2(imageUrls2[0]);
-    setSelectedImage3(imageUrls3[0]);
-  }, [imageUrls1, imageUrls2, imageUrls3]);
 
   const fetchBlogDetail = async () => {
     const response = await api.get(`/blog/${params.id}`);
@@ -42,16 +18,6 @@ export const DetailedProject = () => {
     fetchBlogDetail();
   }, [params.id]);
 
-  const handleImageClick1 = (url) => {
-    setSelectedImage1(url);
-  };
-
-  const handleImageClick2 = (url) => {
-    setSelectedImage2(url);
-  };
-  const handleImageClick3 = (url) => {
-    setSelectedImage3(url);
-  };
   const [buttonColor, setButtonColor] = useState("#3498db"); // Màu sắc mặc định của button
 
   useEffect(() => {
@@ -111,7 +77,11 @@ export const DetailedProject = () => {
 
           return (
             <>
-              <div
+              <ImageSection
+                title={item.name}
+                images={item?.resources.map((resource) => resource.url)}
+              />
+              {/* <div
                 style={{
                   display: "flex",
                   justifyContent: "center",
@@ -171,7 +141,7 @@ export const DetailedProject = () => {
                     />
                   )}
                 </Col>
-              </Row>
+              </Row> */}
             </>
           );
         })}
@@ -200,4 +170,72 @@ export const DetailedProject = () => {
     </>
   );
 };
+
+const ImageSection = ({ title, images }) => {
+  const [selectedImage, setSelectedImage] = useState(images[0]);
+  return (
+    <>
+      <div
+        style={{
+          display: "flex",
+          justifyContent: "center",
+          marginTop: "5rem",
+          marginBottom: "2rem",
+        }}
+      >
+        <div
+          className="text-3xl font-semibold"
+          style={{ fontFamily: "Arial", fontStyle: "italic" }}
+        >
+          {title}
+        </div>
+      </div>
+      <Row className="mb-20">
+        <Col
+          span={6}
+          className="overflow-x-auto border border-gray-300 rounded p-15"
+        >
+          <div style={{ maxHeight: "300px" }}>
+            <ul style={{ listStyle: "none", padding: 0 }}>
+              {images.map((resource, index) => (
+                <li
+                  key={index}
+                  style={{ padding: "8px", cursor: "pointer" }}
+                  onClick={() => setSelectedImage(resource)}
+                >
+                  <img
+                    src={resource}
+                    alt={`Item  ${index + 1}`}
+                    style={{
+                      width: "100%",
+                      height: "auto",
+                      maxWidth: "400px",
+                      borderRadius: "8px",
+                      border:
+                        selectedImage === resource ? "2px solid blue" : "none",
+                    }}
+                  />
+                </li>
+              ))}
+            </ul>
+          </div>
+        </Col>
+        <Col span={18} className="border border-gray-300 rounded p-15">
+          {selectedImage && (
+            <img
+              src={selectedImage}
+              alt="Selected Image"
+              style={{
+                width: "100%",
+                height: "auto",
+                objectFit: "cover",
+              }}
+            />
+          )}
+        </Col>
+      </Row>
+    </>
+  );
+};
+
 export default DetailedProject;

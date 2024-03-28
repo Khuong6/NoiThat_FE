@@ -1,14 +1,28 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Button, Dropdown, Space } from "antd";
 import { Link } from "react-router-dom";
 import { logout } from "../redux/feature/authenSlice";
 import { DownOutlined, UserOutlined, CheckOutlined } from "@ant-design/icons";
 import "animate.css";
+import api from "../config/axios";
 
 export const Header = () => {
   const user = useSelector((store) => store.authen);
   const dispatch = useDispatch();
+  const [projectType, setProjectType] = useState([]);
+
+  const fetchProjectType = async () => {
+    try {
+      const response = await api.get("/projectTypes"); // Sử dụng axios để gọi API
+      setProjectType(response.data);
+    } catch (error) {
+      console.error("Error fetching data:", error);
+    }
+  };
+  useEffect(() => {
+    fetchProjectType();
+  }, []);
   const items = [
     {
       label: (
@@ -41,23 +55,23 @@ export const Header = () => {
       ),
     },
   ];
-  const downLine = [
-    {
-      label: <a href="/phongngu">Phòng Ngủ</a>,
-    },
-    {
-      type: "divider",
-    },
-    {
-      label: <a href="/phongbep">Phòng Bếp</a>,
-    },
-    {
-      type: "divider",
-    },
-    {
-      label: <a href="/phongkhach">Phòng Khách</a>,
-    },
-  ];
+  // const downLine = [
+  //   {
+  //     label: <a href="/phongngu">Phòng Ngủ</a>,
+  //   },
+  //   {
+  //     type: "divider",
+  //   },
+  //   {
+  //     label: <a href="/phongbep">Phòng Bếp</a>,
+  //   },
+  //   {
+  //     type: "divider",
+  //   },
+  //   {
+  //     label: <a href="/phongkhach">Phòng Khách</a>,
+  //   },
+  // ];
   return (
     <>
       <header
@@ -89,7 +103,17 @@ export const Header = () => {
                   </li>
                   <div>
                     <Dropdown
-                      menu={{ items: downLine }}
+                      menu={{
+                        items: projectType.map((item) => {
+                          return {
+                            label: (
+                              <Link to={`/template/${item.id}`}>
+                                {item.type}
+                              </Link>
+                            ),
+                          };
+                        }),
+                      }}
                       trigger={["click"]}
                       placement="bottomLeft"
                     >
