@@ -11,6 +11,7 @@ import TextArea from "antd/es/input/TextArea";
 import { useForm } from "antd/es/form/Form";
 import Header from "../../../components/Header";
 import Footer from "../../../components/Footer";
+import useModal from "antd/es/modal/useModal";
 
 export const ManageRequest = ({ isCustomer }) => {
   const [request, setCategories] = useState([]);
@@ -18,7 +19,7 @@ export const ManageRequest = ({ isCustomer }) => {
   const [currentRequest, setCurrentRequest] = useState(null);
   const [form] = Form.useForm();
   const dispatch = useDispatch();
-
+  const [products, setProducts] = useState([]);
   const columns = [
     {
       title: "Images",
@@ -172,8 +173,10 @@ export const ManageRequest = ({ isCustomer }) => {
 const QuotationDetail = ({ requestId, isCustomer }) => {
   const [quotationId, setQuotationId] = useState(null);
   const [quotations, setQuotations] = useState([]);
+  const [quotations2, setQuotations2] = useState([]);
   const [rejectQuotationId, setRejectQuotationId] = useState();
   const [form] = useForm();
+  const [products, setProducts] = useState([]);
   const columns = [
     {
       title: "Type",
@@ -303,7 +306,7 @@ const QuotationDetail = ({ requestId, isCustomer }) => {
 
   const fetchQuatations = async () => {
     const response = await api.get(`/quotation-request/${requestId}`);
-    setQuotations(response.data);
+    setQuotations(response.data); //
     console.log(response.data);
   };
 
@@ -352,6 +355,7 @@ const QuotationDetail = ({ requestId, isCustomer }) => {
         open={quotationId !== null}
         onCancel={() => {
           setQuotationId(null);
+          setQuotations2([]);
         }}
         width={1000}
       >
@@ -362,6 +366,10 @@ const QuotationDetail = ({ requestId, isCustomer }) => {
           fetchQuatationsList={handlePostQuatation}
           requestId={requestId}
           isCustomer={isCustomer}
+          products={products}
+          setProducts={setProducts}
+          quotations={quotations2}
+          setQuotations={setQuotations2} //
         />
       </Modal>
 
