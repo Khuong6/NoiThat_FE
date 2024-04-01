@@ -56,12 +56,32 @@ const SanPham = ({ info, handleCheckout }) => {
   };
 
   const fetchProduct = async () => {
-    const response = await api.get(
-      `/productDetail-productId/${currentProduct}`
-    );
-    setProductDetails(response.data);
+    try {
+      const response = await api.get(
+        `/productDetail-productId/${currentProduct}`
+      );
+      const filteredProductDetails = response.data.filter(
+        (productDetail) => !productDetail.deleted
+      );
+      setProductDetails(filteredProductDetails);
+    } catch (error) {
+      console.error("Error fetching product details:", error);
+      message.error("Failed to fetch product details");
+    }
   };
 
+  const fetchProductDetails = async (id) => {
+    try {
+      const response = await api.get(`/productDetail-productId/${id}`);
+      const filteredProductDetails = response.data.filter(
+        (productDetail) => !productDetail.deleted
+      );
+      setProductDetails(filteredProductDetails);
+    } catch (error) {
+      console.error("Error fetching product details:", error);
+      message.error("Failed to fetch product details");
+    }
+  };
   useEffect(() => {
     if (currentProduct) {
       fetchProduct();
@@ -265,7 +285,7 @@ const SanPham = ({ info, handleCheckout }) => {
                           <div className="card-body">
                             <div>
                               <h2 className="card-title">{product.name}</h2>
-                              <p>{product.price} VND</p>
+                              <p>{product.price} </p>
                             </div>
                             <div
                               style={{
@@ -276,7 +296,7 @@ const SanPham = ({ info, handleCheckout }) => {
                               }}
                             >
                               <Button
-                                type="primary"
+                                type="dashed"
                                 onClick={() => {
                                   showModal(product.id);
                                 }}

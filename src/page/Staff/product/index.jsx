@@ -148,12 +148,6 @@ export const ManageProduct = () => {
     );
   };
 
-  // const fetchProducts = async () => {
-  //   const response = await api.get("/product");
-  //   console.log(response.data);
-  //   setProducts(response.data);
-  // };
-
   const fetchProducts = async () => {
     try {
       const response = await api.get("/product");
@@ -264,17 +258,27 @@ export const ManageProduct = () => {
   //   }
   // };
 
+  // const handleDelete = async (id) => {
+  //   try {
+  //     await api.delete(`/product/${id}`);
+
+  //     message.success("Product deleted successfully");
+  //     const response = await api.get(`/product/${id}`);
+  //     if (response.data.deleted) {
+
+  //       return;
+  //     }
+  //     fetchProducts();
+  //   } catch (error) {
+  //     console.error("Error deleting product:", error);
+  //     message.error("Failed to delete product");
+  //   }
+  // };
   const handleDelete = async (id) => {
     try {
       await api.delete(`/product/${id}`);
-
       message.success("Product deleted successfully");
-      const response = await api.get(`/product/${id}`);
-      if (response.data.deleted) {
-        // Nếu sản phẩm đã được đánh dấu là đã xóa thì không hiển thị nó trên màn hình
-        return;
-      }
-      fetchProducts();
+      fetchProducts(); // Cập nhật lại danh sách sản phẩm sau khi xóa
     } catch (error) {
       console.error("Error deleting product:", error);
       message.error("Failed to delete product");
@@ -287,14 +291,19 @@ export const ManageProduct = () => {
       <Button onClick={showModal} type="primary">
         Add
       </Button>
-      {/* <button onClick={handleDeleteClick}>Delete</button> */}
+
       <Table
         columns={columns}
         dataSource={products}
         onChange={onChange}
         expandable={{
           expandedRowRender: (record) => {
-            return <ProductDetail data={record} />;
+            return (
+              <ProductDetail
+                data={record}
+                handleDelete={handleDelete} // Truyền hàm handleDelete vào ProductDetail
+              />
+            );
           },
         }}
       />
@@ -439,13 +448,14 @@ export const ManageProduct = () => {
   );
 };
 
-const ProductDetail = ({ data }) => {
+const ProductDetail = ({ data, handleDelete }) => {
   const calcTotalDetail = () => {
     let total = 0;
     const length = form.getFieldValue("length");
     const width = form.getFieldValue("width");
     const quantity = form.getFieldValue("quantity");
     const pricePerUnit = form.getFieldValue("pricePerUnit");
+    console.log(Number(pricePerUnit));
     // const weight = form.getFieldValue("weight");
     let weight = 0;
     if (data.unit === "ITEM") {
@@ -458,8 +468,9 @@ const ProductDetail = ({ data }) => {
     console.log(Number(weight));
 
     // const length = form.getFieldValue("length")
-    total = pricePerUnit * Number(weight) * Number(quantity);
+    total = Number(pricePerUnit) * Number(weight);
     console.log(total);
+    form.setFieldValue("pricePerUnit", pricePerUnit);
     form.setFieldValue("total", total);
     form.setFieldValue("weight", weight);
   };
@@ -516,8 +527,16 @@ const ProductDetail = ({ data }) => {
   const [formMaterial] = useForm();
 
   const fetchProductDetails = async (id) => {
-    const response = await api.get(`/productDetail-productId/${id}`);
-    setProductDetails(response.data);
+    try {
+      const response = await api.get(`/productDetail-productId/${id}`);
+      const filteredProductDetails = response.data.filter(
+        (productDetail) => !productDetail.deleted
+      );
+      setProductDetails(filteredProductDetails);
+    } catch (error) {
+      console.error("Error fetching product details:", error);
+      message.error("Failed to fetch product details");
+    }
   };
 
   const fetchProductUnit = async (id) => {
@@ -534,7 +553,61 @@ const ProductDetail = ({ data }) => {
     const response = await api.get(`/productMaterial-productId/${id}`);
     setMaterials(response.data);
   };
+  const handleDetailDelete = async (id) => {
+    try {
+      await api.delete(`/product-detail/${id}`);
+      message.success("Product detail deleted successfully");
+      // Lọc ra các chi tiết sản phẩm không bị xóa và cập nhật lại state
+      setProductDetails((prevDetails) =>
+        prevDetails.filter((detail) => detail.id !== id)
+      );
+    } catch (error) {
+      console.error("Error deleting product detail:", error);
+      message.error("Failed to delete product detail");
+    }
+  };
+  const handleEdit = async (id) => {
+    try {
+      // Lấy thông tin chi tiết sản phẩm cần chỉnh sửa từ state hoặc từ API (nếu cần)
+      const productDetailToUpdate = productDetails.find(
+        (detail) => detail.id === id
+      );
 
+      // Gửi yêu cầu cập nhật thông tin chi tiết sản phẩm lên server
+      await api.put(`/product-detail/${id}`, {
+        ...productDetailToUpdate,
+      });
+
+      fetchProductDetails(productDetailToUpdate.productId);
+
+      message.success("Product detail updated successfully");
+    } catch (error) {
+      console.error("Error updating product detail:", error);
+      message.error("Failed to update product detail");
+    }
+  };
+  const [editProductDetail, setEditProductDetail] = useState(null);
+  const [isEditModalOpen, setIsEditModalOpen] = useState(false);
+  const handleEditModalOpen = async (id) => {
+    try {
+      const response = await api.get(`/product-detail/${id}`);
+      setEditProductDetail(response.data);
+      setIsEditModalOpen(true);
+    } catch (error) {
+      console.error("Error fetching product detail for edit:", error);
+      message.error("Failed to fetch product detail for edit");
+    }
+  };
+  const onFinishDetail = async (values) => {
+    try {
+      await api.put(`/product-detail/${editProductDetail.id}`, values);
+      message.success("Product detail updated successfully");
+      setIsEditModalOpen(false);
+    } catch (error) {
+      console.error("Error updating product detail:", error);
+      message.error("Failed to update product detail");
+    }
+  };
   useEffect(() => {
     fetchProductDetails(data.id);
     fetchProductColor(data.id);
@@ -572,6 +645,21 @@ const ProductDetail = ({ data }) => {
       render: (value) => {
         return convertToCurrency(value);
       },
+    },
+
+    {
+      title: "Actions",
+      render: (value, record) => (
+        <>
+          <Button type="primary" onClick={() => handleEditModalOpen(record.id)}>
+            Edit
+          </Button>
+
+          <Button type="dashed" onClick={() => handleDetailDelete(record.id)}>
+            Delete
+          </Button>
+        </>
+      ),
     },
   ];
   const firstUnit = productUnit.length > 0 ? productUnit[0].unit : "";
@@ -738,7 +826,6 @@ const ProductDetail = ({ data }) => {
             <Col span={8}>
               <Form.Item label="Price per unit" name="pricePerUnit">
                 <InputNumber
-                  disabled
                   addonAfter={"VND"}
                   style={{
                     width: 150,
@@ -909,6 +996,225 @@ const ProductDetail = ({ data }) => {
         >
           <Form.Item label="Material" name="size">
             <Input />
+          </Form.Item>
+        </Form>
+      </Modal>
+
+      {/* Modal Edit Product Detail */}
+      <Modal
+        title="Sửa Chi Tiết Sản Phẩm"
+        visible={isEditModalOpen}
+        onCancel={() => setIsEditModalOpen(false)}
+        footer={null}
+        onOk={() => form.submit()}
+      >
+        <Form
+          onChange={() => {
+            calcTotalDetail();
+          }}
+          form={form}
+          labelCol={{
+            span: 24,
+          }}
+          onFinish={onFinishDetail}
+          initialValues={editProductDetail}
+        >
+          <Form.Item label="Name" name="name">
+            <Input
+              showSearch
+              placeholder="Select a item"
+              optionFilterProp="children"
+              onChange={(value) => {
+                console.log(value);
+                const product = products.filter(
+                  (item) => item.productId === value
+                )[0];
+                console.log(product);
+                form.setFieldValue("unit", product.unit);
+                form.setFieldValue("pricePerUnit", product.pricePerUnit);
+                form.setFieldValue("length", product.length);
+                form.setFieldValue("width", product.width);
+                form.setFieldValue("height", product.height);
+                form.setFieldValue("weight", product.weight);
+                form.setFieldValue("quantity", 0);
+                form.setFieldValue("total", product.pricePerUnit);
+
+                if (product.unit === "ITEM") {
+                  setDisableLength(true);
+                  setDisableWidth(true);
+                  setDisableheight(true);
+                } else if (product.unit === "METER") {
+                  setDisableLength(false);
+                  setDisableWidth(true);
+                  setDisableheight(true);
+                } else {
+                  setDisableLength(false);
+                  setDisableWidth(false);
+                  setDisableheight(true);
+                }
+                calcTotalDetail();
+              }}
+              // onSearch={onSearch}
+              filterOption={filterOption}
+              options={productUnit.map((item, index) => {
+                return {
+                  label: item.name,
+                  value: item.productId,
+                };
+              })}
+            />
+          </Form.Item>
+          <Row gutter={12}>
+            <Col span={8}>
+              <Form.Item label="Length" name="length">
+                <Input type="number" disabled={disableLength} />
+              </Form.Item>
+            </Col>
+            <Col span={8}>
+              <Form.Item label="Width" name="width">
+                <Input type="number" disabled={disableWidth} />
+              </Form.Item>
+            </Col>
+            <Col span={8}>
+              <Form.Item label="Height" name="height">
+                <Input type="number" disabled={disableheight} />
+              </Form.Item>
+            </Col>
+          </Row>
+          <Row gutter={12}>
+            <Col span={8}>
+              <Form.Item label="Unit" name="unit">
+                <Input disabled />
+              </Form.Item>
+            </Col>
+            <Col span={8}>
+              <Form.Item label="Weight" name="weight">
+                <Input disabled />
+              </Form.Item>
+            </Col>
+            <Col span={8}>
+              <Form.Item label="Price per unit" name="pricePerUnit">
+                <InputNumber
+                  addonAfter={"VND"}
+                  style={{
+                    width: 150,
+                  }}
+                  defaultValue={0}
+                  p
+                  formatter={(value) =>
+                    `${value}`.replace(/\B(?=(\d{3})+(?!\d))/g, ",")
+                  }
+                  parser={(value) => value.replace(/\$\s?|(,*)/g, "")}
+                />
+              </Form.Item>
+            </Col>
+            <Col span={8}>
+              <Form.Item label="Quantity" name="quantity">
+                <Input type="number" />
+              </Form.Item>
+            </Col>
+            <Col span={8}>
+              <Form.Item label="Total" name="total">
+                <InputNumber
+                  value={total}
+                  disabled
+                  addonAfter={"VND"}
+                  style={{
+                    width: 200,
+                  }}
+                  defaultValue={0}
+                  p
+                  formatter={(value) =>
+                    `${value}`.replace(/\B(?=(\d{3})+(?!\d))/g, ",")
+                  }
+                  parser={(value) => value.replace(/\$\s?|(,*)/g, "")}
+                />
+              </Form.Item>
+            </Col>
+            <Col span={8}>
+              <Row gutter={12} align={"middle"}>
+                <Col span={18}>
+                  <Form.Item
+                    label="Color"
+                    name="colorId"
+                    rules={[
+                      {
+                        required: true,
+                        message: "Please input product color!",
+                      },
+                    ]}
+                  >
+                    <Select>
+                      {colors.map((item) => {
+                        return (
+                          <Select.Option value={item.id}>
+                            {item.color}
+                          </Select.Option>
+                        );
+                      })}
+                    </Select>
+                  </Form.Item>
+                </Col>
+                <Col span={6}>
+                  <Button
+                    onClick={() => setShowModalColor(true)}
+                    type="primary"
+                    icon={<PlusSquareOutlined />}
+                  ></Button>
+                </Col>
+              </Row>
+            </Col>
+            <Col span={24}>
+              <Row gutter={12} align={"middle"}>
+                <Col span={22}>
+                  <Form.Item
+                    label="Material"
+                    name="materialId"
+                    rules={[
+                      {
+                        required: true,
+                        message: "Please input product material!",
+                      },
+                    ]}
+                  >
+                    <Select>
+                      {materials.map((item) => {
+                        return (
+                          <Select.Option value={item.id}>
+                            {item.size}
+                          </Select.Option>
+                        );
+                      })}
+                    </Select>
+                  </Form.Item>
+                </Col>
+                <Col span={2}>
+                  <Button
+                    onClick={() => setShowModalMaterial(true)}
+                    type="primary"
+                    icon={<PlusSquareOutlined />}
+                  ></Button>
+                </Col>
+              </Row>
+            </Col>
+          </Row>
+          <Form.Item
+            name="resource"
+            label="Hình ảnh"
+            className="post-form-item"
+          >
+            <Upload
+              action={() => {
+                console.log(123);
+              }}
+              beforeUpload={false}
+              listType="picture-card"
+              fileList={fileList}
+              onPreview={handlePreview}
+              onChange={handleChangeImage}
+            >
+              {uploadButton}
+            </Upload>
           </Form.Item>
         </Form>
       </Modal>
