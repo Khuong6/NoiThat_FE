@@ -738,7 +738,6 @@ const ProductDetail = ({ data }) => {
             <Col span={8}>
               <Form.Item label="Price per unit" name="pricePerUnit">
                 <InputNumber
-                  disabled
                   addonAfter={"VND"}
                   style={{
                     width: 150,

@@ -13,6 +13,7 @@ import {
 import { useForm } from "antd/es/form/Form";
 import api from "../../config/axios";
 import { convertToCurrency } from "../../utils/currency";
+import useModal from "antd/es/modal/useModal";
 export const Quotation = ({
   edit,
   quotationId,
@@ -20,9 +21,12 @@ export const Quotation = ({
   requestId,
   isCustomer,
   open,
+  products,
+  setProducts,
+  quotations,
+  setQuotations, //
 }) => {
   const [quotationDetailId, setQuotationDetailId] = useState();
-  const [products, setProducts] = useState([]);
   const [showModal, setShowModal] = useState(false);
   const filterOption = (input, option) =>
     (option?.label ?? "").toLowerCase().includes(input.toLowerCase());
@@ -31,7 +35,6 @@ export const Quotation = ({
   const [disableLength, setDisableLength] = useState(false);
   const [disableWidth, setDisableWidth] = useState(false);
   const [disableheight, setDisableheight] = useState(false);
-  const [quotations, setQuotations] = useState([]);
 
   const fetchProduct = async () => {
     const response = await api.get("/product-productResponseDTO");
@@ -39,7 +42,7 @@ export const Quotation = ({
   };
   useEffect(() => {
     console.log("load");
-    setQuotations([]);
+    setQuotations([]); //
     fetchProduct();
   }, []);
 
@@ -47,8 +50,8 @@ export const Quotation = ({
     console.log(values);
     const data = [...quotations, values];
     console.log(data);
-    setQuotations([...quotations, values]);
-    form.resetFields();
+    setQuotations([...quotations, values]); //
+    form.resetFields([]);
     setShowModal(false);
   };
 
@@ -72,7 +75,12 @@ export const Quotation = ({
   };
 
   useEffect(() => {
-    setQuotations([]);
+    console.log(open);
+  }, [open]);
+
+  useEffect(() => {
+    console.log(quotationId);
+    setQuotations([]); //
     if (quotationId) {
       fetchQuotation();
     }
@@ -108,7 +116,7 @@ export const Quotation = ({
         }),
       });
       fetchQuatationsList();
-      setQuotations([]);
+      setQuotations([]); //
       console.log("Quotation posted successfully:", response.data);
     } catch (error) {
       console.error("Error posting quotation:", error);
@@ -132,8 +140,18 @@ export const Quotation = ({
     const width = form.getFieldValue("width");
     const quantity = form.getFieldValue("quantity");
     const pricePerUnit = form.getFieldValue("pricePerUnit");
-    const weight = form.getFieldValue("weight");
+
     console.log(pricePerUnit);
+    const unit = form.getFieldValue("unit");
+
+    let weight = 0;
+    if (unit === "ITEM") {
+      weight = 1;
+    } else if (unit === "METER") {
+      weight = length / 1000;
+    } else if (unit === "SQUARE_METER") {
+      weight = ((length / 1000) * width) / 1000;
+    }
 
     // const length = form.getFieldValue("length")
     total = pricePerUnit * Number(weight) * Number(quantity);
@@ -231,6 +249,7 @@ export const Quotation = ({
           Xác Nhận
         </Button>
       )}
+
       <Modal
         title="Add New Product Detail"
         open={showModal}

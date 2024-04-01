@@ -276,6 +276,7 @@ const SanPham = ({ info, handleCheckout }) => {
                               }}
                             >
                               <Button
+                                // type="dashed"
                                 type="primary"
                                 onClick={() => {
                                   showModal(product.id);
