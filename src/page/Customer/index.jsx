@@ -106,7 +106,7 @@ export const Request = () => {
             <div className="text">
               <div>
                 <span style={{ fontWeight: "bold" }}>Số điện thoại:</span>{" "}
-                <span>0123456789</span>
+                <span>0975522752</span>
               </div>
               <div>
                 <span style={{ fontWeight: "bold" }}>Email:</span>{" "}
@@ -116,7 +116,7 @@ export const Request = () => {
           </div>
           <div></div>
           <div>
-            <div className="pt-[50px]">
+            <div className="pt-[200px]">
               <span style={{ fontWeight: "bold" }}>Ngày soạn báo giá:</span>{" "}
               <span>{formattedDate}</span>
             </div>

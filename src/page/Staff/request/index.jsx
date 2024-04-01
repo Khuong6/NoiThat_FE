@@ -217,9 +217,13 @@ const QuotationDetail = ({ requestId, isCustomer }) => {
               <Button
                 type="primary"
                 onClick={async () => {
-                  await api.patch(`/accept-quotation`, {
-                    quotationId: value,
-                  });
+                  try {
+                    await api.patch(`/accept-quotation`, {
+                      quotationId: value,
+                    });
+                  } catch (error) {
+                    toast.error(error.response.data);
+                  }
                   fetchQuatations();
                 }}
               >
@@ -229,11 +233,15 @@ const QuotationDetail = ({ requestId, isCustomer }) => {
               <Button
                 type="primary"
                 onClick={async () => {
-                  // await api.patch(`/accept-quotation`, {
-                  //   quotationId: value,
-                  // });
-                  // fetchQuatations();
-                  setRejectQuotationId(value);
+                  try {
+                    // await api.patch(`/accept-quotation`, {
+                    //   quotationId: value,
+                    // });
+                    // fetchQuatations();
+                    setRejectQuotationId(value);
+                  } catch (error) {
+                    toast.error(error.response.data);
+                  }
                 }}
               >
                 Reject
@@ -312,10 +320,15 @@ const QuotationDetail = ({ requestId, isCustomer }) => {
   };
 
   const onSubmit = async (values) => {
-    await api.patch(`/reject-quotation`, {
-      quotationId: rejectQuotationId,
-      reasonReject: values.reason,
-    });
+    try {
+      await api.patch(`/reject-quotation`, {
+        quotationId: rejectQuotationId,
+        reasonReject: values.reason,
+      });
+    } catch (error) {
+      toast.error(error.response.data);
+    }
+
     fetchQuatations();
     form.resetFields();
     setRejectQuotationId(null);
