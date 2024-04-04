@@ -55,33 +55,39 @@ const SanPham = ({ info, handleCheckout }) => {
     setIsModalOpen(true);
   };
 
+  // const fetchProduct = async () => {
+  //   try {
+  //     const response = await api.get(
+  //       `/productDetail-productId/${currentProduct}`
+  //     );
+  //     const filteredProductDetails = response.data.filter(
+  //       (productDetail) => !productDetail.deleted
+  //     );
+  //     setProductDetails(filteredProductDetails);
+  //   } catch (error) {
+  //     console.error("Error fetching product details:", error);
+  //     message.error("Failed to fetch product details");
+  //   }
+  // };
   const fetchProduct = async () => {
-    try {
-      const response = await api.get(
-        `/productDetail-productId/${currentProduct}`
-      );
-      const filteredProductDetails = response.data.filter(
-        (productDetail) => !productDetail.deleted
-      );
-      setProductDetails(filteredProductDetails);
-    } catch (error) {
-      console.error("Error fetching product details:", error);
-      message.error("Failed to fetch product details");
-    }
+    const response = await api.get(
+      `/productDetail-productId/${currentProduct}`
+    );
+    setProductDetails(response.data);
   };
 
-  const fetchProductDetails = async (id) => {
-    try {
-      const response = await api.get(`/productDetail-productId/${id}`);
-      const filteredProductDetails = response.data.filter(
-        (productDetail) => !productDetail.deleted
-      );
-      setProductDetails(filteredProductDetails);
-    } catch (error) {
-      console.error("Error fetching product details:", error);
-      message.error("Failed to fetch product details");
-    }
-  };
+  // const fetchProductDetails = async (id) => {
+  //   try {
+  //     const response = await api.get(`/productDetail-productId/${id}`);
+  //     const filteredProductDetails = response.data.filter(
+  //       (productDetail) => !productDetail.deleted
+  //     );
+  //     setProductDetails(filteredProductDetails);
+  //   } catch (error) {
+  //     console.error("Error fetching product details:", error);
+  //     message.error("Failed to fetch product details");
+  //   }
+  // };
   useEffect(() => {
     if (currentProduct) {
       fetchProduct();
@@ -285,7 +291,7 @@ const SanPham = ({ info, handleCheckout }) => {
                           <div className="card-body">
                             <div>
                               <h2 className="card-title">{product.name}</h2>
-                              <p>{product.price} </p>
+                              <p>{product.price} VND</p>
                             </div>
                             <div
                               style={{
@@ -296,12 +302,8 @@ const SanPham = ({ info, handleCheckout }) => {
                               }}
                             >
                               <Button
-
                                 // type="dashed"
                                 type="primary"
-
-
-
                                 onClick={() => {
                                   showModal(product.id);
                                 }}
@@ -355,7 +357,7 @@ const SanPham = ({ info, handleCheckout }) => {
                                                   >
                                                     Color:
                                                   </span>{" "}
-                                                  {item.color.color}
+                                                  {item?.color?.color}
                                                 </div>
                                                 <div>
                                                   <span
@@ -366,7 +368,7 @@ const SanPham = ({ info, handleCheckout }) => {
                                                   >
                                                     Material:
                                                   </span>{" "}
-                                                  {item.material.size}
+                                                  {item?.material?.size}
                                                 </div>
                                                 <div>
                                                   <span

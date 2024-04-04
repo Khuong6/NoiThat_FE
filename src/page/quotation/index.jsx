@@ -159,12 +159,14 @@ export const Quotation = ({
     form.setFieldValue("total", total);
     form.setFieldValue("weight", weight);
   };
+
   const handleDelete = (index) => {
     const updatedQuotations = [...quotations];
     updatedQuotations.splice(index, 1);
     setQuotations(updatedQuotations);
   };
  
+
   return (
     <div className="quotation">
       {edit && (
@@ -191,7 +193,9 @@ export const Quotation = ({
             <th rowspan="2">Số lượng</th>
             <th rowspan="2">Đơn giá</th>
             <th rowspan="2">Thành tiền</th>
+
             <th rowspan="2">Action</th>
+
             {/* <th rowspan="2">Hình ảnh</th> */}
           </tr>
           <tr>
@@ -212,11 +216,15 @@ export const Quotation = ({
                 <td>{item.weight}</td>
                 <td>{item.quantity}</td>
                 <td>{item.pricePerUnit}</td>
+
 <td>{convertToCurrency(item.total)}</td>
                 <td>
                  
                   <Button onClick={() => handleDelete(index)}>Delete</Button>
                 </td>
+
+              
+
                 {/* <td>
                   <Button
                     type="primary"
