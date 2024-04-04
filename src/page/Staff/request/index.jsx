@@ -178,13 +178,7 @@ const QuotationDetail = ({ requestId, isCustomer }) => {
   const [rejectQuotationId, setRejectQuotationId] = useState();
   const [form] = useForm();
   const [products, setProducts] = useState([]);
-  const handleDelete = (index) => {
-    const updatedQuotations = [...quotations];
-    updatedQuotations.splice(index, 1);
-    setQuotations(updatedQuotations);
-    toast.success("Quotation deleted successfully!");
-    
-  };
+  
   const columns = [
     {
       title: "Type",
@@ -280,22 +274,7 @@ const QuotationDetail = ({ requestId, isCustomer }) => {
       
       ),
     },
-    {
-      title: "Action",
-      key: "id",
-      dataIndex: "id",
-      render: (value, index) => (
-        <div
-          style={{
-            display: "flex",
-            gap: 20,
-          }}
-        >
-           <Button type="dashed" onClick={() => handleDelete(index)}>Delete</Button>
-        </div>
-     
-      ),
-        },
+    
   ];
   const data = [
     {
