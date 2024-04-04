@@ -159,7 +159,14 @@ export const Quotation = ({
     form.setFieldValue("total", total);
     form.setFieldValue("weight", weight);
   };
-
+  const handleDelete = (index) => {
+    const updatedQuotations = [...quotations];
+    updatedQuotations.splice(index, 1);
+    setQuotations(updatedQuotations);
+  };
+  const handleEdit = (index) => {
+    
+       };
   return (
     <div className="quotation">
       {edit && (
@@ -186,7 +193,7 @@ export const Quotation = ({
             <th rowspan="2">Số lượng</th>
             <th rowspan="2">Đơn giá</th>
             <th rowspan="2">Thành tiền</th>
-            {/* <th rowspan="2">Action</th> */}
+            <th rowspan="2">Action</th>
             {/* <th rowspan="2">Hình ảnh</th> */}
           </tr>
           <tr>
@@ -196,9 +203,9 @@ export const Quotation = ({
           </tr>
         </thead>
         <tbody>
-          {quotations.map((item) => {
+          {quotations.map((item, index) => {
             return (
-              <tr>
+              <tr key={index}>
                 <td>{item.name}</td>
                 <td>{item.length}</td>
                 <td>{item.width}</td>
@@ -207,7 +214,11 @@ export const Quotation = ({
                 <td>{item.weight}</td>
                 <td>{item.quantity}</td>
                 <td>{item.pricePerUnit}</td>
-                <td>{convertToCurrency(item.total)}</td>
+<td>{convertToCurrency(item.total)}</td>
+                <td>
+                  <Button onClick={() => handleEdit(index)}>Edit</Button>
+                  <Button onClick={() => handleDelete(index)}>Delete</Button>
+                </td>
                 {/* <td>
                   <Button
                     type="primary"
@@ -301,7 +312,7 @@ export const Quotation = ({
                   setDisableheight(true);
                 } else {
                   setDisableLength(false);
-                  setDisableWidth(false);
+setDisableWidth(false);
                   setDisableheight(true);
                 }
                 calcTotalDetail();
@@ -389,7 +400,7 @@ export const Quotation = ({
                   }
                   parser={(value) => value.replace(/\$\s?|(,*)/g, "")}
                 />
-              </Form.Item>
+</Form.Item>
             </Col>
           </Row>
         </Form>
