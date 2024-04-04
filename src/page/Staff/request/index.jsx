@@ -127,6 +127,7 @@ export const ManageRequest = ({ isCustomer }) => {
     setIsModalOpen(false);
     toast.success("Successfully!");
   };
+  
 
   return (
     <div
@@ -177,6 +178,13 @@ const QuotationDetail = ({ requestId, isCustomer }) => {
   const [rejectQuotationId, setRejectQuotationId] = useState();
   const [form] = useForm();
   const [products, setProducts] = useState([]);
+  const handleDelete = (index) => {
+    const updatedQuotations = [...quotations];
+    updatedQuotations.splice(index, 1);
+    setQuotations(updatedQuotations);
+    toast.success("Quotation deleted successfully!");
+    
+  };
   const columns = [
     {
       title: "Type",
@@ -186,6 +194,7 @@ const QuotationDetail = ({ requestId, isCustomer }) => {
         if (text === "PENDING") return <Tag color="warning">PENDING</Tag>;
         if (text === "ACCEPTED") return <Tag color="#87d068">ACCEPTED</Tag>;
         if (text === "REJECTED") return <Tag color="#cd201f">REJECTED</Tag>;
+       
       },
     },
     {
@@ -234,10 +243,7 @@ const QuotationDetail = ({ requestId, isCustomer }) => {
                 type="primary"
                 onClick={async () => {
                   try {
-                    // await api.patch(`/accept-quotation`, {
-                    //   quotationId: value,
-                    // });
-                    // fetchQuatations();
+                    
                     setRejectQuotationId(value);
                   } catch (error) {
                     toast.error(error.response.data);
@@ -253,15 +259,7 @@ const QuotationDetail = ({ requestId, isCustomer }) => {
             <Button
               type="primary"
               onClick={async () => {
-                // const blob = await api.get(`/export-quotation/${value}`);
-                // const url = window.URL.createObjectURL(blob);
-                // const a = document.createElement("a");
-                // a.style.display = "none";
-                // a.href = url;
-                // a.download = "data.xlsx"; // Filename of the downloaded file
-                // document.body.appendChild(a);
-                // a.click();
-                // window.URL.revokeObjectURL(url);
+                
                 window.open(`${baseUrl}/export-quotation/${value}`, "_blank");
               }}
             >
@@ -276,9 +274,28 @@ const QuotationDetail = ({ requestId, isCustomer }) => {
           >
             Show Detail
           </Button>
+          
+
         </div>
+      
       ),
     },
+    {
+      title: "Action",
+      key: "id",
+      dataIndex: "id",
+      render: (value, index) => (
+        <div
+          style={{
+            display: "flex",
+            gap: 20,
+          }}
+        >
+           <Button type="dashed" onClick={() => handleDelete(index)}>Delete</Button>
+        </div>
+     
+      ),
+        },
   ];
   const data = [
     {
