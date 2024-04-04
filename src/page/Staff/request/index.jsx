@@ -130,7 +130,7 @@ export const ManageRequest = ({ isCustomer }) => {
 
   return (
     <div
-      className=""
+      className="pt-10"
       style={{
         // position: "fixed",
         top: 0,
