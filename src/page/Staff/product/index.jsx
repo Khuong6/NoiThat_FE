@@ -21,6 +21,7 @@ import { Checkbox, Divider } from "antd";
 import { message } from "antd";
 import { convertToCurrency } from "../../../utils/currency";
 import { UploadOutlined } from "@ant-design/icons";
+import { useParams } from "react-router-dom";
 
 export const ManageProduct = () => {
   const [options, setOptions] = useState([]);
@@ -557,7 +558,7 @@ const ProductDetail = ({ data, handleDelete }) => {
     try {
       await api.delete(`/product-detail/${id}`);
       message.success("Product detail deleted successfully");
-      // Lọc ra các chi tiết sản phẩm không bị xóa và cập nhật lại state
+
       setProductDetails((prevDetails) =>
         prevDetails.filter((detail) => detail.id !== id)
       );
@@ -568,12 +569,10 @@ const ProductDetail = ({ data, handleDelete }) => {
   };
   const handleEdit = async (id) => {
     try {
-      // Lấy thông tin chi tiết sản phẩm cần chỉnh sửa từ state hoặc từ API (nếu cần)
       const productDetailToUpdate = productDetails.find(
         (detail) => detail.id === id
       );
 
-      // Gửi yêu cầu cập nhật thông tin chi tiết sản phẩm lên server
       await api.put(`/product-detail/${id}`, {
         ...productDetailToUpdate,
       });
@@ -586,17 +585,27 @@ const ProductDetail = ({ data, handleDelete }) => {
       message.error("Failed to update product detail");
     }
   };
-  const [editProductDetail, setEditProductDetail] = useState(null);
-  const [isEditModalOpen, setIsEditModalOpen] = useState(false);
+  const [isEditing, setIsEditing] = useState(null);
+  // const [editProductDetail, setEditProductDetail] = useState(null);
+  // const [isEditModalOpen, setIsEditModalOpen] = useState(false);
   const handleEditModalOpen = async (id) => {
     try {
-      const response = await api.get(`/product-detail/${id}`);
-      setEditProductDetail(response.data);
-      setIsEditModalOpen(true);
+      const response = await api.get(`/productDetail-productId/${id}`);
+
+      form.setFieldsValue(response.data);
+      console.log(response.data);
+      // form.setFieldValue(productUnit.data.id);
     } catch (error) {
       console.error("Error fetching product detail for edit:", error);
       message.error("Failed to fetch product detail for edit");
     }
+  };
+  // const handleEditModalClose = () => {
+  //   setEditProductDetail(null);
+  //   setIsEditModalOpen(false);
+  // };
+  const handleModalClose = () => {
+    setIsEditing(null);
   };
   const onFinishDetail = async (values) => {
     try {
@@ -651,7 +660,30 @@ const ProductDetail = ({ data, handleDelete }) => {
       title: "Actions",
       render: (value, record) => (
         <>
-          <Button type="primary" onClick={() => handleEditModalOpen(record.id)}>
+          <Button
+            type="primary"
+            onClick={() => {
+              value.pricePerUnit = value.pricePerUnit;
+              // value.colorId = value.color.id;
+              // value.materialId = value.material.id;
+              value.total = value.price;
+
+              console.log(value);
+
+              form.setFieldsValue(value);
+              console.log(value);
+              setFileList(
+                value.resources.map((item) => {
+                  return {
+                    url: item.url,
+                  };
+                })
+              );
+              // handleEditModalOpen();
+              setShowModal(true);
+              setIsEditing(value.id);
+            }}
+          >
             Edit
           </Button>
 
@@ -664,8 +696,7 @@ const ProductDetail = ({ data, handleDelete }) => {
   ];
   const firstUnit = productUnit.length > 0 ? productUnit[0].unit : "";
   const onFinish = async (values) => {
-    console.log(values);
-    if (values.resource.file) {
+    if (values.resource && values.resource.file) {
       const file = values.resource.file.originFileObj;
       const url = await uploadFile(file);
       values.resourceDTOS = [
@@ -674,15 +705,36 @@ const ProductDetail = ({ data, handleDelete }) => {
           type: "IMG",
         },
       ];
+    } else {
+      values.resourceDTOS = fileList.map((item) => {
+        delete item.id;
+        return {
+          url: item.url,
+          type: "IMG",
+        };
+      });
+    }
+    delete values.resource;
+    console.log(values);
+
+    console.log(isEditing);
+    if (isEditing) {
+      values.resources = values.resourceDTOS;
+      await api.put(`/product-detail/${isEditing}`, {
+        ...values,
+        productId: data.id,
+        price: values.total,
+      });
+    } else {
+      await api.post("/product-detail", {
+        ...values,
+        productId: data.id,
+        price: values.total,
+      });
     }
 
-    console.log(values);
-    await api.post("/product-detail", {
-      ...values,
-      productId: data.id,
-      price: values.total,
-    });
     fetchProductDetails(data.id);
+
     form.resetFields();
     setShowModal(false);
     setFileList([]);
@@ -724,6 +776,7 @@ const ProductDetail = ({ data, handleDelete }) => {
             }
             calcTotalDetail();
             setShowModal(true);
+            setIsEditing(false);
           }}
         >
           Add new product Detail
@@ -732,11 +785,12 @@ const ProductDetail = ({ data, handleDelete }) => {
       <Table dataSource={productDetails} columns={columns} />
 
       <Modal
-        title="Add New Product Detail"
+        title={isEditing ? "Edit Product Detail" : "Add New Product Detail"}
         open={showModal}
         onCancel={() => {
           form.resetFields();
           setShowModal(false);
+          handleModalClose;
         }}
         onOk={() => form.submit()}
       >
@@ -999,9 +1053,41 @@ const ProductDetail = ({ data, handleDelete }) => {
           </Form.Item>
         </Form>
       </Modal>
+    </>
+  );
+};
 
-      {/* Modal Edit Product Detail */}
-      <Modal
+{
+  /* EditModal */
+}
+
+{
+  /* <Modal
+        title="Edit Product Detail"
+        open={isEditModalOpen}
+        onCancel={handleEditModalClose}
+        onOk={onFinishDetail} 
+      >
+        {editProductDetail && (
+          <Form
+            form={form}
+            initialValues={editProductDetail} 
+            labelCol={{
+              span: 24,
+            }}
+            onFinish={onFinishDetail}
+          >
+  
+          </Form>
+        )}
+      </Modal> */
+}
+
+{
+  /* Modal Edit Product Detail */
+}
+{
+  /* <Modal
         title="Sửa Chi Tiết Sản Phẩm"
         visible={isEditModalOpen}
         onCancel={() => setIsEditModalOpen(false)}
@@ -1217,7 +1303,5 @@ const ProductDetail = ({ data, handleDelete }) => {
             </Upload>
           </Form.Item>
         </Form>
-      </Modal>
-    </>
-  );
-};
+      </Modal> */
+}
