@@ -375,6 +375,7 @@ export const ManageProduct = () => {
                     `${value}`.replace(/\B(?=(\d{3})+(?!\d))/g, ",")
                   }
                   parser={(value) => value.replace(/\$\s?|(,*)/g, "")}
+                  // onChange={onChange}
                   onChange={onChange}
                 />
               </Form.Item>
