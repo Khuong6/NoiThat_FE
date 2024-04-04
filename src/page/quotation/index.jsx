@@ -164,9 +164,7 @@ export const Quotation = ({
     updatedQuotations.splice(index, 1);
     setQuotations(updatedQuotations);
   };
-  const handleEdit = (index) => {
-    
-       };
+ 
   return (
     <div className="quotation">
       {edit && (
@@ -216,7 +214,7 @@ export const Quotation = ({
                 <td>{item.pricePerUnit}</td>
 <td>{convertToCurrency(item.total)}</td>
                 <td>
-                  <Button onClick={() => handleEdit(index)}>Edit</Button>
+                 
                   <Button onClick={() => handleDelete(index)}>Delete</Button>
                 </td>
                 {/* <td>
