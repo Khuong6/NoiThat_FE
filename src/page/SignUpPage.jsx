@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import api from "../config/axios";
 import { useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
@@ -8,29 +8,49 @@ function SignUpPage() {
   const [name, setName] = useState("");
   const [password, setPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
+  const [passwordsMatch, setPasswordsMatch] = useState(true);
+   // Biến trạng thái để kiểm tra độ dài của mật khẩu
 
   const [email, setEmail] = useState("");
   const [phone, setPhoneNumber] = useState("");
   const [address, setAddress] = useState("");
   const navigate = useNavigate();
 
+  useEffect(() => {
+    setPasswordsMatch(password === confirmPassword);
+  }, [password, confirmPassword]);
+
   const handleSignUp = async (e) => {
     e.preventDefault();
 
-    // Kiểm tra mật khẩu nhập lại
-    if (password !== confirmPassword) {
+    if (!passwordsMatch) {
       alert("Mật khẩu và mật khẩu nhập lại không khớp");
       return;
     }
 
-    // Kiểm tra các trường nhập liệu khác ở đây (ví dụ: email, số điện thoại, ...)
+    // Kiểm tra độ dài của mật khẩu
+    if (password.length < 6) {
+      alert("Mật khẩu phải có ít nhất 6 ký tự");
+      return;
+    }
+
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    if (!emailRegex.test(email)) {
+      alert("Email không hợp lệ");
+      return;
+    }
+
+    const phoneRegex = /^\d{10,11}$/;
+    if (!phoneRegex.test(phone)) {
+      alert("Số điện thoại không hợp lệ");
+      return;
+    }
 
     try {
       const response = await api.post("/authentication/register", {
         username,
         name,
         password,
-
         email,
         phone,
         address,
@@ -38,14 +58,11 @@ function SignUpPage() {
 
       localStorage.setItem("account", JSON.stringify(response.data));
       navigate("/login");
-      // setSuccessMessage("Đăng ký thành công!");
       toast.success("Đăng ký thành công!");
     } catch (error) {
-      // Xử lý lỗi từ server nếu cần
       toast.error(error.response.data);
     }
   };
-
   return (
     <>
       <div
