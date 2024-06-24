@@ -45,7 +45,7 @@
 // EpaperPage.js
 // EpaperPage.js
 import React, { useEffect, useRef } from "react";
-import "turn.js"; // Import thư viện Turn.js
+// import "turn.js"; // Import thư viện Turn.js
 
 const ECatalogue = () => {
   const flipBookRef = useRef(null);
